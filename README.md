@@ -6,10 +6,15 @@ for all 3 of those parts but lost the changes a while back. I will hopefuly reme
 
 current pinout;
 
-		TDI = GPIO B15
-SWO		TDO = GPIO B14
+      
+	
+SWO	TDO = GPIO B14
+
 SWCLK	TCK = GPIO B13
+
 SDIO	TMS = GPIO B4
+
+TDI         = GPIO B15
 
 ## Origin from original host
 _This repository is unofficial!_ But it is documented better. The official one on github is [here](https://github.com/versaloon/versaloon) (uses SVN).
