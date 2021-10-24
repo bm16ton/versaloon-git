@@ -10,18 +10,16 @@ For the gui to work you need to have the openocd and vsprog binarys in a read/wr
 
 Example
 
-mkdir ~/vs-bins
+mkdir /home/$USER/vs-bins
 
-cp /usr/local/bin/vsprog ~/vs-bins/
+cp /usr/local/bin/vsprog /home/$USER/vs-bins/
 
-cp /usr/bin/openocd ~/vs-bins/
+cp /usr/bin/openocd /home/$USER/vs-bins/
 
-cp -R /usr/share/openocd/scripts/* ~/vs-bins/
+cp -R /usr/share/openocd/scripts/* /home/$USER/vs-bins/
 
+Then point to this directory on the about page for vsprog and openocd
 
-Then point to this directory on the about page for vsprog and openocd binarys.
-
-FYI the settings file is not currently hidden and sits in home folder vsgui.xml
 
 current pinout;
 
@@ -32,8 +30,6 @@ SWCLK	TCK = GPIO B13
 SDIO	TMS = GPIO B4
 
 TDI         = GPIO B15
-
-
 
 ## Origin from original host
 _This repository is unofficial!_ But it is documented better. The official one on github is [here](https://github.com/versaloon/versaloon) (uses SVN).
