@@ -159,7 +159,7 @@ main()
           echo "*** If you have an old version installed, it is best to remove it, although"
           echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH" ],
         [ echo "*** The test program failed to compile or link. See the file config.log for the"
-          echo "*** exact error that occured. This usually means LIBXML was incorrectly installed"
+          echo "*** exact error that occurred. This usually means LIBXML was incorrectly installed"
           echo "*** or that you have moved LIBXML since it was installed. In the latter case, you"
           echo "*** may want to edit the xml2-config script: $XML2_CONFIG" ])
           CPPFLAGS="$ac_save_CPPFLAGS"
@@ -1013,6 +1013,7 @@ m4trace:configure.in:2: -1- m4_pattern_allow([^AS_FLAGS$])
 m4trace:configure.in:2: -1- m4_pattern_forbid([^_?m4_])
 m4trace:configure.in:2: -1- m4_pattern_forbid([^dnl$])
 m4trace:configure.in:2: -1- m4_pattern_forbid([^_?AS_])
+m4trace:configure.in:2: -1- _m4_warn([syntax], [AC_INIT: not a literal: VSProg Mailling List <Versaloon-development@simonqian.com>], [])
 m4trace:configure.in:2: -1- m4_pattern_allow([^SHELL$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^PATH_SEPARATOR$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^PACKAGE_NAME$])
@@ -1032,7 +1033,6 @@ m4trace:configure.in:2: -1- m4_pattern_allow([^datadir$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^sysconfdir$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^sharedstatedir$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^localstatedir$])
-m4trace:configure.in:2: -1- m4_pattern_allow([^runstatedir$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^includedir$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^oldincludedir$])
 m4trace:configure.in:2: -1- m4_pattern_allow([^docdir$])
@@ -1062,7 +1062,7 @@ m4trace:configure.in:6: -1- AM_INIT_AUTOMAKE
 m4trace:configure.in:6: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
 m4trace:configure.in:6: -1- AM_SET_CURRENT_AUTOMAKE_VERSION
 m4trace:configure.in:6: -1- AM_AUTOMAKE_VERSION([1.16.1])
-m4trace:configure.in:6: -1- _AM_AUTOCONF_VERSION([2.69])
+m4trace:configure.in:6: -1- _AM_AUTOCONF_VERSION([2.67])
 m4trace:configure.in:6: -1- m4_pattern_allow([^INSTALL_PROGRAM$])
 m4trace:configure.in:6: -1- m4_pattern_allow([^INSTALL_SCRIPT$])
 m4trace:configure.in:6: -1- m4_pattern_allow([^INSTALL_DATA$])
@@ -1150,7 +1150,7 @@ m4trace:configure.in:9: -1- _m4_warn([obsolete], ['AM_CONFIG_HEADER': this macro
 You should use the 'AC_CONFIG_HEADERS' macro instead.], [/usr/share/aclocal-1.16/obsolete.m4:11: AM_CONFIG_HEADER is expanded from...
 configure.in:9: the top level])
 m4trace:configure.in:11: -1- _m4_warn([obsolete], [The macro `AC_LANG_C' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+You should run autoupdate.], [../../lib/autoconf/c.m4:73: AC_LANG_C is expanded from...
 configure.in:11: the top level])
 m4trace:configure.in:12: -1- m4_pattern_allow([^CC$])
 m4trace:configure.in:12: -1- m4_pattern_allow([^CFLAGS$])
@@ -1204,11 +1204,11 @@ m4trace:configure.in:22: -1- m4_pattern_allow([^host_os$])
 m4trace:configure.in:24: -1- AM_PATH_XML2([2.4.0], [], [as_fn_error $? "Libxml2 is required to build vsprog" "$LINENO" 5])
 m4trace:configure.in:24: -1- m4_pattern_allow([^XML2_CONFIG$])
 m4trace:configure.in:24: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2775: AC_TRY_RUN is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:2752: AC_TRY_RUN is expanded from...
 /usr/share/aclocal/libxml2.m4:12: AM_PATH_XML2 is expanded from...
 configure.in:24: the top level])
 m4trace:configure.in:24: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2698: AC_TRY_LINK is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:2675: AC_TRY_LINK is expanded from...
 /usr/share/aclocal/libxml2.m4:12: AM_PATH_XML2 is expanded from...
 configure.in:24: the top level])
 m4trace:configure.in:24: -1- m4_pattern_allow([^XML_CPPFLAGS$])
@@ -1234,13 +1234,9 @@ m4trace:configure.in:38: -1- m4_pattern_allow([^HAVE_USLEEP$])
 m4trace:configure.in:39: -1- m4_pattern_allow([^HAVE_STRTOUL$])
 m4trace:configure.in:40: -1- m4_pattern_allow([^HAVE_GETTIMEOFDAY$])
 m4trace:configure.in:41: -1- m4_pattern_allow([^HAVE_STRCHR$])
-m4trace:configure.in:56: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2788: AC_CHECK_FILE is expanded from...
+m4trace:configure.in:56: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2765: AC_CHECK_FILE is expanded from...
 configure.in:56: the top level])
 m4trace:configure.in:64: -1- m4_pattern_allow([^IS_DARWIN$])
-m4trace:configure.in:69: -1- _m4_warn([syntax], [AC_LANG_CONFTEST: no AC_LANG_SOURCE call detected in body], [../../lib/autoconf/lang.m4:193: AC_LANG_CONFTEST is expanded from...
-../../lib/autoconf/general.m4:2601: _AC_COMPILE_IFELSE is expanded from...
-../../lib/autoconf/general.m4:2617: AC_COMPILE_IFELSE is expanded from...
-configure.in:69: the top level])
 m4trace:configure.in:72: -1- m4_pattern_allow([^IS_MINGW$])
 m4trace:configure.in:76: -1- m4_pattern_allow([^IS_CYGWIN$])
 m4trace:configure.in:79: -1- m4_pattern_allow([^IS_WIN32$])
@@ -1270,7 +1266,7 @@ m4trace:configure.in:98: -1- m4_pattern_allow([^IS_WIN32_FALSE$])
 m4trace:configure.in:98: -1- _AM_SUBST_NOTMAKE([IS_WIN32_TRUE])
 m4trace:configure.in:98: -1- _AM_SUBST_NOTMAKE([IS_WIN32_FALSE])
 m4trace:configure.in:119: -1- _m4_warn([obsolete], [The macro `AC_FD_CC' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:383: AC_FD_CC is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:385: AC_FD_CC is expanded from...
 configure.in:119: the top level])
 m4trace:configure.in:133: -1- m4_pattern_allow([^EXEEXT_FOR_BUILD$])
 m4trace:configure.in:135: -1- _m4_warn([obsolete], [AC_OUTPUT should be used without arguments.

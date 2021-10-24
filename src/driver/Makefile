@@ -87,14 +87,11 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = aarch64-unknown-linux-gnu
+host_triplet = aarch64-unknown-linux-gnu
 subdir = src/driver
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(noinst_HEADERS) \
@@ -104,6 +101,7 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
+AR = ar
 ARFLAGS = cru
 AM_V_AR = $(am__v_AR_$(V))
 am__v_AR_ = $(am__v_AR_$(AM_DEFAULT_VERBOSITY))
@@ -111,9 +109,8 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libdrv_a_AR = $(AR) $(ARFLAGS)
 libdrv_a_LIBADD =
-am__dirstamp = $(am__leading_dot)dirstamp
-am_libdrv_a_OBJECTS = comport/comport.$(OBJEXT) usb/usbapi.$(OBJEXT) \
-	usb/usbapi_scripts.$(OBJEXT)
+am_libdrv_a_OBJECTS = comport.$(OBJEXT) usbapi.$(OBJEXT) \
+	usbapi_scripts.$(OBJEXT)
 libdrv_a_OBJECTS = $(am_libdrv_a_OBJECTS)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -130,27 +127,21 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = comport/$(DEPDIR)/comport.Po \
-	usb/$(DEPDIR)/usbapi.Po usb/$(DEPDIR)/usbapi_scripts.Po
+am__depfiles_remade = ./$(DEPDIR)/comport.Po ./$(DEPDIR)/usbapi.Po \
+	./$(DEPDIR)/usbapi_scripts.Po
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_$(V))
 am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
 am__v_CC_0 = @echo "  CC      " $@;
 am__v_CC_1 = 
 CCLD = $(CC)
-LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
@@ -187,7 +178,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/maddocks/versaloon-git/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
 AUTOCONF = ${SHELL} /home/maddocks/versaloon-git/missing autoconf
 AUTOHEADER = ${SHELL} /home/maddocks/versaloon-git/missing autoheader
 AUTOMAKE = ${SHELL} /home/maddocks/versaloon-git/missing automake-1.16
@@ -200,41 +190,26 @@ CPPFLAGS =
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
-DSYMUTIL = 
-DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /bin/grep -E
 EXEEXT = 
 EXEEXT_FOR_BUILD = 
-FGREP = /usr/bin/grep -F
-GREP = /usr/bin/grep
+GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
-LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
-LN_S = ln -s
 LTLIBOBJS = 
-LT_SYS_LIBRARY_PATH = 
 MAINT = 
 MAKEINFO = ${SHELL} /home/maddocks/versaloon-git/missing makeinfo
-MANIFEST_TOOL = :
-MKDIR_P = /usr/bin/mkdir -p
-NM = /usr/bin/nm -B
-NMEDIT = 
-OBJDUMP = objdump
+MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
 PACKAGE = vsprog
 PACKAGE_BUGREPORT = VSProg Mailling List <Versaloon-development@simonqian.com>
 PACKAGE_NAME = vsprog
@@ -244,10 +219,9 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1.1
 PATH_SEPARATOR = :
 RANLIB = ranlib
-SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = strip
+STRIP = 
 VERSION = 1.1
 XML2_CONFIG = /usr/bin/xml2-config
 XML_CPPFLAGS = -I/usr/include/libxml2
@@ -256,31 +230,29 @@ abs_builddir = /home/maddocks/versaloon-git/src/driver
 abs_srcdir = /home/maddocks/versaloon-git/src/driver
 abs_top_builddir = /home/maddocks/versaloon-git
 abs_top_srcdir = /home/maddocks/versaloon-git
-ac_ct_AR = ar
 ac_ct_CC = ccache gcc
-ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = aarch64-unknown-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = aarch64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = aarch64-unknown-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = aarch64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -296,7 +268,6 @@ pdfdir = ${docdir}
 prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
@@ -305,7 +276,6 @@ target_alias =
 top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
-AUTOMAKE_OPTIONS = subdir-objects
 INCLUDES = \
     $(all_includes) \
     -I$(top_srcdir)/src/vsf_cfg \
@@ -333,7 +303,7 @@ MAINTAINERCLEANFILES = Makefile.in
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -366,24 +336,6 @@ $(am__aclocal_m4_deps):
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-comport/$(am__dirstamp):
-	@$(MKDIR_P) comport
-	@: > comport/$(am__dirstamp)
-comport/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) comport/$(DEPDIR)
-	@: > comport/$(DEPDIR)/$(am__dirstamp)
-comport/comport.$(OBJEXT): comport/$(am__dirstamp) \
-	comport/$(DEPDIR)/$(am__dirstamp)
-usb/$(am__dirstamp):
-	@$(MKDIR_P) usb
-	@: > usb/$(am__dirstamp)
-usb/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) usb/$(DEPDIR)
-	@: > usb/$(DEPDIR)/$(am__dirstamp)
-usb/usbapi.$(OBJEXT): usb/$(am__dirstamp) \
-	usb/$(DEPDIR)/$(am__dirstamp)
-usb/usbapi_scripts.$(OBJEXT): usb/$(am__dirstamp) \
-	usb/$(DEPDIR)/$(am__dirstamp)
 
 libdrv.a: $(libdrv_a_OBJECTS) $(libdrv_a_DEPENDENCIES) $(EXTRA_libdrv_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libdrv.a
@@ -392,15 +344,13 @@ libdrv.a: $(libdrv_a_OBJECTS) $(libdrv_a_DEPENDENCIES) $(EXTRA_libdrv_a_DEPENDEN
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f comport/*.$(OBJEXT)
-	-rm -f usb/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-include comport/$(DEPDIR)/comport.Po # am--include-marker
-include usb/$(DEPDIR)/usbapi.Po # am--include-marker
-include usb/$(DEPDIR)/usbapi_scripts.Po # am--include-marker
+include ./$(DEPDIR)/comport.Po # am--include-marker
+include ./$(DEPDIR)/usbapi.Po # am--include-marker
+include ./$(DEPDIR)/usbapi_scripts.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -409,34 +359,60 @@ $(am__depfiles_remade):
 am--depfiles: $(am__depfiles_remade)
 
 .c.o:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-.c.lo:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Plo
-#	$(AM_V_CC)source='$<' object='$@' libtool=yes \
+comport.o: comport/comport.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT comport.o -MD -MP -MF $(DEPDIR)/comport.Tpo -c -o comport.o `test -f 'comport/comport.c' || echo '$(srcdir)/'`comport/comport.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/comport.Tpo $(DEPDIR)/comport.Po
+#	$(AM_V_CC)source='comport/comport.c' object='comport.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(LTCOMPILE) -c -o $@ $<
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o comport.o `test -f 'comport/comport.c' || echo '$(srcdir)/'`comport/comport.c
 
-mostlyclean-libtool:
-	-rm -f *.lo
+comport.obj: comport/comport.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT comport.obj -MD -MP -MF $(DEPDIR)/comport.Tpo -c -o comport.obj `if test -f 'comport/comport.c'; then $(CYGPATH_W) 'comport/comport.c'; else $(CYGPATH_W) '$(srcdir)/comport/comport.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/comport.Tpo $(DEPDIR)/comport.Po
+#	$(AM_V_CC)source='comport/comport.c' object='comport.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o comport.obj `if test -f 'comport/comport.c'; then $(CYGPATH_W) 'comport/comport.c'; else $(CYGPATH_W) '$(srcdir)/comport/comport.c'; fi`
 
-clean-libtool:
-	-rm -rf .libs _libs
+usbapi.o: usb/usbapi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbapi.o -MD -MP -MF $(DEPDIR)/usbapi.Tpo -c -o usbapi.o `test -f 'usb/usbapi.c' || echo '$(srcdir)/'`usb/usbapi.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbapi.Tpo $(DEPDIR)/usbapi.Po
+#	$(AM_V_CC)source='usb/usbapi.c' object='usbapi.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbapi.o `test -f 'usb/usbapi.c' || echo '$(srcdir)/'`usb/usbapi.c
+
+usbapi.obj: usb/usbapi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbapi.obj -MD -MP -MF $(DEPDIR)/usbapi.Tpo -c -o usbapi.obj `if test -f 'usb/usbapi.c'; then $(CYGPATH_W) 'usb/usbapi.c'; else $(CYGPATH_W) '$(srcdir)/usb/usbapi.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbapi.Tpo $(DEPDIR)/usbapi.Po
+#	$(AM_V_CC)source='usb/usbapi.c' object='usbapi.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbapi.obj `if test -f 'usb/usbapi.c'; then $(CYGPATH_W) 'usb/usbapi.c'; else $(CYGPATH_W) '$(srcdir)/usb/usbapi.c'; fi`
+
+usbapi_scripts.o: usb/usbapi_scripts.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbapi_scripts.o -MD -MP -MF $(DEPDIR)/usbapi_scripts.Tpo -c -o usbapi_scripts.o `test -f 'usb/usbapi_scripts.c' || echo '$(srcdir)/'`usb/usbapi_scripts.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbapi_scripts.Tpo $(DEPDIR)/usbapi_scripts.Po
+#	$(AM_V_CC)source='usb/usbapi_scripts.c' object='usbapi_scripts.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbapi_scripts.o `test -f 'usb/usbapi_scripts.c' || echo '$(srcdir)/'`usb/usbapi_scripts.c
+
+usbapi_scripts.obj: usb/usbapi_scripts.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbapi_scripts.obj -MD -MP -MF $(DEPDIR)/usbapi_scripts.Tpo -c -o usbapi_scripts.obj `if test -f 'usb/usbapi_scripts.c'; then $(CYGPATH_W) 'usb/usbapi_scripts.c'; else $(CYGPATH_W) '$(srcdir)/usb/usbapi_scripts.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbapi_scripts.Tpo $(DEPDIR)/usbapi_scripts.Po
+#	$(AM_V_CC)source='usb/usbapi_scripts.c' object='usbapi_scripts.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbapi_scripts.obj `if test -f 'usb/usbapi_scripts.c'; then $(CYGPATH_W) 'usb/usbapi_scripts.c'; else $(CYGPATH_W) '$(srcdir)/usb/usbapi_scripts.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -553,10 +529,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f comport/$(DEPDIR)/$(am__dirstamp)
-	-rm -f comport/$(am__dirstamp)
-	-rm -f usb/$(DEPDIR)/$(am__dirstamp)
-	-rm -f usb/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -564,13 +536,12 @@ maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-noinstLIBRARIES \
-	mostlyclean-am
+clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-		-rm -f comport/$(DEPDIR)/comport.Po
-	-rm -f usb/$(DEPDIR)/usbapi.Po
-	-rm -f usb/$(DEPDIR)/usbapi_scripts.Po
+		-rm -f ./$(DEPDIR)/comport.Po
+	-rm -f ./$(DEPDIR)/usbapi.Po
+	-rm -f ./$(DEPDIR)/usbapi_scripts.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -616,16 +587,15 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f comport/$(DEPDIR)/comport.Po
-	-rm -f usb/$(DEPDIR)/usbapi.Po
-	-rm -f usb/$(DEPDIR)/usbapi_scripts.Po
+		-rm -f ./$(DEPDIR)/comport.Po
+	-rm -f ./$(DEPDIR)/usbapi.Po
+	-rm -f ./$(DEPDIR)/usbapi_scripts.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic
 
 pdf: pdf-am
 
@@ -640,17 +610,16 @@ uninstall-am:
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am am--depfiles check check-am clean \
-	clean-generic clean-libtool clean-noinstLIBRARIES \
-	cscopelist-am ctags ctags-am distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	clean-generic clean-noinstLIBRARIES cscopelist-am ctags \
+	ctags-am distclean distclean-compile distclean-generic \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am
 
 .PRECIOUS: Makefile

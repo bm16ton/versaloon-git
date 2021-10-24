@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ComCtrls,
   StdCtrls, EditBtn, ExtCtrls, cli_caller, parameditor, Menus, Buttons, Spin,
   Synaser, com_setup, fileselector, hexeditor, XMLCfg, vsprogparser, vsprogtarget,
-  vsprogprogrammer, inputdialog, lazutils, LazFileUtils, texteditor, strparser;
+  vsprogprogrammer, inputdialog, LazFileUtils, texteditor, strparser;
 
 type
 
@@ -2123,8 +2123,8 @@ begin
   xmlcfgMain.SetValue('power/voltage', cbboxPower.Text);
   xmlcfgMain.SetValue('fw/filename', fnFW.FileName);
   xmlcfgMain.SetValue('fw/comm', cbboxCOM.Text);
-  xmlcfgMain.SetValue('target/chip', cbboxTarget.Text);
-  xmlcfgMain.SetValue('target/series', cbboxTargetType.Text);
+//  xmlcfgMain.SetValue('target/chip', cbboxTarget.Text);
+//  xmlcfgMain.SetValue('target/series', cbboxTargetType.Text);
   xmlcfgMain.SetValue('target/mode', cbboxMode.Text);
   xmlcfgMain.SetValue('target/filename', cbboxInputFile.Text);
   xmlcfgMain.SetValue('target/freq', sedtFreq.Value);

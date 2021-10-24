@@ -5,7 +5,7 @@ unit com_setup;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, LazFileUtils, LResources, Forms, Controls, Graphics, Dialogs,
   StdCtrls, ExtCtrls, Synaser, vsprogparser;
 
 type
@@ -54,7 +54,7 @@ type
     procedure ComInitPara(ComInitMode: TComMode);
     procedure ComInitPara(CommStr: string);
     procedure GetComMode(var ComMode: TComMode);
-  end; 
+  end;
 
 var
   FormComSetup: TFormComSetup;

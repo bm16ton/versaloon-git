@@ -85,14 +85,11 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = aarch64-unknown-linux-gnu
+host_triplet = aarch64-unknown-linux-gnu
 subdir = doc
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/version.texi \
@@ -195,7 +192,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/maddocks/versaloon-git/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
 AUTOCONF = ${SHELL} /home/maddocks/versaloon-git/missing autoconf
 AUTOHEADER = ${SHELL} /home/maddocks/versaloon-git/missing autoheader
 AUTOMAKE = ${SHELL} /home/maddocks/versaloon-git/missing automake-1.16
@@ -208,41 +204,26 @@ CPPFLAGS =
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
-DSYMUTIL = 
-DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /bin/grep -E
 EXEEXT = 
 EXEEXT_FOR_BUILD = 
-FGREP = /usr/bin/grep -F
-GREP = /usr/bin/grep
+GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
-LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
-LN_S = ln -s
 LTLIBOBJS = 
-LT_SYS_LIBRARY_PATH = 
 MAINT = 
 MAKEINFO = ${SHELL} /home/maddocks/versaloon-git/missing makeinfo
-MANIFEST_TOOL = :
-MKDIR_P = /usr/bin/mkdir -p
-NM = /usr/bin/nm -B
-NMEDIT = 
-OBJDUMP = objdump
+MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
 PACKAGE = vsprog
 PACKAGE_BUGREPORT = VSProg Mailling List <Versaloon-development@simonqian.com>
 PACKAGE_NAME = vsprog
@@ -252,10 +233,9 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1.1
 PATH_SEPARATOR = :
 RANLIB = ranlib
-SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = strip
+STRIP = 
 VERSION = 1.1
 XML2_CONFIG = /usr/bin/xml2-config
 XML_CPPFLAGS = -I/usr/include/libxml2
@@ -264,31 +244,29 @@ abs_builddir = /home/maddocks/versaloon-git/doc
 abs_srcdir = /home/maddocks/versaloon-git/doc
 abs_top_builddir = /home/maddocks/versaloon-git
 abs_top_srcdir = /home/maddocks/versaloon-git
-ac_ct_AR = ar
 ac_ct_CC = ccache gcc
-ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = aarch64-unknown-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = aarch64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = aarch64-unknown-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = aarch64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -304,7 +282,6 @@ pdfdir = ${docdir}
 prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
@@ -349,12 +326,6 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-
-mostlyclean-libtool:
-	-rm -f *.lo
-
-clean-libtool:
-	-rm -rf .libs _libs
 
 .texi.info:
 	$(AM_V_MAKEINFO)restore=: && backupdir="$(am__leading_dot)am$$$$" && \
@@ -605,7 +576,7 @@ maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am
 
-clean-am: clean-aminfo clean-generic clean-libtool mostlyclean-am
+clean-am: clean-aminfo clean-generic mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
@@ -749,8 +720,7 @@ maintainer-clean-am: distclean-am maintainer-clean-aminfo \
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-aminfo mostlyclean-generic \
-	mostlyclean-libtool mostlyclean-vti
+mostlyclean-am: mostlyclean-aminfo mostlyclean-generic mostlyclean-vti
 
 pdf: pdf-am
 
@@ -766,17 +736,16 @@ uninstall-am: uninstall-dvi-am uninstall-html-am uninstall-info-am \
 .MAKE: install-am install-strip
 
 .PHONY: all all-am check check-am clean clean-aminfo clean-generic \
-	clean-libtool cscopelist-am ctags-am dist-info distclean \
-	distclean-generic distclean-libtool distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-aminfo maintainer-clean-generic \
-	maintainer-clean-vti mostlyclean mostlyclean-aminfo \
-	mostlyclean-generic mostlyclean-libtool mostlyclean-vti pdf \
+	cscopelist-am ctags-am dist-info distclean distclean-generic \
+	distdir dvi dvi-am html html-am info info-am install \
+	install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-aminfo \
+	maintainer-clean-generic maintainer-clean-vti mostlyclean \
+	mostlyclean-aminfo mostlyclean-generic mostlyclean-vti pdf \
 	pdf-am ps ps-am tags-am uninstall uninstall-am \
 	uninstall-dvi-am uninstall-html-am uninstall-info-am \
 	uninstall-pdf-am uninstall-ps-am

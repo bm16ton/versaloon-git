@@ -506,8 +506,8 @@
         <Loaded Value="True"/>
       </Unit63>
       <Unit64>
-        <Filename Value="D:\ProfessionalTools\lazarus\lcl\fileutil.pas"/>
-        <UnitName Value="FileUtil"/>
+        <Filename Value="D:\ProfessionalTools\lazarus\lcl\LazFileUtils.pas"/>
+        <UnitName Value="LazFileUtils"/>
         <CursorPos X="10" Y="191"/>
         <TopLine Value="170"/>
         <UsageCount Value="10"/>

@@ -5,7 +5,7 @@ unit parameditor;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, LazFileUtils, LResources, Forms, Controls, Graphics, Dialogs,
   StdCtrls, ExtCtrls, inputdialog, vsprogparser, strparser;
 
 type

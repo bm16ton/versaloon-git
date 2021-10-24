@@ -86,14 +86,11 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = aarch64-unknown-linux-gnu
+host_triplet = aarch64-unknown-linux-gnu
 subdir = vsf
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
@@ -102,6 +99,7 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
+AR = ar
 ARFLAGS = cru
 AM_V_AR = $(am__v_AR_$(V))
 am__v_AR_ = $(am__v_AR_$(AM_DEFAULT_VERBOSITY))
@@ -109,17 +107,12 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libvsf_a_AR = $(AR) $(ARFLAGS)
 libvsf_a_LIBADD =
-am__dirstamp = $(am__leading_dot)dirstamp
-am_libvsf_a_OBJECTS = dal/dal.$(OBJEXT) dal/mal/mal.$(OBJEXT) \
-	dal/mic2826/mic2826_drv.$(OBJEXT) \
-	dal/ee93cx6/ee93cx6_drv.$(OBJEXT) \
-	dal/ee24cxx/ee24cxx_drv.$(OBJEXT) \
-	dal/df25xx/df25xx_drv.$(OBJEXT) \
-	dal/df45xx/df45xx_drv.$(OBJEXT) dal/sd/sd_spi_drv.$(OBJEXT) \
-	dal/sd/sd_common.$(OBJEXT) dal/cfi/cfi_drv.$(OBJEXT) \
-	dal/nand/nand_drv.$(OBJEXT) \
-	dal/nrf24l01/nrf24l01_drv.$(OBJEXT) \
-	dal/sst32hfxx/sst32hfxx_drv.$(OBJEXT) tool/crc/crc.$(OBJEXT)
+am_libvsf_a_OBJECTS = dal.$(OBJEXT) mal.$(OBJEXT) \
+	mic2826_drv.$(OBJEXT) ee93cx6_drv.$(OBJEXT) \
+	ee24cxx_drv.$(OBJEXT) df25xx_drv.$(OBJEXT) \
+	df45xx_drv.$(OBJEXT) sd_spi_drv.$(OBJEXT) sd_common.$(OBJEXT) \
+	cfi_drv.$(OBJEXT) nand_drv.$(OBJEXT) nrf24l01_drv.$(OBJEXT) \
+	sst32hfxx_drv.$(OBJEXT) crc.$(OBJEXT)
 libvsf_a_OBJECTS = $(am_libvsf_a_OBJECTS)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -136,37 +129,26 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = dal/$(DEPDIR)/dal.Po \
-	dal/cfi/$(DEPDIR)/cfi_drv.Po \
-	dal/df25xx/$(DEPDIR)/df25xx_drv.Po \
-	dal/df45xx/$(DEPDIR)/df45xx_drv.Po \
-	dal/ee24cxx/$(DEPDIR)/ee24cxx_drv.Po \
-	dal/ee93cx6/$(DEPDIR)/ee93cx6_drv.Po dal/mal/$(DEPDIR)/mal.Po \
-	dal/mic2826/$(DEPDIR)/mic2826_drv.Po \
-	dal/nand/$(DEPDIR)/nand_drv.Po \
-	dal/nrf24l01/$(DEPDIR)/nrf24l01_drv.Po \
-	dal/sd/$(DEPDIR)/sd_common.Po dal/sd/$(DEPDIR)/sd_spi_drv.Po \
-	dal/sst32hfxx/$(DEPDIR)/sst32hfxx_drv.Po \
-	tool/crc/$(DEPDIR)/crc.Po
+am__depfiles_remade = ./$(DEPDIR)/cfi_drv.Po ./$(DEPDIR)/crc.Po \
+	./$(DEPDIR)/dal.Po ./$(DEPDIR)/df25xx_drv.Po \
+	./$(DEPDIR)/df45xx_drv.Po ./$(DEPDIR)/ee24cxx_drv.Po \
+	./$(DEPDIR)/ee93cx6_drv.Po ./$(DEPDIR)/mal.Po \
+	./$(DEPDIR)/mic2826_drv.Po ./$(DEPDIR)/nand_drv.Po \
+	./$(DEPDIR)/nrf24l01_drv.Po ./$(DEPDIR)/sd_common.Po \
+	./$(DEPDIR)/sd_spi_drv.Po ./$(DEPDIR)/sst32hfxx_drv.Po
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_$(V))
 am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
 am__v_CC_0 = @echo "  CC      " $@;
 am__v_CC_1 = 
 CCLD = $(CC)
-LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
@@ -202,7 +184,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/maddocks/versaloon-git/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
 AUTOCONF = ${SHELL} /home/maddocks/versaloon-git/missing autoconf
 AUTOHEADER = ${SHELL} /home/maddocks/versaloon-git/missing autoheader
 AUTOMAKE = ${SHELL} /home/maddocks/versaloon-git/missing automake-1.16
@@ -215,41 +196,26 @@ CPPFLAGS =
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
-DSYMUTIL = 
-DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /bin/grep -E
 EXEEXT = 
 EXEEXT_FOR_BUILD = 
-FGREP = /usr/bin/grep -F
-GREP = /usr/bin/grep
+GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
-LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
-LN_S = ln -s
 LTLIBOBJS = 
-LT_SYS_LIBRARY_PATH = 
 MAINT = 
 MAKEINFO = ${SHELL} /home/maddocks/versaloon-git/missing makeinfo
-MANIFEST_TOOL = :
-MKDIR_P = /usr/bin/mkdir -p
-NM = /usr/bin/nm -B
-NMEDIT = 
-OBJDUMP = objdump
+MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
 PACKAGE = vsprog
 PACKAGE_BUGREPORT = VSProg Mailling List <Versaloon-development@simonqian.com>
 PACKAGE_NAME = vsprog
@@ -259,10 +225,9 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1.1
 PATH_SEPARATOR = :
 RANLIB = ranlib
-SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = strip
+STRIP = 
 VERSION = 1.1
 XML2_CONFIG = /usr/bin/xml2-config
 XML_CPPFLAGS = -I/usr/include/libxml2
@@ -271,31 +236,29 @@ abs_builddir = /home/maddocks/versaloon-git/vsf
 abs_srcdir = /home/maddocks/versaloon-git/vsf
 abs_top_builddir = /home/maddocks/versaloon-git
 abs_top_srcdir = /home/maddocks/versaloon-git
-ac_ct_AR = ar
 ac_ct_CC = ccache gcc
-ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = aarch64-unknown-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = aarch64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = aarch64-unknown-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = aarch64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -311,7 +274,6 @@ pdfdir = ${docdir}
 prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
@@ -320,7 +282,6 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-AUTOMAKE_OPTIONS = subdir-objects
 INCLUDES = \
     $(all_includes) \
     -I$(top_srcdir)/src/vsf_cfg \
@@ -355,7 +316,7 @@ MAINTAINERCLEANFILES = Makefile.in
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -388,111 +349,6 @@ $(am__aclocal_m4_deps):
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-dal/$(am__dirstamp):
-	@$(MKDIR_P) dal
-	@: > dal/$(am__dirstamp)
-dal/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/$(DEPDIR)
-	@: > dal/$(DEPDIR)/$(am__dirstamp)
-dal/dal.$(OBJEXT): dal/$(am__dirstamp) dal/$(DEPDIR)/$(am__dirstamp)
-dal/mal/$(am__dirstamp):
-	@$(MKDIR_P) dal/mal
-	@: > dal/mal/$(am__dirstamp)
-dal/mal/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/mal/$(DEPDIR)
-	@: > dal/mal/$(DEPDIR)/$(am__dirstamp)
-dal/mal/mal.$(OBJEXT): dal/mal/$(am__dirstamp) \
-	dal/mal/$(DEPDIR)/$(am__dirstamp)
-dal/mic2826/$(am__dirstamp):
-	@$(MKDIR_P) dal/mic2826
-	@: > dal/mic2826/$(am__dirstamp)
-dal/mic2826/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/mic2826/$(DEPDIR)
-	@: > dal/mic2826/$(DEPDIR)/$(am__dirstamp)
-dal/mic2826/mic2826_drv.$(OBJEXT): dal/mic2826/$(am__dirstamp) \
-	dal/mic2826/$(DEPDIR)/$(am__dirstamp)
-dal/ee93cx6/$(am__dirstamp):
-	@$(MKDIR_P) dal/ee93cx6
-	@: > dal/ee93cx6/$(am__dirstamp)
-dal/ee93cx6/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/ee93cx6/$(DEPDIR)
-	@: > dal/ee93cx6/$(DEPDIR)/$(am__dirstamp)
-dal/ee93cx6/ee93cx6_drv.$(OBJEXT): dal/ee93cx6/$(am__dirstamp) \
-	dal/ee93cx6/$(DEPDIR)/$(am__dirstamp)
-dal/ee24cxx/$(am__dirstamp):
-	@$(MKDIR_P) dal/ee24cxx
-	@: > dal/ee24cxx/$(am__dirstamp)
-dal/ee24cxx/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/ee24cxx/$(DEPDIR)
-	@: > dal/ee24cxx/$(DEPDIR)/$(am__dirstamp)
-dal/ee24cxx/ee24cxx_drv.$(OBJEXT): dal/ee24cxx/$(am__dirstamp) \
-	dal/ee24cxx/$(DEPDIR)/$(am__dirstamp)
-dal/df25xx/$(am__dirstamp):
-	@$(MKDIR_P) dal/df25xx
-	@: > dal/df25xx/$(am__dirstamp)
-dal/df25xx/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/df25xx/$(DEPDIR)
-	@: > dal/df25xx/$(DEPDIR)/$(am__dirstamp)
-dal/df25xx/df25xx_drv.$(OBJEXT): dal/df25xx/$(am__dirstamp) \
-	dal/df25xx/$(DEPDIR)/$(am__dirstamp)
-dal/df45xx/$(am__dirstamp):
-	@$(MKDIR_P) dal/df45xx
-	@: > dal/df45xx/$(am__dirstamp)
-dal/df45xx/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/df45xx/$(DEPDIR)
-	@: > dal/df45xx/$(DEPDIR)/$(am__dirstamp)
-dal/df45xx/df45xx_drv.$(OBJEXT): dal/df45xx/$(am__dirstamp) \
-	dal/df45xx/$(DEPDIR)/$(am__dirstamp)
-dal/sd/$(am__dirstamp):
-	@$(MKDIR_P) dal/sd
-	@: > dal/sd/$(am__dirstamp)
-dal/sd/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/sd/$(DEPDIR)
-	@: > dal/sd/$(DEPDIR)/$(am__dirstamp)
-dal/sd/sd_spi_drv.$(OBJEXT): dal/sd/$(am__dirstamp) \
-	dal/sd/$(DEPDIR)/$(am__dirstamp)
-dal/sd/sd_common.$(OBJEXT): dal/sd/$(am__dirstamp) \
-	dal/sd/$(DEPDIR)/$(am__dirstamp)
-dal/cfi/$(am__dirstamp):
-	@$(MKDIR_P) dal/cfi
-	@: > dal/cfi/$(am__dirstamp)
-dal/cfi/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/cfi/$(DEPDIR)
-	@: > dal/cfi/$(DEPDIR)/$(am__dirstamp)
-dal/cfi/cfi_drv.$(OBJEXT): dal/cfi/$(am__dirstamp) \
-	dal/cfi/$(DEPDIR)/$(am__dirstamp)
-dal/nand/$(am__dirstamp):
-	@$(MKDIR_P) dal/nand
-	@: > dal/nand/$(am__dirstamp)
-dal/nand/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/nand/$(DEPDIR)
-	@: > dal/nand/$(DEPDIR)/$(am__dirstamp)
-dal/nand/nand_drv.$(OBJEXT): dal/nand/$(am__dirstamp) \
-	dal/nand/$(DEPDIR)/$(am__dirstamp)
-dal/nrf24l01/$(am__dirstamp):
-	@$(MKDIR_P) dal/nrf24l01
-	@: > dal/nrf24l01/$(am__dirstamp)
-dal/nrf24l01/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/nrf24l01/$(DEPDIR)
-	@: > dal/nrf24l01/$(DEPDIR)/$(am__dirstamp)
-dal/nrf24l01/nrf24l01_drv.$(OBJEXT): dal/nrf24l01/$(am__dirstamp) \
-	dal/nrf24l01/$(DEPDIR)/$(am__dirstamp)
-dal/sst32hfxx/$(am__dirstamp):
-	@$(MKDIR_P) dal/sst32hfxx
-	@: > dal/sst32hfxx/$(am__dirstamp)
-dal/sst32hfxx/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) dal/sst32hfxx/$(DEPDIR)
-	@: > dal/sst32hfxx/$(DEPDIR)/$(am__dirstamp)
-dal/sst32hfxx/sst32hfxx_drv.$(OBJEXT): dal/sst32hfxx/$(am__dirstamp) \
-	dal/sst32hfxx/$(DEPDIR)/$(am__dirstamp)
-tool/crc/$(am__dirstamp):
-	@$(MKDIR_P) tool/crc
-	@: > tool/crc/$(am__dirstamp)
-tool/crc/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) tool/crc/$(DEPDIR)
-	@: > tool/crc/$(DEPDIR)/$(am__dirstamp)
-tool/crc/crc.$(OBJEXT): tool/crc/$(am__dirstamp) \
-	tool/crc/$(DEPDIR)/$(am__dirstamp)
 
 libvsf.a: $(libvsf_a_OBJECTS) $(libvsf_a_DEPENDENCIES) $(EXTRA_libvsf_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libvsf.a
@@ -501,37 +357,24 @@ libvsf.a: $(libvsf_a_OBJECTS) $(libvsf_a_DEPENDENCIES) $(EXTRA_libvsf_a_DEPENDEN
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f dal/*.$(OBJEXT)
-	-rm -f dal/cfi/*.$(OBJEXT)
-	-rm -f dal/df25xx/*.$(OBJEXT)
-	-rm -f dal/df45xx/*.$(OBJEXT)
-	-rm -f dal/ee24cxx/*.$(OBJEXT)
-	-rm -f dal/ee93cx6/*.$(OBJEXT)
-	-rm -f dal/mal/*.$(OBJEXT)
-	-rm -f dal/mic2826/*.$(OBJEXT)
-	-rm -f dal/nand/*.$(OBJEXT)
-	-rm -f dal/nrf24l01/*.$(OBJEXT)
-	-rm -f dal/sd/*.$(OBJEXT)
-	-rm -f dal/sst32hfxx/*.$(OBJEXT)
-	-rm -f tool/crc/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-include dal/$(DEPDIR)/dal.Po # am--include-marker
-include dal/cfi/$(DEPDIR)/cfi_drv.Po # am--include-marker
-include dal/df25xx/$(DEPDIR)/df25xx_drv.Po # am--include-marker
-include dal/df45xx/$(DEPDIR)/df45xx_drv.Po # am--include-marker
-include dal/ee24cxx/$(DEPDIR)/ee24cxx_drv.Po # am--include-marker
-include dal/ee93cx6/$(DEPDIR)/ee93cx6_drv.Po # am--include-marker
-include dal/mal/$(DEPDIR)/mal.Po # am--include-marker
-include dal/mic2826/$(DEPDIR)/mic2826_drv.Po # am--include-marker
-include dal/nand/$(DEPDIR)/nand_drv.Po # am--include-marker
-include dal/nrf24l01/$(DEPDIR)/nrf24l01_drv.Po # am--include-marker
-include dal/sd/$(DEPDIR)/sd_common.Po # am--include-marker
-include dal/sd/$(DEPDIR)/sd_spi_drv.Po # am--include-marker
-include dal/sst32hfxx/$(DEPDIR)/sst32hfxx_drv.Po # am--include-marker
-include tool/crc/$(DEPDIR)/crc.Po # am--include-marker
+include ./$(DEPDIR)/cfi_drv.Po # am--include-marker
+include ./$(DEPDIR)/crc.Po # am--include-marker
+include ./$(DEPDIR)/dal.Po # am--include-marker
+include ./$(DEPDIR)/df25xx_drv.Po # am--include-marker
+include ./$(DEPDIR)/df45xx_drv.Po # am--include-marker
+include ./$(DEPDIR)/ee24cxx_drv.Po # am--include-marker
+include ./$(DEPDIR)/ee93cx6_drv.Po # am--include-marker
+include ./$(DEPDIR)/mal.Po # am--include-marker
+include ./$(DEPDIR)/mic2826_drv.Po # am--include-marker
+include ./$(DEPDIR)/nand_drv.Po # am--include-marker
+include ./$(DEPDIR)/nrf24l01_drv.Po # am--include-marker
+include ./$(DEPDIR)/sd_common.Po # am--include-marker
+include ./$(DEPDIR)/sd_spi_drv.Po # am--include-marker
+include ./$(DEPDIR)/sst32hfxx_drv.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -540,34 +383,214 @@ $(am__depfiles_remade):
 am--depfiles: $(am__depfiles_remade)
 
 .c.o:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-.c.lo:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Plo
-#	$(AM_V_CC)source='$<' object='$@' libtool=yes \
+dal.o: dal/dal.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dal.o -MD -MP -MF $(DEPDIR)/dal.Tpo -c -o dal.o `test -f 'dal/dal.c' || echo '$(srcdir)/'`dal/dal.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/dal.Tpo $(DEPDIR)/dal.Po
+#	$(AM_V_CC)source='dal/dal.c' object='dal.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(LTCOMPILE) -c -o $@ $<
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dal.o `test -f 'dal/dal.c' || echo '$(srcdir)/'`dal/dal.c
 
-mostlyclean-libtool:
-	-rm -f *.lo
+dal.obj: dal/dal.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dal.obj -MD -MP -MF $(DEPDIR)/dal.Tpo -c -o dal.obj `if test -f 'dal/dal.c'; then $(CYGPATH_W) 'dal/dal.c'; else $(CYGPATH_W) '$(srcdir)/dal/dal.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/dal.Tpo $(DEPDIR)/dal.Po
+#	$(AM_V_CC)source='dal/dal.c' object='dal.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dal.obj `if test -f 'dal/dal.c'; then $(CYGPATH_W) 'dal/dal.c'; else $(CYGPATH_W) '$(srcdir)/dal/dal.c'; fi`
 
-clean-libtool:
-	-rm -rf .libs _libs
+mal.o: dal/mal/mal.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mal.o -MD -MP -MF $(DEPDIR)/mal.Tpo -c -o mal.o `test -f 'dal/mal/mal.c' || echo '$(srcdir)/'`dal/mal/mal.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/mal.Tpo $(DEPDIR)/mal.Po
+#	$(AM_V_CC)source='dal/mal/mal.c' object='mal.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mal.o `test -f 'dal/mal/mal.c' || echo '$(srcdir)/'`dal/mal/mal.c
+
+mal.obj: dal/mal/mal.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mal.obj -MD -MP -MF $(DEPDIR)/mal.Tpo -c -o mal.obj `if test -f 'dal/mal/mal.c'; then $(CYGPATH_W) 'dal/mal/mal.c'; else $(CYGPATH_W) '$(srcdir)/dal/mal/mal.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/mal.Tpo $(DEPDIR)/mal.Po
+#	$(AM_V_CC)source='dal/mal/mal.c' object='mal.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mal.obj `if test -f 'dal/mal/mal.c'; then $(CYGPATH_W) 'dal/mal/mal.c'; else $(CYGPATH_W) '$(srcdir)/dal/mal/mal.c'; fi`
+
+mic2826_drv.o: dal/mic2826/mic2826_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mic2826_drv.o -MD -MP -MF $(DEPDIR)/mic2826_drv.Tpo -c -o mic2826_drv.o `test -f 'dal/mic2826/mic2826_drv.c' || echo '$(srcdir)/'`dal/mic2826/mic2826_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/mic2826_drv.Tpo $(DEPDIR)/mic2826_drv.Po
+#	$(AM_V_CC)source='dal/mic2826/mic2826_drv.c' object='mic2826_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mic2826_drv.o `test -f 'dal/mic2826/mic2826_drv.c' || echo '$(srcdir)/'`dal/mic2826/mic2826_drv.c
+
+mic2826_drv.obj: dal/mic2826/mic2826_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mic2826_drv.obj -MD -MP -MF $(DEPDIR)/mic2826_drv.Tpo -c -o mic2826_drv.obj `if test -f 'dal/mic2826/mic2826_drv.c'; then $(CYGPATH_W) 'dal/mic2826/mic2826_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/mic2826/mic2826_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/mic2826_drv.Tpo $(DEPDIR)/mic2826_drv.Po
+#	$(AM_V_CC)source='dal/mic2826/mic2826_drv.c' object='mic2826_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mic2826_drv.obj `if test -f 'dal/mic2826/mic2826_drv.c'; then $(CYGPATH_W) 'dal/mic2826/mic2826_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/mic2826/mic2826_drv.c'; fi`
+
+ee93cx6_drv.o: dal/ee93cx6/ee93cx6_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ee93cx6_drv.o -MD -MP -MF $(DEPDIR)/ee93cx6_drv.Tpo -c -o ee93cx6_drv.o `test -f 'dal/ee93cx6/ee93cx6_drv.c' || echo '$(srcdir)/'`dal/ee93cx6/ee93cx6_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/ee93cx6_drv.Tpo $(DEPDIR)/ee93cx6_drv.Po
+#	$(AM_V_CC)source='dal/ee93cx6/ee93cx6_drv.c' object='ee93cx6_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ee93cx6_drv.o `test -f 'dal/ee93cx6/ee93cx6_drv.c' || echo '$(srcdir)/'`dal/ee93cx6/ee93cx6_drv.c
+
+ee93cx6_drv.obj: dal/ee93cx6/ee93cx6_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ee93cx6_drv.obj -MD -MP -MF $(DEPDIR)/ee93cx6_drv.Tpo -c -o ee93cx6_drv.obj `if test -f 'dal/ee93cx6/ee93cx6_drv.c'; then $(CYGPATH_W) 'dal/ee93cx6/ee93cx6_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/ee93cx6/ee93cx6_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/ee93cx6_drv.Tpo $(DEPDIR)/ee93cx6_drv.Po
+#	$(AM_V_CC)source='dal/ee93cx6/ee93cx6_drv.c' object='ee93cx6_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ee93cx6_drv.obj `if test -f 'dal/ee93cx6/ee93cx6_drv.c'; then $(CYGPATH_W) 'dal/ee93cx6/ee93cx6_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/ee93cx6/ee93cx6_drv.c'; fi`
+
+ee24cxx_drv.o: dal/ee24cxx/ee24cxx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ee24cxx_drv.o -MD -MP -MF $(DEPDIR)/ee24cxx_drv.Tpo -c -o ee24cxx_drv.o `test -f 'dal/ee24cxx/ee24cxx_drv.c' || echo '$(srcdir)/'`dal/ee24cxx/ee24cxx_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/ee24cxx_drv.Tpo $(DEPDIR)/ee24cxx_drv.Po
+#	$(AM_V_CC)source='dal/ee24cxx/ee24cxx_drv.c' object='ee24cxx_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ee24cxx_drv.o `test -f 'dal/ee24cxx/ee24cxx_drv.c' || echo '$(srcdir)/'`dal/ee24cxx/ee24cxx_drv.c
+
+ee24cxx_drv.obj: dal/ee24cxx/ee24cxx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ee24cxx_drv.obj -MD -MP -MF $(DEPDIR)/ee24cxx_drv.Tpo -c -o ee24cxx_drv.obj `if test -f 'dal/ee24cxx/ee24cxx_drv.c'; then $(CYGPATH_W) 'dal/ee24cxx/ee24cxx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/ee24cxx/ee24cxx_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/ee24cxx_drv.Tpo $(DEPDIR)/ee24cxx_drv.Po
+#	$(AM_V_CC)source='dal/ee24cxx/ee24cxx_drv.c' object='ee24cxx_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ee24cxx_drv.obj `if test -f 'dal/ee24cxx/ee24cxx_drv.c'; then $(CYGPATH_W) 'dal/ee24cxx/ee24cxx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/ee24cxx/ee24cxx_drv.c'; fi`
+
+df25xx_drv.o: dal/df25xx/df25xx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT df25xx_drv.o -MD -MP -MF $(DEPDIR)/df25xx_drv.Tpo -c -o df25xx_drv.o `test -f 'dal/df25xx/df25xx_drv.c' || echo '$(srcdir)/'`dal/df25xx/df25xx_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/df25xx_drv.Tpo $(DEPDIR)/df25xx_drv.Po
+#	$(AM_V_CC)source='dal/df25xx/df25xx_drv.c' object='df25xx_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o df25xx_drv.o `test -f 'dal/df25xx/df25xx_drv.c' || echo '$(srcdir)/'`dal/df25xx/df25xx_drv.c
+
+df25xx_drv.obj: dal/df25xx/df25xx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT df25xx_drv.obj -MD -MP -MF $(DEPDIR)/df25xx_drv.Tpo -c -o df25xx_drv.obj `if test -f 'dal/df25xx/df25xx_drv.c'; then $(CYGPATH_W) 'dal/df25xx/df25xx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/df25xx/df25xx_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/df25xx_drv.Tpo $(DEPDIR)/df25xx_drv.Po
+#	$(AM_V_CC)source='dal/df25xx/df25xx_drv.c' object='df25xx_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o df25xx_drv.obj `if test -f 'dal/df25xx/df25xx_drv.c'; then $(CYGPATH_W) 'dal/df25xx/df25xx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/df25xx/df25xx_drv.c'; fi`
+
+df45xx_drv.o: dal/df45xx/df45xx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT df45xx_drv.o -MD -MP -MF $(DEPDIR)/df45xx_drv.Tpo -c -o df45xx_drv.o `test -f 'dal/df45xx/df45xx_drv.c' || echo '$(srcdir)/'`dal/df45xx/df45xx_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/df45xx_drv.Tpo $(DEPDIR)/df45xx_drv.Po
+#	$(AM_V_CC)source='dal/df45xx/df45xx_drv.c' object='df45xx_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o df45xx_drv.o `test -f 'dal/df45xx/df45xx_drv.c' || echo '$(srcdir)/'`dal/df45xx/df45xx_drv.c
+
+df45xx_drv.obj: dal/df45xx/df45xx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT df45xx_drv.obj -MD -MP -MF $(DEPDIR)/df45xx_drv.Tpo -c -o df45xx_drv.obj `if test -f 'dal/df45xx/df45xx_drv.c'; then $(CYGPATH_W) 'dal/df45xx/df45xx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/df45xx/df45xx_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/df45xx_drv.Tpo $(DEPDIR)/df45xx_drv.Po
+#	$(AM_V_CC)source='dal/df45xx/df45xx_drv.c' object='df45xx_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o df45xx_drv.obj `if test -f 'dal/df45xx/df45xx_drv.c'; then $(CYGPATH_W) 'dal/df45xx/df45xx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/df45xx/df45xx_drv.c'; fi`
+
+sd_spi_drv.o: dal/sd/sd_spi_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sd_spi_drv.o -MD -MP -MF $(DEPDIR)/sd_spi_drv.Tpo -c -o sd_spi_drv.o `test -f 'dal/sd/sd_spi_drv.c' || echo '$(srcdir)/'`dal/sd/sd_spi_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/sd_spi_drv.Tpo $(DEPDIR)/sd_spi_drv.Po
+#	$(AM_V_CC)source='dal/sd/sd_spi_drv.c' object='sd_spi_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sd_spi_drv.o `test -f 'dal/sd/sd_spi_drv.c' || echo '$(srcdir)/'`dal/sd/sd_spi_drv.c
+
+sd_spi_drv.obj: dal/sd/sd_spi_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sd_spi_drv.obj -MD -MP -MF $(DEPDIR)/sd_spi_drv.Tpo -c -o sd_spi_drv.obj `if test -f 'dal/sd/sd_spi_drv.c'; then $(CYGPATH_W) 'dal/sd/sd_spi_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/sd/sd_spi_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/sd_spi_drv.Tpo $(DEPDIR)/sd_spi_drv.Po
+#	$(AM_V_CC)source='dal/sd/sd_spi_drv.c' object='sd_spi_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sd_spi_drv.obj `if test -f 'dal/sd/sd_spi_drv.c'; then $(CYGPATH_W) 'dal/sd/sd_spi_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/sd/sd_spi_drv.c'; fi`
+
+sd_common.o: dal/sd/sd_common.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sd_common.o -MD -MP -MF $(DEPDIR)/sd_common.Tpo -c -o sd_common.o `test -f 'dal/sd/sd_common.c' || echo '$(srcdir)/'`dal/sd/sd_common.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/sd_common.Tpo $(DEPDIR)/sd_common.Po
+#	$(AM_V_CC)source='dal/sd/sd_common.c' object='sd_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sd_common.o `test -f 'dal/sd/sd_common.c' || echo '$(srcdir)/'`dal/sd/sd_common.c
+
+sd_common.obj: dal/sd/sd_common.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sd_common.obj -MD -MP -MF $(DEPDIR)/sd_common.Tpo -c -o sd_common.obj `if test -f 'dal/sd/sd_common.c'; then $(CYGPATH_W) 'dal/sd/sd_common.c'; else $(CYGPATH_W) '$(srcdir)/dal/sd/sd_common.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/sd_common.Tpo $(DEPDIR)/sd_common.Po
+#	$(AM_V_CC)source='dal/sd/sd_common.c' object='sd_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sd_common.obj `if test -f 'dal/sd/sd_common.c'; then $(CYGPATH_W) 'dal/sd/sd_common.c'; else $(CYGPATH_W) '$(srcdir)/dal/sd/sd_common.c'; fi`
+
+cfi_drv.o: dal/cfi/cfi_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cfi_drv.o -MD -MP -MF $(DEPDIR)/cfi_drv.Tpo -c -o cfi_drv.o `test -f 'dal/cfi/cfi_drv.c' || echo '$(srcdir)/'`dal/cfi/cfi_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/cfi_drv.Tpo $(DEPDIR)/cfi_drv.Po
+#	$(AM_V_CC)source='dal/cfi/cfi_drv.c' object='cfi_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cfi_drv.o `test -f 'dal/cfi/cfi_drv.c' || echo '$(srcdir)/'`dal/cfi/cfi_drv.c
+
+cfi_drv.obj: dal/cfi/cfi_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cfi_drv.obj -MD -MP -MF $(DEPDIR)/cfi_drv.Tpo -c -o cfi_drv.obj `if test -f 'dal/cfi/cfi_drv.c'; then $(CYGPATH_W) 'dal/cfi/cfi_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/cfi/cfi_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/cfi_drv.Tpo $(DEPDIR)/cfi_drv.Po
+#	$(AM_V_CC)source='dal/cfi/cfi_drv.c' object='cfi_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cfi_drv.obj `if test -f 'dal/cfi/cfi_drv.c'; then $(CYGPATH_W) 'dal/cfi/cfi_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/cfi/cfi_drv.c'; fi`
+
+nand_drv.o: dal/nand/nand_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT nand_drv.o -MD -MP -MF $(DEPDIR)/nand_drv.Tpo -c -o nand_drv.o `test -f 'dal/nand/nand_drv.c' || echo '$(srcdir)/'`dal/nand/nand_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/nand_drv.Tpo $(DEPDIR)/nand_drv.Po
+#	$(AM_V_CC)source='dal/nand/nand_drv.c' object='nand_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o nand_drv.o `test -f 'dal/nand/nand_drv.c' || echo '$(srcdir)/'`dal/nand/nand_drv.c
+
+nand_drv.obj: dal/nand/nand_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT nand_drv.obj -MD -MP -MF $(DEPDIR)/nand_drv.Tpo -c -o nand_drv.obj `if test -f 'dal/nand/nand_drv.c'; then $(CYGPATH_W) 'dal/nand/nand_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/nand/nand_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/nand_drv.Tpo $(DEPDIR)/nand_drv.Po
+#	$(AM_V_CC)source='dal/nand/nand_drv.c' object='nand_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o nand_drv.obj `if test -f 'dal/nand/nand_drv.c'; then $(CYGPATH_W) 'dal/nand/nand_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/nand/nand_drv.c'; fi`
+
+nrf24l01_drv.o: dal/nrf24l01/nrf24l01_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT nrf24l01_drv.o -MD -MP -MF $(DEPDIR)/nrf24l01_drv.Tpo -c -o nrf24l01_drv.o `test -f 'dal/nrf24l01/nrf24l01_drv.c' || echo '$(srcdir)/'`dal/nrf24l01/nrf24l01_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/nrf24l01_drv.Tpo $(DEPDIR)/nrf24l01_drv.Po
+#	$(AM_V_CC)source='dal/nrf24l01/nrf24l01_drv.c' object='nrf24l01_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o nrf24l01_drv.o `test -f 'dal/nrf24l01/nrf24l01_drv.c' || echo '$(srcdir)/'`dal/nrf24l01/nrf24l01_drv.c
+
+nrf24l01_drv.obj: dal/nrf24l01/nrf24l01_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT nrf24l01_drv.obj -MD -MP -MF $(DEPDIR)/nrf24l01_drv.Tpo -c -o nrf24l01_drv.obj `if test -f 'dal/nrf24l01/nrf24l01_drv.c'; then $(CYGPATH_W) 'dal/nrf24l01/nrf24l01_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/nrf24l01/nrf24l01_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/nrf24l01_drv.Tpo $(DEPDIR)/nrf24l01_drv.Po
+#	$(AM_V_CC)source='dal/nrf24l01/nrf24l01_drv.c' object='nrf24l01_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o nrf24l01_drv.obj `if test -f 'dal/nrf24l01/nrf24l01_drv.c'; then $(CYGPATH_W) 'dal/nrf24l01/nrf24l01_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/nrf24l01/nrf24l01_drv.c'; fi`
+
+sst32hfxx_drv.o: dal/sst32hfxx/sst32hfxx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sst32hfxx_drv.o -MD -MP -MF $(DEPDIR)/sst32hfxx_drv.Tpo -c -o sst32hfxx_drv.o `test -f 'dal/sst32hfxx/sst32hfxx_drv.c' || echo '$(srcdir)/'`dal/sst32hfxx/sst32hfxx_drv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/sst32hfxx_drv.Tpo $(DEPDIR)/sst32hfxx_drv.Po
+#	$(AM_V_CC)source='dal/sst32hfxx/sst32hfxx_drv.c' object='sst32hfxx_drv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sst32hfxx_drv.o `test -f 'dal/sst32hfxx/sst32hfxx_drv.c' || echo '$(srcdir)/'`dal/sst32hfxx/sst32hfxx_drv.c
+
+sst32hfxx_drv.obj: dal/sst32hfxx/sst32hfxx_drv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sst32hfxx_drv.obj -MD -MP -MF $(DEPDIR)/sst32hfxx_drv.Tpo -c -o sst32hfxx_drv.obj `if test -f 'dal/sst32hfxx/sst32hfxx_drv.c'; then $(CYGPATH_W) 'dal/sst32hfxx/sst32hfxx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/sst32hfxx/sst32hfxx_drv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/sst32hfxx_drv.Tpo $(DEPDIR)/sst32hfxx_drv.Po
+#	$(AM_V_CC)source='dal/sst32hfxx/sst32hfxx_drv.c' object='sst32hfxx_drv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sst32hfxx_drv.obj `if test -f 'dal/sst32hfxx/sst32hfxx_drv.c'; then $(CYGPATH_W) 'dal/sst32hfxx/sst32hfxx_drv.c'; else $(CYGPATH_W) '$(srcdir)/dal/sst32hfxx/sst32hfxx_drv.c'; fi`
+
+crc.o: tool/crc/crc.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT crc.o -MD -MP -MF $(DEPDIR)/crc.Tpo -c -o crc.o `test -f 'tool/crc/crc.c' || echo '$(srcdir)/'`tool/crc/crc.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/crc.Tpo $(DEPDIR)/crc.Po
+#	$(AM_V_CC)source='tool/crc/crc.c' object='crc.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o crc.o `test -f 'tool/crc/crc.c' || echo '$(srcdir)/'`tool/crc/crc.c
+
+crc.obj: tool/crc/crc.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT crc.obj -MD -MP -MF $(DEPDIR)/crc.Tpo -c -o crc.obj `if test -f 'tool/crc/crc.c'; then $(CYGPATH_W) 'tool/crc/crc.c'; else $(CYGPATH_W) '$(srcdir)/tool/crc/crc.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/crc.Tpo $(DEPDIR)/crc.Po
+#	$(AM_V_CC)source='tool/crc/crc.c' object='crc.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o crc.obj `if test -f 'tool/crc/crc.c'; then $(CYGPATH_W) 'tool/crc/crc.c'; else $(CYGPATH_W) '$(srcdir)/tool/crc/crc.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -684,32 +707,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f dal/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/$(am__dirstamp)
-	-rm -f dal/cfi/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/cfi/$(am__dirstamp)
-	-rm -f dal/df25xx/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/df25xx/$(am__dirstamp)
-	-rm -f dal/df45xx/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/df45xx/$(am__dirstamp)
-	-rm -f dal/ee24cxx/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/ee24cxx/$(am__dirstamp)
-	-rm -f dal/ee93cx6/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/ee93cx6/$(am__dirstamp)
-	-rm -f dal/mal/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/mal/$(am__dirstamp)
-	-rm -f dal/mic2826/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/mic2826/$(am__dirstamp)
-	-rm -f dal/nand/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/nand/$(am__dirstamp)
-	-rm -f dal/nrf24l01/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/nrf24l01/$(am__dirstamp)
-	-rm -f dal/sd/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/sd/$(am__dirstamp)
-	-rm -f dal/sst32hfxx/$(DEPDIR)/$(am__dirstamp)
-	-rm -f dal/sst32hfxx/$(am__dirstamp)
-	-rm -f tool/crc/$(DEPDIR)/$(am__dirstamp)
-	-rm -f tool/crc/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -717,24 +714,23 @@ maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-noinstLIBRARIES \
-	mostlyclean-am
+clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-		-rm -f dal/$(DEPDIR)/dal.Po
-	-rm -f dal/cfi/$(DEPDIR)/cfi_drv.Po
-	-rm -f dal/df25xx/$(DEPDIR)/df25xx_drv.Po
-	-rm -f dal/df45xx/$(DEPDIR)/df45xx_drv.Po
-	-rm -f dal/ee24cxx/$(DEPDIR)/ee24cxx_drv.Po
-	-rm -f dal/ee93cx6/$(DEPDIR)/ee93cx6_drv.Po
-	-rm -f dal/mal/$(DEPDIR)/mal.Po
-	-rm -f dal/mic2826/$(DEPDIR)/mic2826_drv.Po
-	-rm -f dal/nand/$(DEPDIR)/nand_drv.Po
-	-rm -f dal/nrf24l01/$(DEPDIR)/nrf24l01_drv.Po
-	-rm -f dal/sd/$(DEPDIR)/sd_common.Po
-	-rm -f dal/sd/$(DEPDIR)/sd_spi_drv.Po
-	-rm -f dal/sst32hfxx/$(DEPDIR)/sst32hfxx_drv.Po
-	-rm -f tool/crc/$(DEPDIR)/crc.Po
+		-rm -f ./$(DEPDIR)/cfi_drv.Po
+	-rm -f ./$(DEPDIR)/crc.Po
+	-rm -f ./$(DEPDIR)/dal.Po
+	-rm -f ./$(DEPDIR)/df25xx_drv.Po
+	-rm -f ./$(DEPDIR)/df45xx_drv.Po
+	-rm -f ./$(DEPDIR)/ee24cxx_drv.Po
+	-rm -f ./$(DEPDIR)/ee93cx6_drv.Po
+	-rm -f ./$(DEPDIR)/mal.Po
+	-rm -f ./$(DEPDIR)/mic2826_drv.Po
+	-rm -f ./$(DEPDIR)/nand_drv.Po
+	-rm -f ./$(DEPDIR)/nrf24l01_drv.Po
+	-rm -f ./$(DEPDIR)/sd_common.Po
+	-rm -f ./$(DEPDIR)/sd_spi_drv.Po
+	-rm -f ./$(DEPDIR)/sst32hfxx_drv.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -780,27 +776,26 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f dal/$(DEPDIR)/dal.Po
-	-rm -f dal/cfi/$(DEPDIR)/cfi_drv.Po
-	-rm -f dal/df25xx/$(DEPDIR)/df25xx_drv.Po
-	-rm -f dal/df45xx/$(DEPDIR)/df45xx_drv.Po
-	-rm -f dal/ee24cxx/$(DEPDIR)/ee24cxx_drv.Po
-	-rm -f dal/ee93cx6/$(DEPDIR)/ee93cx6_drv.Po
-	-rm -f dal/mal/$(DEPDIR)/mal.Po
-	-rm -f dal/mic2826/$(DEPDIR)/mic2826_drv.Po
-	-rm -f dal/nand/$(DEPDIR)/nand_drv.Po
-	-rm -f dal/nrf24l01/$(DEPDIR)/nrf24l01_drv.Po
-	-rm -f dal/sd/$(DEPDIR)/sd_common.Po
-	-rm -f dal/sd/$(DEPDIR)/sd_spi_drv.Po
-	-rm -f dal/sst32hfxx/$(DEPDIR)/sst32hfxx_drv.Po
-	-rm -f tool/crc/$(DEPDIR)/crc.Po
+		-rm -f ./$(DEPDIR)/cfi_drv.Po
+	-rm -f ./$(DEPDIR)/crc.Po
+	-rm -f ./$(DEPDIR)/dal.Po
+	-rm -f ./$(DEPDIR)/df25xx_drv.Po
+	-rm -f ./$(DEPDIR)/df45xx_drv.Po
+	-rm -f ./$(DEPDIR)/ee24cxx_drv.Po
+	-rm -f ./$(DEPDIR)/ee93cx6_drv.Po
+	-rm -f ./$(DEPDIR)/mal.Po
+	-rm -f ./$(DEPDIR)/mic2826_drv.Po
+	-rm -f ./$(DEPDIR)/nand_drv.Po
+	-rm -f ./$(DEPDIR)/nrf24l01_drv.Po
+	-rm -f ./$(DEPDIR)/sd_common.Po
+	-rm -f ./$(DEPDIR)/sd_spi_drv.Po
+	-rm -f ./$(DEPDIR)/sst32hfxx_drv.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic
 
 pdf: pdf-am
 
@@ -815,17 +810,16 @@ uninstall-am:
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am am--depfiles check check-am clean \
-	clean-generic clean-libtool clean-noinstLIBRARIES \
-	cscopelist-am ctags ctags-am distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	clean-generic clean-noinstLIBRARIES cscopelist-am ctags \
+	ctags-am distclean distclean-compile distclean-generic \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am
 
 .PRECIOUS: Makefile

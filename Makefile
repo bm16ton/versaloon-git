@@ -88,14 +88,11 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = aarch64-unknown-linux-gnu
+host_triplet = aarch64-unknown-linux-gnu
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
@@ -164,8 +161,8 @@ CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in AUTHORS \
-	COPYING INSTALL TODO compile config.guess config.sub depcomp \
-	install-sh ltmain.sh missing
+	COPYING TODO compile config.guess config.sub depcomp \
+	install-sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -211,7 +208,6 @@ distcleancheck_listfiles = find . -type f -print
 ACLOCAL = ${SHELL} /home/maddocks/versaloon-git/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
 AUTOCONF = ${SHELL} /home/maddocks/versaloon-git/missing autoconf
 AUTOHEADER = ${SHELL} /home/maddocks/versaloon-git/missing autoheader
 AUTOMAKE = ${SHELL} /home/maddocks/versaloon-git/missing automake-1.16
@@ -224,41 +220,26 @@ CPPFLAGS =
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
-DSYMUTIL = 
-DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /bin/grep -E
 EXEEXT = 
 EXEEXT_FOR_BUILD = 
-FGREP = /usr/bin/grep -F
-GREP = /usr/bin/grep
+GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
-LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
-LN_S = ln -s
 LTLIBOBJS = 
-LT_SYS_LIBRARY_PATH = 
 MAINT = 
 MAKEINFO = ${SHELL} /home/maddocks/versaloon-git/missing makeinfo
-MANIFEST_TOOL = :
-MKDIR_P = /usr/bin/mkdir -p
-NM = /usr/bin/nm -B
-NMEDIT = 
-OBJDUMP = objdump
+MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
 PACKAGE = vsprog
 PACKAGE_BUGREPORT = VSProg Mailling List <Versaloon-development@simonqian.com>
 PACKAGE_NAME = vsprog
@@ -268,10 +249,9 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1.1
 PATH_SEPARATOR = :
 RANLIB = ranlib
-SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = strip
+STRIP = 
 VERSION = 1.1
 XML2_CONFIG = /usr/bin/xml2-config
 XML_CPPFLAGS = -I/usr/include/libxml2
@@ -280,31 +260,29 @@ abs_builddir = /home/maddocks/versaloon-git
 abs_srcdir = /home/maddocks/versaloon-git
 abs_top_builddir = /home/maddocks/versaloon-git
 abs_top_srcdir = /home/maddocks/versaloon-git
-ac_ct_AR = ar
 ac_ct_CC = ccache gcc
-ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = aarch64-unknown-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = aarch64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = aarch64-unknown-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = aarch64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -320,7 +298,6 @@ pdfdir = ${docdir}
 prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
@@ -330,8 +307,6 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = .
 SUBDIRS = src doc
-AUTOMAKE_OPTIONS = subdir-objects
-ACLOCAL_AMFLAGS = -I m4
 CFG_PATH = src/config
 CFG_FILES = find $(srcdir)/$(CFG_PATH) -name '*.xml' | \
 		sed -e 's,^$(srcdir)/$(CFG_PATH),,'
@@ -400,15 +375,6 @@ $(srcdir)/config.h.in:  $(am__configure_deps)
 
 distclean-hdr:
 	-rm -f config.h stamp-h1
-
-mostlyclean-libtool:
-	-rm -f *.lo
-
-clean-libtool:
-	-rm -rf .libs _libs
-
-distclean-libtool:
-	-rm -f libtool config.lt
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.
@@ -748,13 +714,12 @@ maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-recursive
 
-clean-am: clean-generic clean-libtool mostlyclean-am
+clean-am: clean-generic mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic distclean-hdr \
-	distclean-libtool distclean-tags
+distclean-am: clean-am distclean-generic distclean-hdr distclean-tags
 
 dvi: dvi-recursive
 
@@ -805,7 +770,7 @@ maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-recursive
 
-mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+mostlyclean-am: mostlyclean-generic
 
 pdf: pdf-recursive
 
@@ -823,10 +788,9 @@ uninstall-am:
 
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
 	am--refresh check check-am clean clean-cscope clean-generic \
-	clean-libtool cscope cscopelist-am ctags ctags-am dist \
-	dist-all dist-bzip2 dist-gzip dist-hook dist-lzip dist-shar \
-	dist-tarZ dist-xz dist-zip distcheck distclean \
-	distclean-generic distclean-hdr distclean-libtool \
+	cscope cscopelist-am ctags ctags-am dist dist-all dist-bzip2 \
+	dist-gzip dist-hook dist-lzip dist-shar dist-tarZ dist-xz \
+	dist-zip distcheck distclean distclean-generic distclean-hdr \
 	distclean-tags distcleancheck distdir distuninstallcheck dvi \
 	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-data-hook install-dvi \
@@ -835,8 +799,8 @@ uninstall-am:
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	installdirs-am maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am tags tags-am uninstall uninstall-am uninstall-hook
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am tags \
+	tags-am uninstall uninstall-am uninstall-hook
 
 .PRECIOUS: Makefile
 

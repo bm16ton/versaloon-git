@@ -3,9 +3,6 @@
 
 SUBDIRS = src doc
 
-AUTOMAKE_OPTIONS = subdir-objects
-ACLOCAL_AMFLAGS = -I m4
-
 CFG_PATH = src/config
 CFG_FILES = find $(srcdir)/$(CFG_PATH) -name '*.xml' | \
 		sed -e 's,^$(srcdir)/$(CFG_PATH),,'

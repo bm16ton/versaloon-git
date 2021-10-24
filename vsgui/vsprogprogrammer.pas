@@ -5,7 +5,7 @@ unit vsprogprogrammer;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, LazFileUtils, LResources, Forms, Controls, Graphics, Dialogs,
   StdCtrls, ExtCtrls;
 
 type
@@ -29,7 +29,7 @@ type
     property Proggrammers[Index: integer]: string Read GetProgrammers;
     property SerialNumber: string Read FSerialNumber;
     { public declarations }
-  end; 
+  end;
 
 var
   VSProg_Programmer: TVSProg_Programmer;

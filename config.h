@@ -1,11 +1,8 @@
 /* config.h.  Generated from config.h.in by configure.  */
-/* config.h.in.  Generated from configure.ac by autoheader.  */
+/* config.h.in.  Generated from configure.in by autoheader.  */
 
 /* Define if building universal (internal helper macro) */
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
-
-/* Define to 1 if you have the <dlfcn.h> header file. */
-#define HAVE_DLFCN_H 1
 
 /* Define to 1 if you have the `gettimeofday' function. */
 #define HAVE_GETTIMEOFDAY 1
@@ -69,9 +66,6 @@
 
 /* 0 if not building for Win32. */
 #define IS_WIN32 0
-
-/* Define to the sub-directory where libtool stores uninstalled libraries. */
-#define LT_OBJDIR ".libs/"
 
 /* Define to 1 if assertions should be disabled. */
 /* #undef NDEBUG */

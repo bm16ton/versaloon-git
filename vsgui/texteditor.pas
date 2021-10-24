@@ -5,7 +5,7 @@ unit texteditor;
 interface
 
 uses
-  Classes, SysUtils, LazUtils, LazFileUtils, LResources, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, LazFileUtils, LResources, Forms, Controls, Graphics, Dialogs,
   StdCtrls;
 
 type
@@ -25,7 +25,7 @@ type
     { private declarations }
   public
     { public declarations }
-  end; 
+  end;
 
 var
   FormTextEditor: TFormTextEditor;

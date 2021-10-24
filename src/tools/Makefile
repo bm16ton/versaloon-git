@@ -86,14 +86,11 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = aarch64-unknown-linux-gnu
+host_triplet = aarch64-unknown-linux-gnu
 subdir = src/tools
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
@@ -102,6 +99,7 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
+AR = ar
 ARFLAGS = cru
 AM_V_AR = $(am__v_AR_$(V))
 am__v_AR_ = $(am__v_AR_$(AM_DEFAULT_VERBOSITY))
@@ -109,11 +107,9 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libtool_a_AR = $(AR) $(ARFLAGS)
 libtool_a_LIBADD =
-am__dirstamp = $(am__leading_dot)dirstamp
-am_libtool_a_OBJECTS = hex/hex.$(OBJEXT) memlist/memlist.$(OBJEXT) \
-	pgbar/pgbar.$(OBJEXT) filelist/filelist.$(OBJEXT) \
-	fileparser/fileparser.$(OBJEXT) strparser/strparser.$(OBJEXT) \
-	s19/s19.$(OBJEXT)
+am_libtool_a_OBJECTS = hex.$(OBJEXT) memlist.$(OBJEXT) pgbar.$(OBJEXT) \
+	filelist.$(OBJEXT) fileparser.$(OBJEXT) strparser.$(OBJEXT) \
+	s19.$(OBJEXT)
 libtool_a_OBJECTS = $(am_libtool_a_OBJECTS)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -130,29 +126,23 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = filelist/$(DEPDIR)/filelist.Po \
-	fileparser/$(DEPDIR)/fileparser.Po hex/$(DEPDIR)/hex.Po \
-	memlist/$(DEPDIR)/memlist.Po pgbar/$(DEPDIR)/pgbar.Po \
-	s19/$(DEPDIR)/s19.Po strparser/$(DEPDIR)/strparser.Po
+am__depfiles_remade = ./$(DEPDIR)/filelist.Po \
+	./$(DEPDIR)/fileparser.Po ./$(DEPDIR)/hex.Po \
+	./$(DEPDIR)/memlist.Po ./$(DEPDIR)/pgbar.Po ./$(DEPDIR)/s19.Po \
+	./$(DEPDIR)/strparser.Po
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_$(V))
 am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
 am__v_CC_0 = @echo "  CC      " $@;
 am__v_CC_1 = 
 CCLD = $(CC)
-LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
@@ -188,7 +178,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/maddocks/versaloon-git/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
 AUTOCONF = ${SHELL} /home/maddocks/versaloon-git/missing autoconf
 AUTOHEADER = ${SHELL} /home/maddocks/versaloon-git/missing autoheader
 AUTOMAKE = ${SHELL} /home/maddocks/versaloon-git/missing automake-1.16
@@ -201,41 +190,26 @@ CPPFLAGS =
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
-DSYMUTIL = 
-DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /bin/grep -E
 EXEEXT = 
 EXEEXT_FOR_BUILD = 
-FGREP = /usr/bin/grep -F
-GREP = /usr/bin/grep
+GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
-LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
-LN_S = ln -s
 LTLIBOBJS = 
-LT_SYS_LIBRARY_PATH = 
 MAINT = 
 MAKEINFO = ${SHELL} /home/maddocks/versaloon-git/missing makeinfo
-MANIFEST_TOOL = :
-MKDIR_P = /usr/bin/mkdir -p
-NM = /usr/bin/nm -B
-NMEDIT = 
-OBJDUMP = objdump
+MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
 PACKAGE = vsprog
 PACKAGE_BUGREPORT = VSProg Mailling List <Versaloon-development@simonqian.com>
 PACKAGE_NAME = vsprog
@@ -245,10 +219,9 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1.1
 PATH_SEPARATOR = :
 RANLIB = ranlib
-SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = strip
+STRIP = 
 VERSION = 1.1
 XML2_CONFIG = /usr/bin/xml2-config
 XML_CPPFLAGS = -I/usr/include/libxml2
@@ -257,31 +230,29 @@ abs_builddir = /home/maddocks/versaloon-git/src/tools
 abs_srcdir = /home/maddocks/versaloon-git/src/tools
 abs_top_builddir = /home/maddocks/versaloon-git
 abs_top_srcdir = /home/maddocks/versaloon-git
-ac_ct_AR = ar
 ac_ct_CC = ccache gcc
-ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = aarch64-unknown-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = aarch64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = aarch64-unknown-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = aarch64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -297,7 +268,6 @@ pdfdir = ${docdir}
 prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
@@ -306,7 +276,6 @@ target_alias =
 top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
-AUTOMAKE_OPTIONS = subdir-objects
 INCLUDES = \
     $(all_includes) \
     -I$(top_srcdir)/src/vsf_cfg \
@@ -346,7 +315,7 @@ MAINTAINERCLEANFILES = Makefile.in
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -379,60 +348,6 @@ $(am__aclocal_m4_deps):
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-hex/$(am__dirstamp):
-	@$(MKDIR_P) hex
-	@: > hex/$(am__dirstamp)
-hex/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) hex/$(DEPDIR)
-	@: > hex/$(DEPDIR)/$(am__dirstamp)
-hex/hex.$(OBJEXT): hex/$(am__dirstamp) hex/$(DEPDIR)/$(am__dirstamp)
-memlist/$(am__dirstamp):
-	@$(MKDIR_P) memlist
-	@: > memlist/$(am__dirstamp)
-memlist/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) memlist/$(DEPDIR)
-	@: > memlist/$(DEPDIR)/$(am__dirstamp)
-memlist/memlist.$(OBJEXT): memlist/$(am__dirstamp) \
-	memlist/$(DEPDIR)/$(am__dirstamp)
-pgbar/$(am__dirstamp):
-	@$(MKDIR_P) pgbar
-	@: > pgbar/$(am__dirstamp)
-pgbar/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) pgbar/$(DEPDIR)
-	@: > pgbar/$(DEPDIR)/$(am__dirstamp)
-pgbar/pgbar.$(OBJEXT): pgbar/$(am__dirstamp) \
-	pgbar/$(DEPDIR)/$(am__dirstamp)
-filelist/$(am__dirstamp):
-	@$(MKDIR_P) filelist
-	@: > filelist/$(am__dirstamp)
-filelist/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) filelist/$(DEPDIR)
-	@: > filelist/$(DEPDIR)/$(am__dirstamp)
-filelist/filelist.$(OBJEXT): filelist/$(am__dirstamp) \
-	filelist/$(DEPDIR)/$(am__dirstamp)
-fileparser/$(am__dirstamp):
-	@$(MKDIR_P) fileparser
-	@: > fileparser/$(am__dirstamp)
-fileparser/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) fileparser/$(DEPDIR)
-	@: > fileparser/$(DEPDIR)/$(am__dirstamp)
-fileparser/fileparser.$(OBJEXT): fileparser/$(am__dirstamp) \
-	fileparser/$(DEPDIR)/$(am__dirstamp)
-strparser/$(am__dirstamp):
-	@$(MKDIR_P) strparser
-	@: > strparser/$(am__dirstamp)
-strparser/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) strparser/$(DEPDIR)
-	@: > strparser/$(DEPDIR)/$(am__dirstamp)
-strparser/strparser.$(OBJEXT): strparser/$(am__dirstamp) \
-	strparser/$(DEPDIR)/$(am__dirstamp)
-s19/$(am__dirstamp):
-	@$(MKDIR_P) s19
-	@: > s19/$(am__dirstamp)
-s19/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) s19/$(DEPDIR)
-	@: > s19/$(DEPDIR)/$(am__dirstamp)
-s19/s19.$(OBJEXT): s19/$(am__dirstamp) s19/$(DEPDIR)/$(am__dirstamp)
 
 libtool.a: $(libtool_a_OBJECTS) $(libtool_a_DEPENDENCIES) $(EXTRA_libtool_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libtool.a
@@ -441,24 +356,17 @@ libtool.a: $(libtool_a_OBJECTS) $(libtool_a_DEPENDENCIES) $(EXTRA_libtool_a_DEPE
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f filelist/*.$(OBJEXT)
-	-rm -f fileparser/*.$(OBJEXT)
-	-rm -f hex/*.$(OBJEXT)
-	-rm -f memlist/*.$(OBJEXT)
-	-rm -f pgbar/*.$(OBJEXT)
-	-rm -f s19/*.$(OBJEXT)
-	-rm -f strparser/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-include filelist/$(DEPDIR)/filelist.Po # am--include-marker
-include fileparser/$(DEPDIR)/fileparser.Po # am--include-marker
-include hex/$(DEPDIR)/hex.Po # am--include-marker
-include memlist/$(DEPDIR)/memlist.Po # am--include-marker
-include pgbar/$(DEPDIR)/pgbar.Po # am--include-marker
-include s19/$(DEPDIR)/s19.Po # am--include-marker
-include strparser/$(DEPDIR)/strparser.Po # am--include-marker
+include ./$(DEPDIR)/filelist.Po # am--include-marker
+include ./$(DEPDIR)/fileparser.Po # am--include-marker
+include ./$(DEPDIR)/hex.Po # am--include-marker
+include ./$(DEPDIR)/memlist.Po # am--include-marker
+include ./$(DEPDIR)/pgbar.Po # am--include-marker
+include ./$(DEPDIR)/s19.Po # am--include-marker
+include ./$(DEPDIR)/strparser.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -467,34 +375,116 @@ $(am__depfiles_remade):
 am--depfiles: $(am__depfiles_remade)
 
 .c.o:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-.c.lo:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Plo
-#	$(AM_V_CC)source='$<' object='$@' libtool=yes \
+hex.o: hex/hex.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT hex.o -MD -MP -MF $(DEPDIR)/hex.Tpo -c -o hex.o `test -f 'hex/hex.c' || echo '$(srcdir)/'`hex/hex.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/hex.Tpo $(DEPDIR)/hex.Po
+#	$(AM_V_CC)source='hex/hex.c' object='hex.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(LTCOMPILE) -c -o $@ $<
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o hex.o `test -f 'hex/hex.c' || echo '$(srcdir)/'`hex/hex.c
 
-mostlyclean-libtool:
-	-rm -f *.lo
+hex.obj: hex/hex.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT hex.obj -MD -MP -MF $(DEPDIR)/hex.Tpo -c -o hex.obj `if test -f 'hex/hex.c'; then $(CYGPATH_W) 'hex/hex.c'; else $(CYGPATH_W) '$(srcdir)/hex/hex.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/hex.Tpo $(DEPDIR)/hex.Po
+#	$(AM_V_CC)source='hex/hex.c' object='hex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o hex.obj `if test -f 'hex/hex.c'; then $(CYGPATH_W) 'hex/hex.c'; else $(CYGPATH_W) '$(srcdir)/hex/hex.c'; fi`
 
-clean-libtool:
-	-rm -rf .libs _libs
+memlist.o: memlist/memlist.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT memlist.o -MD -MP -MF $(DEPDIR)/memlist.Tpo -c -o memlist.o `test -f 'memlist/memlist.c' || echo '$(srcdir)/'`memlist/memlist.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/memlist.Tpo $(DEPDIR)/memlist.Po
+#	$(AM_V_CC)source='memlist/memlist.c' object='memlist.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o memlist.o `test -f 'memlist/memlist.c' || echo '$(srcdir)/'`memlist/memlist.c
+
+memlist.obj: memlist/memlist.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT memlist.obj -MD -MP -MF $(DEPDIR)/memlist.Tpo -c -o memlist.obj `if test -f 'memlist/memlist.c'; then $(CYGPATH_W) 'memlist/memlist.c'; else $(CYGPATH_W) '$(srcdir)/memlist/memlist.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/memlist.Tpo $(DEPDIR)/memlist.Po
+#	$(AM_V_CC)source='memlist/memlist.c' object='memlist.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o memlist.obj `if test -f 'memlist/memlist.c'; then $(CYGPATH_W) 'memlist/memlist.c'; else $(CYGPATH_W) '$(srcdir)/memlist/memlist.c'; fi`
+
+pgbar.o: pgbar/pgbar.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pgbar.o -MD -MP -MF $(DEPDIR)/pgbar.Tpo -c -o pgbar.o `test -f 'pgbar/pgbar.c' || echo '$(srcdir)/'`pgbar/pgbar.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/pgbar.Tpo $(DEPDIR)/pgbar.Po
+#	$(AM_V_CC)source='pgbar/pgbar.c' object='pgbar.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pgbar.o `test -f 'pgbar/pgbar.c' || echo '$(srcdir)/'`pgbar/pgbar.c
+
+pgbar.obj: pgbar/pgbar.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pgbar.obj -MD -MP -MF $(DEPDIR)/pgbar.Tpo -c -o pgbar.obj `if test -f 'pgbar/pgbar.c'; then $(CYGPATH_W) 'pgbar/pgbar.c'; else $(CYGPATH_W) '$(srcdir)/pgbar/pgbar.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/pgbar.Tpo $(DEPDIR)/pgbar.Po
+#	$(AM_V_CC)source='pgbar/pgbar.c' object='pgbar.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pgbar.obj `if test -f 'pgbar/pgbar.c'; then $(CYGPATH_W) 'pgbar/pgbar.c'; else $(CYGPATH_W) '$(srcdir)/pgbar/pgbar.c'; fi`
+
+filelist.o: filelist/filelist.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT filelist.o -MD -MP -MF $(DEPDIR)/filelist.Tpo -c -o filelist.o `test -f 'filelist/filelist.c' || echo '$(srcdir)/'`filelist/filelist.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/filelist.Tpo $(DEPDIR)/filelist.Po
+#	$(AM_V_CC)source='filelist/filelist.c' object='filelist.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o filelist.o `test -f 'filelist/filelist.c' || echo '$(srcdir)/'`filelist/filelist.c
+
+filelist.obj: filelist/filelist.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT filelist.obj -MD -MP -MF $(DEPDIR)/filelist.Tpo -c -o filelist.obj `if test -f 'filelist/filelist.c'; then $(CYGPATH_W) 'filelist/filelist.c'; else $(CYGPATH_W) '$(srcdir)/filelist/filelist.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/filelist.Tpo $(DEPDIR)/filelist.Po
+#	$(AM_V_CC)source='filelist/filelist.c' object='filelist.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o filelist.obj `if test -f 'filelist/filelist.c'; then $(CYGPATH_W) 'filelist/filelist.c'; else $(CYGPATH_W) '$(srcdir)/filelist/filelist.c'; fi`
+
+fileparser.o: fileparser/fileparser.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fileparser.o -MD -MP -MF $(DEPDIR)/fileparser.Tpo -c -o fileparser.o `test -f 'fileparser/fileparser.c' || echo '$(srcdir)/'`fileparser/fileparser.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fileparser.Tpo $(DEPDIR)/fileparser.Po
+#	$(AM_V_CC)source='fileparser/fileparser.c' object='fileparser.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fileparser.o `test -f 'fileparser/fileparser.c' || echo '$(srcdir)/'`fileparser/fileparser.c
+
+fileparser.obj: fileparser/fileparser.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT fileparser.obj -MD -MP -MF $(DEPDIR)/fileparser.Tpo -c -o fileparser.obj `if test -f 'fileparser/fileparser.c'; then $(CYGPATH_W) 'fileparser/fileparser.c'; else $(CYGPATH_W) '$(srcdir)/fileparser/fileparser.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fileparser.Tpo $(DEPDIR)/fileparser.Po
+#	$(AM_V_CC)source='fileparser/fileparser.c' object='fileparser.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o fileparser.obj `if test -f 'fileparser/fileparser.c'; then $(CYGPATH_W) 'fileparser/fileparser.c'; else $(CYGPATH_W) '$(srcdir)/fileparser/fileparser.c'; fi`
+
+strparser.o: strparser/strparser.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT strparser.o -MD -MP -MF $(DEPDIR)/strparser.Tpo -c -o strparser.o `test -f 'strparser/strparser.c' || echo '$(srcdir)/'`strparser/strparser.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/strparser.Tpo $(DEPDIR)/strparser.Po
+#	$(AM_V_CC)source='strparser/strparser.c' object='strparser.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o strparser.o `test -f 'strparser/strparser.c' || echo '$(srcdir)/'`strparser/strparser.c
+
+strparser.obj: strparser/strparser.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT strparser.obj -MD -MP -MF $(DEPDIR)/strparser.Tpo -c -o strparser.obj `if test -f 'strparser/strparser.c'; then $(CYGPATH_W) 'strparser/strparser.c'; else $(CYGPATH_W) '$(srcdir)/strparser/strparser.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/strparser.Tpo $(DEPDIR)/strparser.Po
+#	$(AM_V_CC)source='strparser/strparser.c' object='strparser.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o strparser.obj `if test -f 'strparser/strparser.c'; then $(CYGPATH_W) 'strparser/strparser.c'; else $(CYGPATH_W) '$(srcdir)/strparser/strparser.c'; fi`
+
+s19.o: s19/s19.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT s19.o -MD -MP -MF $(DEPDIR)/s19.Tpo -c -o s19.o `test -f 's19/s19.c' || echo '$(srcdir)/'`s19/s19.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/s19.Tpo $(DEPDIR)/s19.Po
+#	$(AM_V_CC)source='s19/s19.c' object='s19.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o s19.o `test -f 's19/s19.c' || echo '$(srcdir)/'`s19/s19.c
+
+s19.obj: s19/s19.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT s19.obj -MD -MP -MF $(DEPDIR)/s19.Tpo -c -o s19.obj `if test -f 's19/s19.c'; then $(CYGPATH_W) 's19/s19.c'; else $(CYGPATH_W) '$(srcdir)/s19/s19.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/s19.Tpo $(DEPDIR)/s19.Po
+#	$(AM_V_CC)source='s19/s19.c' object='s19.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o s19.obj `if test -f 's19/s19.c'; then $(CYGPATH_W) 's19/s19.c'; else $(CYGPATH_W) '$(srcdir)/s19/s19.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -611,20 +601,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f filelist/$(DEPDIR)/$(am__dirstamp)
-	-rm -f filelist/$(am__dirstamp)
-	-rm -f fileparser/$(DEPDIR)/$(am__dirstamp)
-	-rm -f fileparser/$(am__dirstamp)
-	-rm -f hex/$(DEPDIR)/$(am__dirstamp)
-	-rm -f hex/$(am__dirstamp)
-	-rm -f memlist/$(DEPDIR)/$(am__dirstamp)
-	-rm -f memlist/$(am__dirstamp)
-	-rm -f pgbar/$(DEPDIR)/$(am__dirstamp)
-	-rm -f pgbar/$(am__dirstamp)
-	-rm -f s19/$(DEPDIR)/$(am__dirstamp)
-	-rm -f s19/$(am__dirstamp)
-	-rm -f strparser/$(DEPDIR)/$(am__dirstamp)
-	-rm -f strparser/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -632,17 +608,16 @@ maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-noinstLIBRARIES \
-	mostlyclean-am
+clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-		-rm -f filelist/$(DEPDIR)/filelist.Po
-	-rm -f fileparser/$(DEPDIR)/fileparser.Po
-	-rm -f hex/$(DEPDIR)/hex.Po
-	-rm -f memlist/$(DEPDIR)/memlist.Po
-	-rm -f pgbar/$(DEPDIR)/pgbar.Po
-	-rm -f s19/$(DEPDIR)/s19.Po
-	-rm -f strparser/$(DEPDIR)/strparser.Po
+		-rm -f ./$(DEPDIR)/filelist.Po
+	-rm -f ./$(DEPDIR)/fileparser.Po
+	-rm -f ./$(DEPDIR)/hex.Po
+	-rm -f ./$(DEPDIR)/memlist.Po
+	-rm -f ./$(DEPDIR)/pgbar.Po
+	-rm -f ./$(DEPDIR)/s19.Po
+	-rm -f ./$(DEPDIR)/strparser.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -688,20 +663,19 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f filelist/$(DEPDIR)/filelist.Po
-	-rm -f fileparser/$(DEPDIR)/fileparser.Po
-	-rm -f hex/$(DEPDIR)/hex.Po
-	-rm -f memlist/$(DEPDIR)/memlist.Po
-	-rm -f pgbar/$(DEPDIR)/pgbar.Po
-	-rm -f s19/$(DEPDIR)/s19.Po
-	-rm -f strparser/$(DEPDIR)/strparser.Po
+		-rm -f ./$(DEPDIR)/filelist.Po
+	-rm -f ./$(DEPDIR)/fileparser.Po
+	-rm -f ./$(DEPDIR)/hex.Po
+	-rm -f ./$(DEPDIR)/memlist.Po
+	-rm -f ./$(DEPDIR)/pgbar.Po
+	-rm -f ./$(DEPDIR)/s19.Po
+	-rm -f ./$(DEPDIR)/strparser.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic
 
 pdf: pdf-am
 
@@ -716,17 +690,16 @@ uninstall-am:
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am am--depfiles check check-am clean \
-	clean-generic clean-libtool clean-noinstLIBRARIES \
-	cscopelist-am ctags ctags-am distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	clean-generic clean-noinstLIBRARIES cscopelist-am ctags \
+	ctags-am distclean distclean-compile distclean-generic \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am
 
 .PRECIOUS: Makefile

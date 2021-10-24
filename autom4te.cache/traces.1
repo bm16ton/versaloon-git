@@ -9,6 +9,7 @@ m4trace:configure.in:2: -1- m4_pattern_allow([^AS_FLAGS$])
 m4trace:configure.in:2: -1- m4_pattern_forbid([^_?m4_])
 m4trace:configure.in:2: -1- m4_pattern_forbid([^dnl$])
 m4trace:configure.in:2: -1- m4_pattern_forbid([^_?AS_])
+m4trace:configure.in:2: -1- _m4_warn([syntax], [AC_INIT: not a literal: VSProg Mailling List <Versaloon-development@simonqian.com>], [])
 m4trace:configure.in:2: -1- AC_SUBST([SHELL])
 m4trace:configure.in:2: -1- AC_SUBST_TRACE([SHELL])
 m4trace:configure.in:2: -1- m4_pattern_allow([^SHELL$])
@@ -66,9 +67,6 @@ m4trace:configure.in:2: -1- m4_pattern_allow([^sharedstatedir$])
 m4trace:configure.in:2: -1- AC_SUBST([localstatedir], ['${prefix}/var'])
 m4trace:configure.in:2: -1- AC_SUBST_TRACE([localstatedir])
 m4trace:configure.in:2: -1- m4_pattern_allow([^localstatedir$])
-m4trace:configure.in:2: -1- AC_SUBST([runstatedir], ['${localstatedir}/run'])
-m4trace:configure.in:2: -1- AC_SUBST_TRACE([runstatedir])
-m4trace:configure.in:2: -1- m4_pattern_allow([^runstatedir$])
 m4trace:configure.in:2: -1- AC_SUBST([includedir], ['${prefix}/include'])
 m4trace:configure.in:2: -1- AC_SUBST_TRACE([includedir])
 m4trace:configure.in:2: -1- m4_pattern_allow([^includedir$])
@@ -270,7 +268,7 @@ You should use the 'AC_CONFIG_HEADERS' macro instead.], [aclocal.m4:955: AM_CONF
 configure.in:9: the top level])
 m4trace:configure.in:9: -1- AC_CONFIG_HEADERS([config.h])
 m4trace:configure.in:11: -1- _m4_warn([obsolete], [The macro `AC_LANG_C' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+You should run autoupdate.], [../../lib/autoconf/c.m4:73: AC_LANG_C is expanded from...
 configure.in:11: the top level])
 m4trace:configure.in:12: -1- AC_SUBST([CC])
 m4trace:configure.in:12: -1- AC_SUBST_TRACE([CC])
@@ -382,11 +380,11 @@ m4trace:configure.in:24: -1- AC_SUBST([XML2_CONFIG])
 m4trace:configure.in:24: -1- AC_SUBST_TRACE([XML2_CONFIG])
 m4trace:configure.in:24: -1- m4_pattern_allow([^XML2_CONFIG$])
 m4trace:configure.in:24: -1- _m4_warn([obsolete], [The macro `AC_TRY_RUN' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2775: AC_TRY_RUN is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:2752: AC_TRY_RUN is expanded from...
 aclocal.m4:34: AM_PATH_XML2 is expanded from...
 configure.in:24: the top level])
 m4trace:configure.in:24: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2698: AC_TRY_LINK is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:2675: AC_TRY_LINK is expanded from...
 aclocal.m4:34: AM_PATH_XML2 is expanded from...
 configure.in:24: the top level])
 m4trace:configure.in:24: -1- AC_SUBST([XML_CPPFLAGS])
@@ -497,16 +495,12 @@ m4trace:configure.in:41: -1- AH_OUTPUT([HAVE_STRCHR], [/* Define to 1 if you hav
 @%:@undef HAVE_STRCHR])
 m4trace:configure.in:41: -1- AC_DEFINE_TRACE_LITERAL([HAVE_STRCHR])
 m4trace:configure.in:41: -1- m4_pattern_allow([^HAVE_STRCHR$])
-m4trace:configure.in:56: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2788: AC_CHECK_FILE is expanded from...
+m4trace:configure.in:56: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2765: AC_CHECK_FILE is expanded from...
 configure.in:56: the top level])
 m4trace:configure.in:64: -1- AC_DEFINE_TRACE_LITERAL([IS_DARWIN])
 m4trace:configure.in:64: -1- m4_pattern_allow([^IS_DARWIN$])
 m4trace:configure.in:64: -1- AH_OUTPUT([IS_DARWIN], [/* 1 if building for Darwin. */
 @%:@undef IS_DARWIN])
-m4trace:configure.in:69: -1- _m4_warn([syntax], [AC_LANG_CONFTEST: no AC_LANG_SOURCE call detected in body], [../../lib/autoconf/lang.m4:193: AC_LANG_CONFTEST is expanded from...
-../../lib/autoconf/general.m4:2601: _AC_COMPILE_IFELSE is expanded from...
-../../lib/autoconf/general.m4:2617: AC_COMPILE_IFELSE is expanded from...
-configure.in:69: the top level])
 m4trace:configure.in:72: -1- AC_DEFINE_TRACE_LITERAL([IS_MINGW])
 m4trace:configure.in:72: -1- m4_pattern_allow([^IS_MINGW$])
 m4trace:configure.in:72: -1- AH_OUTPUT([IS_MINGW], [/* 1 if building for MinGW. */
@@ -576,7 +570,7 @@ m4trace:configure.in:98: -1- m4_pattern_allow([^IS_WIN32_FALSE$])
 m4trace:configure.in:98: -1- _AM_SUBST_NOTMAKE([IS_WIN32_TRUE])
 m4trace:configure.in:98: -1- _AM_SUBST_NOTMAKE([IS_WIN32_FALSE])
 m4trace:configure.in:119: -1- _m4_warn([obsolete], [The macro `AC_FD_CC' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:383: AC_FD_CC is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:385: AC_FD_CC is expanded from...
 configure.in:119: the top level])
 m4trace:configure.in:133: -1- AC_SUBST([EXEEXT_FOR_BUILD])
 m4trace:configure.in:133: -1- AC_SUBST_TRACE([EXEEXT_FOR_BUILD])

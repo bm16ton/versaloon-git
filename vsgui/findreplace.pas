@@ -5,7 +5,7 @@ unit findreplace;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, LazFileUtils, LResources, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, inputdialog;
 
 type

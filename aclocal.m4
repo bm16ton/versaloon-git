@@ -14,8 +14,8 @@
 m4_ifndef([AC_CONFIG_MACRO_DIRS], [m4_defun([_AM_CONFIG_MACRO_DIRS], [])m4_defun([AC_CONFIG_MACRO_DIRS], [_AM_CONFIG_MACRO_DIRS($@)])])
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
-m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.69],,
-[m4_warning([this file was generated for autoconf 2.69.
+m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.67],,
+[m4_warning([this file was generated for autoconf 2.67.
 You have another version of autoconf.  It may work, but is not guaranteed to.
 If you have problems, you may need to regenerate the build system entirely.
 To do so, use the procedure documented by the package, typically 'autoreconf'.])])
@@ -192,7 +192,7 @@ main()
           echo "*** If you have an old version installed, it is best to remove it, although"
           echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH" ],
         [ echo "*** The test program failed to compile or link. See the file config.log for the"
-          echo "*** exact error that occured. This usually means LIBXML was incorrectly installed"
+          echo "*** exact error that occurred. This usually means LIBXML was incorrectly installed"
           echo "*** or that you have moved LIBXML since it was installed. In the latter case, you"
           echo "*** may want to edit the xml2-config script: $XML2_CONFIG" ])
           CPPFLAGS="$ac_save_CPPFLAGS"
@@ -1387,8 +1387,3 @@ AC_SUBST([am__tar])
 AC_SUBST([am__untar])
 ]) # _AM_PROG_TAR
 
-m4_include([m4/libtool.m4])
-m4_include([m4/ltoptions.m4])
-m4_include([m4/ltsugar.m4])
-m4_include([m4/ltversion.m4])
-m4_include([m4/lt~obsolete.m4])

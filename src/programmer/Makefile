@@ -86,14 +86,11 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = aarch64-unknown-linux-gnu
+host_triplet = aarch64-unknown-linux-gnu
 subdir = src/programmer
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
@@ -102,6 +99,7 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
+AR = ar
 ARFLAGS = cru
 AM_V_AR = $(am__v_AR_$(V))
 am__v_AR_ = $(am__v_AR_$(AM_DEFAULT_VERBOSITY))
@@ -109,36 +107,17 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libprog_a_AR = $(AR) $(ARFLAGS)
 libprog_a_LIBADD =
-am__dirstamp = $(am__leading_dot)dirstamp
-am_libprog_a_OBJECTS = programmer.$(OBJEXT) \
-	interfaces/interfaces.$(OBJEXT) \
-	interfaces/versaloon/versaloon.$(OBJEXT) \
-	interfaces/versaloon/versaloon_libusb.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtoxxx.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtogpio.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtospi.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtoi2c.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtoadc.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtomicrowire.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtopwm.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtoebi.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtonand.$(OBJEXT) \
-	$(vsf_usbtoxxx_srcdir)/usbtoclko.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtoc2.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtoissp.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtomsp430jtag.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtomsp430sbw.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtousart.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtolpcicp.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtopwr.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtojtaghl.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtojtagll.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtoswd.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtoswim.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtojtagraw.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtobdm.$(OBJEXT) \
-	interfaces/versaloon/usbtoxxx/usbtodusi.$(OBJEXT) \
-	interfaces/virtualinterface/vi_stm32/vi_stm32.$(OBJEXT)
+am_libprog_a_OBJECTS = programmer.$(OBJEXT) interfaces.$(OBJEXT) \
+	versaloon.$(OBJEXT) versaloon_libusb.$(OBJEXT) \
+	usbtoxxx.$(OBJEXT) usbtogpio.$(OBJEXT) usbtospi.$(OBJEXT) \
+	usbtoi2c.$(OBJEXT) usbtoadc.$(OBJEXT) usbtomicrowire.$(OBJEXT) \
+	usbtopwm.$(OBJEXT) usbtoebi.$(OBJEXT) usbtonand.$(OBJEXT) \
+	usbtoclko.$(OBJEXT) usbtoc2.$(OBJEXT) usbtoissp.$(OBJEXT) \
+	usbtomsp430jtag.$(OBJEXT) usbtomsp430sbw.$(OBJEXT) \
+	usbtousart.$(OBJEXT) usbtolpcicp.$(OBJEXT) usbtopwr.$(OBJEXT) \
+	usbtojtaghl.$(OBJEXT) usbtojtagll.$(OBJEXT) usbtoswd.$(OBJEXT) \
+	usbtoswim.$(OBJEXT) usbtojtagraw.$(OBJEXT) usbtobdm.$(OBJEXT) \
+	usbtodusi.$(OBJEXT) vi_stm32.$(OBJEXT)
 libprog_a_OBJECTS = $(am_libprog_a_OBJECTS)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -155,53 +134,34 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoadc.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoclko.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoebi.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtogpio.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoi2c.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtomicrowire.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtonand.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtopwm.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtospi.Po \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoxxx.Po \
-	./$(DEPDIR)/programmer.Po interfaces/$(DEPDIR)/interfaces.Po \
-	interfaces/versaloon/$(DEPDIR)/versaloon.Po \
-	interfaces/versaloon/$(DEPDIR)/versaloon_libusb.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtobdm.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoc2.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtodusi.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoissp.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtaghl.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagll.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagraw.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtolpcicp.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430jtag.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430sbw.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtopwr.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswd.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswim.Po \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtousart.Po \
-	interfaces/virtualinterface/vi_stm32/$(DEPDIR)/vi_stm32.Po
+am__depfiles_remade = ./$(DEPDIR)/interfaces.Po \
+	./$(DEPDIR)/programmer.Po ./$(DEPDIR)/usbtoadc.Po \
+	./$(DEPDIR)/usbtobdm.Po ./$(DEPDIR)/usbtoc2.Po \
+	./$(DEPDIR)/usbtoclko.Po ./$(DEPDIR)/usbtodusi.Po \
+	./$(DEPDIR)/usbtoebi.Po ./$(DEPDIR)/usbtogpio.Po \
+	./$(DEPDIR)/usbtoi2c.Po ./$(DEPDIR)/usbtoissp.Po \
+	./$(DEPDIR)/usbtojtaghl.Po ./$(DEPDIR)/usbtojtagll.Po \
+	./$(DEPDIR)/usbtojtagraw.Po ./$(DEPDIR)/usbtolpcicp.Po \
+	./$(DEPDIR)/usbtomicrowire.Po ./$(DEPDIR)/usbtomsp430jtag.Po \
+	./$(DEPDIR)/usbtomsp430sbw.Po ./$(DEPDIR)/usbtonand.Po \
+	./$(DEPDIR)/usbtopwm.Po ./$(DEPDIR)/usbtopwr.Po \
+	./$(DEPDIR)/usbtospi.Po ./$(DEPDIR)/usbtoswd.Po \
+	./$(DEPDIR)/usbtoswim.Po ./$(DEPDIR)/usbtousart.Po \
+	./$(DEPDIR)/usbtoxxx.Po ./$(DEPDIR)/versaloon.Po \
+	./$(DEPDIR)/versaloon_libusb.Po ./$(DEPDIR)/vi_stm32.Po
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_$(V))
 am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
 am__v_CC_0 = @echo "  CC      " $@;
 am__v_CC_1 = 
 CCLD = $(CC)
-LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
@@ -237,7 +197,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/maddocks/versaloon-git/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
 AUTOCONF = ${SHELL} /home/maddocks/versaloon-git/missing autoconf
 AUTOHEADER = ${SHELL} /home/maddocks/versaloon-git/missing autoheader
 AUTOMAKE = ${SHELL} /home/maddocks/versaloon-git/missing automake-1.16
@@ -250,41 +209,26 @@ CPPFLAGS =
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
-DSYMUTIL = 
-DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /bin/grep -E
 EXEEXT = 
 EXEEXT_FOR_BUILD = 
-FGREP = /usr/bin/grep -F
-GREP = /usr/bin/grep
+GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
-LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
-LN_S = ln -s
 LTLIBOBJS = 
-LT_SYS_LIBRARY_PATH = 
 MAINT = 
 MAKEINFO = ${SHELL} /home/maddocks/versaloon-git/missing makeinfo
-MANIFEST_TOOL = :
-MKDIR_P = /usr/bin/mkdir -p
-NM = /usr/bin/nm -B
-NMEDIT = 
-OBJDUMP = objdump
+MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
 PACKAGE = vsprog
 PACKAGE_BUGREPORT = VSProg Mailling List <Versaloon-development@simonqian.com>
 PACKAGE_NAME = vsprog
@@ -294,10 +238,9 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1.1
 PATH_SEPARATOR = :
 RANLIB = ranlib
-SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = strip
+STRIP = 
 VERSION = 1.1
 XML2_CONFIG = /usr/bin/xml2-config
 XML_CPPFLAGS = -I/usr/include/libxml2
@@ -306,31 +249,29 @@ abs_builddir = /home/maddocks/versaloon-git/src/programmer
 abs_srcdir = /home/maddocks/versaloon-git/src/programmer
 abs_top_builddir = /home/maddocks/versaloon-git
 abs_top_srcdir = /home/maddocks/versaloon-git
-ac_ct_AR = ar
 ac_ct_CC = ccache gcc
-ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = aarch64-unknown-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = aarch64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = aarch64-unknown-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = aarch64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -346,7 +287,6 @@ pdfdir = ${docdir}
 prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
@@ -355,7 +295,6 @@ target_alias =
 top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
-AUTOMAKE_OPTIONS = subdir-objects
 INCLUDES = \
     $(all_includes) \
     -I$(top_srcdir)/src/vsf_cfg \
@@ -417,7 +356,7 @@ MAINTAINERCLEANFILES = Makefile.in
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -450,119 +389,6 @@ $(am__aclocal_m4_deps):
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-interfaces/$(am__dirstamp):
-	@$(MKDIR_P) interfaces
-	@: > interfaces/$(am__dirstamp)
-interfaces/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) interfaces/$(DEPDIR)
-	@: > interfaces/$(DEPDIR)/$(am__dirstamp)
-interfaces/interfaces.$(OBJEXT): interfaces/$(am__dirstamp) \
-	interfaces/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/$(am__dirstamp):
-	@$(MKDIR_P) interfaces/versaloon
-	@: > interfaces/versaloon/$(am__dirstamp)
-interfaces/versaloon/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) interfaces/versaloon/$(DEPDIR)
-	@: > interfaces/versaloon/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/versaloon.$(OBJEXT):  \
-	interfaces/versaloon/$(am__dirstamp) \
-	interfaces/versaloon/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/versaloon_libusb.$(OBJEXT):  \
-	interfaces/versaloon/$(am__dirstamp) \
-	interfaces/versaloon/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/$(am__dirstamp):
-	@$(MKDIR_P) $(vsf_usbtoxxx_srcdir)
-	@: > $(vsf_usbtoxxx_srcdir)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) $(vsf_usbtoxxx_srcdir)/$(DEPDIR)
-	@: > $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtoxxx.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtogpio.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtospi.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtoi2c.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtoadc.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtomicrowire.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtopwm.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtoebi.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtonand.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-$(vsf_usbtoxxx_srcdir)/usbtoclko.$(OBJEXT):  \
-	$(vsf_usbtoxxx_srcdir)/$(am__dirstamp) \
-	$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/$(am__dirstamp):
-	@$(MKDIR_P) interfaces/versaloon/usbtoxxx
-	@: > interfaces/versaloon/usbtoxxx/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) interfaces/versaloon/usbtoxxx/$(DEPDIR)
-	@: > interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtoc2.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtoissp.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtomsp430jtag.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtomsp430sbw.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtousart.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtolpcicp.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtopwr.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtojtaghl.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtojtagll.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtoswd.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtoswim.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtojtagraw.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtobdm.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/versaloon/usbtoxxx/usbtodusi.$(OBJEXT):  \
-	interfaces/versaloon/usbtoxxx/$(am__dirstamp) \
-	interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-interfaces/virtualinterface/vi_stm32/$(am__dirstamp):
-	@$(MKDIR_P) interfaces/virtualinterface/vi_stm32
-	@: > interfaces/virtualinterface/vi_stm32/$(am__dirstamp)
-interfaces/virtualinterface/vi_stm32/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) interfaces/virtualinterface/vi_stm32/$(DEPDIR)
-	@: > interfaces/virtualinterface/vi_stm32/$(DEPDIR)/$(am__dirstamp)
-interfaces/virtualinterface/vi_stm32/vi_stm32.$(OBJEXT):  \
-	interfaces/virtualinterface/vi_stm32/$(am__dirstamp) \
-	interfaces/virtualinterface/vi_stm32/$(DEPDIR)/$(am__dirstamp)
 
 libprog.a: $(libprog_a_OBJECTS) $(libprog_a_DEPENDENCIES) $(EXTRA_libprog_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libprog.a
@@ -571,44 +397,39 @@ libprog.a: $(libprog_a_OBJECTS) $(libprog_a_DEPENDENCIES) $(EXTRA_libprog_a_DEPE
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f $(vsf_usbtoxxx_srcdir)/*.$(OBJEXT)
-	-rm -f interfaces/*.$(OBJEXT)
-	-rm -f interfaces/versaloon/*.$(OBJEXT)
-	-rm -f interfaces/versaloon/usbtoxxx/*.$(OBJEXT)
-	-rm -f interfaces/virtualinterface/vi_stm32/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoadc.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoclko.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoebi.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtogpio.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoi2c.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtomicrowire.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtonand.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtopwm.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtospi.Po # am--include-marker
-include $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoxxx.Po # am--include-marker
+include ./$(DEPDIR)/interfaces.Po # am--include-marker
 include ./$(DEPDIR)/programmer.Po # am--include-marker
-include interfaces/$(DEPDIR)/interfaces.Po # am--include-marker
-include interfaces/versaloon/$(DEPDIR)/versaloon.Po # am--include-marker
-include interfaces/versaloon/$(DEPDIR)/versaloon_libusb.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtobdm.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoc2.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtodusi.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoissp.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtaghl.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagll.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagraw.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtolpcicp.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430jtag.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430sbw.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtopwr.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswd.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswim.Po # am--include-marker
-include interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtousart.Po # am--include-marker
-include interfaces/virtualinterface/vi_stm32/$(DEPDIR)/vi_stm32.Po # am--include-marker
+include ./$(DEPDIR)/usbtoadc.Po # am--include-marker
+include ./$(DEPDIR)/usbtobdm.Po # am--include-marker
+include ./$(DEPDIR)/usbtoc2.Po # am--include-marker
+include ./$(DEPDIR)/usbtoclko.Po # am--include-marker
+include ./$(DEPDIR)/usbtodusi.Po # am--include-marker
+include ./$(DEPDIR)/usbtoebi.Po # am--include-marker
+include ./$(DEPDIR)/usbtogpio.Po # am--include-marker
+include ./$(DEPDIR)/usbtoi2c.Po # am--include-marker
+include ./$(DEPDIR)/usbtoissp.Po # am--include-marker
+include ./$(DEPDIR)/usbtojtaghl.Po # am--include-marker
+include ./$(DEPDIR)/usbtojtagll.Po # am--include-marker
+include ./$(DEPDIR)/usbtojtagraw.Po # am--include-marker
+include ./$(DEPDIR)/usbtolpcicp.Po # am--include-marker
+include ./$(DEPDIR)/usbtomicrowire.Po # am--include-marker
+include ./$(DEPDIR)/usbtomsp430jtag.Po # am--include-marker
+include ./$(DEPDIR)/usbtomsp430sbw.Po # am--include-marker
+include ./$(DEPDIR)/usbtonand.Po # am--include-marker
+include ./$(DEPDIR)/usbtopwm.Po # am--include-marker
+include ./$(DEPDIR)/usbtopwr.Po # am--include-marker
+include ./$(DEPDIR)/usbtospi.Po # am--include-marker
+include ./$(DEPDIR)/usbtoswd.Po # am--include-marker
+include ./$(DEPDIR)/usbtoswim.Po # am--include-marker
+include ./$(DEPDIR)/usbtousart.Po # am--include-marker
+include ./$(DEPDIR)/usbtoxxx.Po # am--include-marker
+include ./$(DEPDIR)/versaloon.Po # am--include-marker
+include ./$(DEPDIR)/versaloon_libusb.Po # am--include-marker
+include ./$(DEPDIR)/vi_stm32.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -617,34 +438,410 @@ $(am__depfiles_remade):
 am--depfiles: $(am__depfiles_remade)
 
 .c.o:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Po
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-.c.lo:
-	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-	$(am__mv) $$depbase.Tpo $$depbase.Plo
-#	$(AM_V_CC)source='$<' object='$@' libtool=yes \
+interfaces.o: interfaces/interfaces.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT interfaces.o -MD -MP -MF $(DEPDIR)/interfaces.Tpo -c -o interfaces.o `test -f 'interfaces/interfaces.c' || echo '$(srcdir)/'`interfaces/interfaces.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/interfaces.Tpo $(DEPDIR)/interfaces.Po
+#	$(AM_V_CC)source='interfaces/interfaces.c' object='interfaces.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(LTCOMPILE) -c -o $@ $<
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o interfaces.o `test -f 'interfaces/interfaces.c' || echo '$(srcdir)/'`interfaces/interfaces.c
 
-mostlyclean-libtool:
-	-rm -f *.lo
+interfaces.obj: interfaces/interfaces.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT interfaces.obj -MD -MP -MF $(DEPDIR)/interfaces.Tpo -c -o interfaces.obj `if test -f 'interfaces/interfaces.c'; then $(CYGPATH_W) 'interfaces/interfaces.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/interfaces.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/interfaces.Tpo $(DEPDIR)/interfaces.Po
+#	$(AM_V_CC)source='interfaces/interfaces.c' object='interfaces.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o interfaces.obj `if test -f 'interfaces/interfaces.c'; then $(CYGPATH_W) 'interfaces/interfaces.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/interfaces.c'; fi`
 
-clean-libtool:
-	-rm -rf .libs _libs
+versaloon.o: interfaces/versaloon/versaloon.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT versaloon.o -MD -MP -MF $(DEPDIR)/versaloon.Tpo -c -o versaloon.o `test -f 'interfaces/versaloon/versaloon.c' || echo '$(srcdir)/'`interfaces/versaloon/versaloon.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/versaloon.Tpo $(DEPDIR)/versaloon.Po
+#	$(AM_V_CC)source='interfaces/versaloon/versaloon.c' object='versaloon.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o versaloon.o `test -f 'interfaces/versaloon/versaloon.c' || echo '$(srcdir)/'`interfaces/versaloon/versaloon.c
+
+versaloon.obj: interfaces/versaloon/versaloon.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT versaloon.obj -MD -MP -MF $(DEPDIR)/versaloon.Tpo -c -o versaloon.obj `if test -f 'interfaces/versaloon/versaloon.c'; then $(CYGPATH_W) 'interfaces/versaloon/versaloon.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/versaloon.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/versaloon.Tpo $(DEPDIR)/versaloon.Po
+#	$(AM_V_CC)source='interfaces/versaloon/versaloon.c' object='versaloon.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o versaloon.obj `if test -f 'interfaces/versaloon/versaloon.c'; then $(CYGPATH_W) 'interfaces/versaloon/versaloon.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/versaloon.c'; fi`
+
+versaloon_libusb.o: interfaces/versaloon/versaloon_libusb.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT versaloon_libusb.o -MD -MP -MF $(DEPDIR)/versaloon_libusb.Tpo -c -o versaloon_libusb.o `test -f 'interfaces/versaloon/versaloon_libusb.c' || echo '$(srcdir)/'`interfaces/versaloon/versaloon_libusb.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/versaloon_libusb.Tpo $(DEPDIR)/versaloon_libusb.Po
+#	$(AM_V_CC)source='interfaces/versaloon/versaloon_libusb.c' object='versaloon_libusb.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o versaloon_libusb.o `test -f 'interfaces/versaloon/versaloon_libusb.c' || echo '$(srcdir)/'`interfaces/versaloon/versaloon_libusb.c
+
+versaloon_libusb.obj: interfaces/versaloon/versaloon_libusb.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT versaloon_libusb.obj -MD -MP -MF $(DEPDIR)/versaloon_libusb.Tpo -c -o versaloon_libusb.obj `if test -f 'interfaces/versaloon/versaloon_libusb.c'; then $(CYGPATH_W) 'interfaces/versaloon/versaloon_libusb.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/versaloon_libusb.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/versaloon_libusb.Tpo $(DEPDIR)/versaloon_libusb.Po
+#	$(AM_V_CC)source='interfaces/versaloon/versaloon_libusb.c' object='versaloon_libusb.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o versaloon_libusb.obj `if test -f 'interfaces/versaloon/versaloon_libusb.c'; then $(CYGPATH_W) 'interfaces/versaloon/versaloon_libusb.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/versaloon_libusb.c'; fi`
+
+usbtoxxx.o: $(vsf_usbtoxxx_srcdir)/usbtoxxx.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoxxx.o -MD -MP -MF $(DEPDIR)/usbtoxxx.Tpo -c -o usbtoxxx.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoxxx.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoxxx.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoxxx.Tpo $(DEPDIR)/usbtoxxx.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoxxx.c' object='usbtoxxx.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoxxx.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoxxx.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoxxx.c
+
+usbtoxxx.obj: $(vsf_usbtoxxx_srcdir)/usbtoxxx.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoxxx.obj -MD -MP -MF $(DEPDIR)/usbtoxxx.Tpo -c -o usbtoxxx.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoxxx.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoxxx.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoxxx.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoxxx.Tpo $(DEPDIR)/usbtoxxx.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoxxx.c' object='usbtoxxx.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoxxx.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoxxx.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoxxx.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoxxx.c'; fi`
+
+usbtogpio.o: $(vsf_usbtoxxx_srcdir)/usbtogpio.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtogpio.o -MD -MP -MF $(DEPDIR)/usbtogpio.Tpo -c -o usbtogpio.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtogpio.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtogpio.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtogpio.Tpo $(DEPDIR)/usbtogpio.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtogpio.c' object='usbtogpio.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtogpio.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtogpio.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtogpio.c
+
+usbtogpio.obj: $(vsf_usbtoxxx_srcdir)/usbtogpio.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtogpio.obj -MD -MP -MF $(DEPDIR)/usbtogpio.Tpo -c -o usbtogpio.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtogpio.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtogpio.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtogpio.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtogpio.Tpo $(DEPDIR)/usbtogpio.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtogpio.c' object='usbtogpio.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtogpio.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtogpio.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtogpio.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtogpio.c'; fi`
+
+usbtospi.o: $(vsf_usbtoxxx_srcdir)/usbtospi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtospi.o -MD -MP -MF $(DEPDIR)/usbtospi.Tpo -c -o usbtospi.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtospi.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtospi.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtospi.Tpo $(DEPDIR)/usbtospi.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtospi.c' object='usbtospi.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtospi.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtospi.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtospi.c
+
+usbtospi.obj: $(vsf_usbtoxxx_srcdir)/usbtospi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtospi.obj -MD -MP -MF $(DEPDIR)/usbtospi.Tpo -c -o usbtospi.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtospi.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtospi.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtospi.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtospi.Tpo $(DEPDIR)/usbtospi.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtospi.c' object='usbtospi.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtospi.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtospi.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtospi.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtospi.c'; fi`
+
+usbtoi2c.o: $(vsf_usbtoxxx_srcdir)/usbtoi2c.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoi2c.o -MD -MP -MF $(DEPDIR)/usbtoi2c.Tpo -c -o usbtoi2c.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoi2c.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoi2c.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoi2c.Tpo $(DEPDIR)/usbtoi2c.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoi2c.c' object='usbtoi2c.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoi2c.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoi2c.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoi2c.c
+
+usbtoi2c.obj: $(vsf_usbtoxxx_srcdir)/usbtoi2c.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoi2c.obj -MD -MP -MF $(DEPDIR)/usbtoi2c.Tpo -c -o usbtoi2c.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoi2c.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoi2c.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoi2c.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoi2c.Tpo $(DEPDIR)/usbtoi2c.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoi2c.c' object='usbtoi2c.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoi2c.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoi2c.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoi2c.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoi2c.c'; fi`
+
+usbtoadc.o: $(vsf_usbtoxxx_srcdir)/usbtoadc.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoadc.o -MD -MP -MF $(DEPDIR)/usbtoadc.Tpo -c -o usbtoadc.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoadc.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoadc.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoadc.Tpo $(DEPDIR)/usbtoadc.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoadc.c' object='usbtoadc.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoadc.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoadc.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoadc.c
+
+usbtoadc.obj: $(vsf_usbtoxxx_srcdir)/usbtoadc.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoadc.obj -MD -MP -MF $(DEPDIR)/usbtoadc.Tpo -c -o usbtoadc.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoadc.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoadc.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoadc.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoadc.Tpo $(DEPDIR)/usbtoadc.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoadc.c' object='usbtoadc.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoadc.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoadc.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoadc.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoadc.c'; fi`
+
+usbtomicrowire.o: $(vsf_usbtoxxx_srcdir)/usbtomicrowire.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtomicrowire.o -MD -MP -MF $(DEPDIR)/usbtomicrowire.Tpo -c -o usbtomicrowire.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtomicrowire.Tpo $(DEPDIR)/usbtomicrowire.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c' object='usbtomicrowire.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtomicrowire.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c
+
+usbtomicrowire.obj: $(vsf_usbtoxxx_srcdir)/usbtomicrowire.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtomicrowire.obj -MD -MP -MF $(DEPDIR)/usbtomicrowire.Tpo -c -o usbtomicrowire.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtomicrowire.Tpo $(DEPDIR)/usbtomicrowire.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c' object='usbtomicrowire.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtomicrowire.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtomicrowire.c'; fi`
+
+usbtopwm.o: $(vsf_usbtoxxx_srcdir)/usbtopwm.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtopwm.o -MD -MP -MF $(DEPDIR)/usbtopwm.Tpo -c -o usbtopwm.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtopwm.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtopwm.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtopwm.Tpo $(DEPDIR)/usbtopwm.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtopwm.c' object='usbtopwm.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtopwm.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtopwm.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtopwm.c
+
+usbtopwm.obj: $(vsf_usbtoxxx_srcdir)/usbtopwm.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtopwm.obj -MD -MP -MF $(DEPDIR)/usbtopwm.Tpo -c -o usbtopwm.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtopwm.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtopwm.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtopwm.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtopwm.Tpo $(DEPDIR)/usbtopwm.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtopwm.c' object='usbtopwm.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtopwm.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtopwm.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtopwm.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtopwm.c'; fi`
+
+usbtoebi.o: $(vsf_usbtoxxx_srcdir)/usbtoebi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoebi.o -MD -MP -MF $(DEPDIR)/usbtoebi.Tpo -c -o usbtoebi.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoebi.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoebi.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoebi.Tpo $(DEPDIR)/usbtoebi.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoebi.c' object='usbtoebi.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoebi.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoebi.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoebi.c
+
+usbtoebi.obj: $(vsf_usbtoxxx_srcdir)/usbtoebi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoebi.obj -MD -MP -MF $(DEPDIR)/usbtoebi.Tpo -c -o usbtoebi.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoebi.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoebi.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoebi.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoebi.Tpo $(DEPDIR)/usbtoebi.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoebi.c' object='usbtoebi.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoebi.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoebi.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoebi.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoebi.c'; fi`
+
+usbtonand.o: $(vsf_usbtoxxx_srcdir)/usbtonand.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtonand.o -MD -MP -MF $(DEPDIR)/usbtonand.Tpo -c -o usbtonand.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtonand.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtonand.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtonand.Tpo $(DEPDIR)/usbtonand.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtonand.c' object='usbtonand.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtonand.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtonand.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtonand.c
+
+usbtonand.obj: $(vsf_usbtoxxx_srcdir)/usbtonand.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtonand.obj -MD -MP -MF $(DEPDIR)/usbtonand.Tpo -c -o usbtonand.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtonand.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtonand.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtonand.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtonand.Tpo $(DEPDIR)/usbtonand.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtonand.c' object='usbtonand.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtonand.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtonand.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtonand.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtonand.c'; fi`
+
+usbtoclko.o: $(vsf_usbtoxxx_srcdir)/usbtoclko.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoclko.o -MD -MP -MF $(DEPDIR)/usbtoclko.Tpo -c -o usbtoclko.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoclko.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoclko.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoclko.Tpo $(DEPDIR)/usbtoclko.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoclko.c' object='usbtoclko.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoclko.o `test -f '$(vsf_usbtoxxx_srcdir)/usbtoclko.c' || echo '$(srcdir)/'`$(vsf_usbtoxxx_srcdir)/usbtoclko.c
+
+usbtoclko.obj: $(vsf_usbtoxxx_srcdir)/usbtoclko.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoclko.obj -MD -MP -MF $(DEPDIR)/usbtoclko.Tpo -c -o usbtoclko.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoclko.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoclko.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoclko.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoclko.Tpo $(DEPDIR)/usbtoclko.Po
+#	$(AM_V_CC)source='$(vsf_usbtoxxx_srcdir)/usbtoclko.c' object='usbtoclko.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoclko.obj `if test -f '$(vsf_usbtoxxx_srcdir)/usbtoclko.c'; then $(CYGPATH_W) '$(vsf_usbtoxxx_srcdir)/usbtoclko.c'; else $(CYGPATH_W) '$(srcdir)/$(vsf_usbtoxxx_srcdir)/usbtoclko.c'; fi`
+
+usbtoc2.o: interfaces/versaloon/usbtoxxx/usbtoc2.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoc2.o -MD -MP -MF $(DEPDIR)/usbtoc2.Tpo -c -o usbtoc2.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoc2.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoc2.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoc2.Tpo $(DEPDIR)/usbtoc2.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoc2.c' object='usbtoc2.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoc2.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoc2.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoc2.c
+
+usbtoc2.obj: interfaces/versaloon/usbtoxxx/usbtoc2.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoc2.obj -MD -MP -MF $(DEPDIR)/usbtoc2.Tpo -c -o usbtoc2.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoc2.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoc2.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoc2.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoc2.Tpo $(DEPDIR)/usbtoc2.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoc2.c' object='usbtoc2.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoc2.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoc2.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoc2.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoc2.c'; fi`
+
+usbtoissp.o: interfaces/versaloon/usbtoxxx/usbtoissp.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoissp.o -MD -MP -MF $(DEPDIR)/usbtoissp.Tpo -c -o usbtoissp.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoissp.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoissp.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoissp.Tpo $(DEPDIR)/usbtoissp.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoissp.c' object='usbtoissp.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoissp.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoissp.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoissp.c
+
+usbtoissp.obj: interfaces/versaloon/usbtoxxx/usbtoissp.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoissp.obj -MD -MP -MF $(DEPDIR)/usbtoissp.Tpo -c -o usbtoissp.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoissp.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoissp.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoissp.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoissp.Tpo $(DEPDIR)/usbtoissp.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoissp.c' object='usbtoissp.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoissp.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoissp.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoissp.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoissp.c'; fi`
+
+usbtomsp430jtag.o: interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtomsp430jtag.o -MD -MP -MF $(DEPDIR)/usbtomsp430jtag.Tpo -c -o usbtomsp430jtag.o `test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtomsp430jtag.Tpo $(DEPDIR)/usbtomsp430jtag.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c' object='usbtomsp430jtag.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtomsp430jtag.o `test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c
+
+usbtomsp430jtag.obj: interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtomsp430jtag.obj -MD -MP -MF $(DEPDIR)/usbtomsp430jtag.Tpo -c -o usbtomsp430jtag.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtomsp430jtag.Tpo $(DEPDIR)/usbtomsp430jtag.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c' object='usbtomsp430jtag.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtomsp430jtag.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtomsp430jtag.c'; fi`
+
+usbtomsp430sbw.o: interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtomsp430sbw.o -MD -MP -MF $(DEPDIR)/usbtomsp430sbw.Tpo -c -o usbtomsp430sbw.o `test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtomsp430sbw.Tpo $(DEPDIR)/usbtomsp430sbw.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c' object='usbtomsp430sbw.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtomsp430sbw.o `test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c
+
+usbtomsp430sbw.obj: interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtomsp430sbw.obj -MD -MP -MF $(DEPDIR)/usbtomsp430sbw.Tpo -c -o usbtomsp430sbw.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtomsp430sbw.Tpo $(DEPDIR)/usbtomsp430sbw.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c' object='usbtomsp430sbw.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtomsp430sbw.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtomsp430sbw.c'; fi`
+
+usbtousart.o: interfaces/versaloon/usbtoxxx/usbtousart.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtousart.o -MD -MP -MF $(DEPDIR)/usbtousart.Tpo -c -o usbtousart.o `test -f 'interfaces/versaloon/usbtoxxx/usbtousart.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtousart.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtousart.Tpo $(DEPDIR)/usbtousart.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtousart.c' object='usbtousart.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtousart.o `test -f 'interfaces/versaloon/usbtoxxx/usbtousart.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtousart.c
+
+usbtousart.obj: interfaces/versaloon/usbtoxxx/usbtousart.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtousart.obj -MD -MP -MF $(DEPDIR)/usbtousart.Tpo -c -o usbtousart.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtousart.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtousart.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtousart.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtousart.Tpo $(DEPDIR)/usbtousart.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtousart.c' object='usbtousart.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtousart.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtousart.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtousart.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtousart.c'; fi`
+
+usbtolpcicp.o: interfaces/versaloon/usbtoxxx/usbtolpcicp.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtolpcicp.o -MD -MP -MF $(DEPDIR)/usbtolpcicp.Tpo -c -o usbtolpcicp.o `test -f 'interfaces/versaloon/usbtoxxx/usbtolpcicp.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtolpcicp.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtolpcicp.Tpo $(DEPDIR)/usbtolpcicp.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtolpcicp.c' object='usbtolpcicp.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtolpcicp.o `test -f 'interfaces/versaloon/usbtoxxx/usbtolpcicp.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtolpcicp.c
+
+usbtolpcicp.obj: interfaces/versaloon/usbtoxxx/usbtolpcicp.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtolpcicp.obj -MD -MP -MF $(DEPDIR)/usbtolpcicp.Tpo -c -o usbtolpcicp.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtolpcicp.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtolpcicp.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtolpcicp.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtolpcicp.Tpo $(DEPDIR)/usbtolpcicp.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtolpcicp.c' object='usbtolpcicp.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtolpcicp.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtolpcicp.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtolpcicp.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtolpcicp.c'; fi`
+
+usbtopwr.o: interfaces/versaloon/usbtoxxx/usbtopwr.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtopwr.o -MD -MP -MF $(DEPDIR)/usbtopwr.Tpo -c -o usbtopwr.o `test -f 'interfaces/versaloon/usbtoxxx/usbtopwr.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtopwr.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtopwr.Tpo $(DEPDIR)/usbtopwr.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtopwr.c' object='usbtopwr.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtopwr.o `test -f 'interfaces/versaloon/usbtoxxx/usbtopwr.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtopwr.c
+
+usbtopwr.obj: interfaces/versaloon/usbtoxxx/usbtopwr.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtopwr.obj -MD -MP -MF $(DEPDIR)/usbtopwr.Tpo -c -o usbtopwr.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtopwr.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtopwr.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtopwr.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtopwr.Tpo $(DEPDIR)/usbtopwr.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtopwr.c' object='usbtopwr.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtopwr.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtopwr.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtopwr.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtopwr.c'; fi`
+
+usbtojtaghl.o: interfaces/versaloon/usbtoxxx/usbtojtaghl.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtojtaghl.o -MD -MP -MF $(DEPDIR)/usbtojtaghl.Tpo -c -o usbtojtaghl.o `test -f 'interfaces/versaloon/usbtoxxx/usbtojtaghl.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtojtaghl.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtojtaghl.Tpo $(DEPDIR)/usbtojtaghl.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtojtaghl.c' object='usbtojtaghl.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtojtaghl.o `test -f 'interfaces/versaloon/usbtoxxx/usbtojtaghl.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtojtaghl.c
+
+usbtojtaghl.obj: interfaces/versaloon/usbtoxxx/usbtojtaghl.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtojtaghl.obj -MD -MP -MF $(DEPDIR)/usbtojtaghl.Tpo -c -o usbtojtaghl.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtojtaghl.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtojtaghl.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtojtaghl.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtojtaghl.Tpo $(DEPDIR)/usbtojtaghl.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtojtaghl.c' object='usbtojtaghl.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtojtaghl.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtojtaghl.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtojtaghl.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtojtaghl.c'; fi`
+
+usbtojtagll.o: interfaces/versaloon/usbtoxxx/usbtojtagll.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtojtagll.o -MD -MP -MF $(DEPDIR)/usbtojtagll.Tpo -c -o usbtojtagll.o `test -f 'interfaces/versaloon/usbtoxxx/usbtojtagll.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtojtagll.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtojtagll.Tpo $(DEPDIR)/usbtojtagll.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtojtagll.c' object='usbtojtagll.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtojtagll.o `test -f 'interfaces/versaloon/usbtoxxx/usbtojtagll.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtojtagll.c
+
+usbtojtagll.obj: interfaces/versaloon/usbtoxxx/usbtojtagll.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtojtagll.obj -MD -MP -MF $(DEPDIR)/usbtojtagll.Tpo -c -o usbtojtagll.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtojtagll.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtojtagll.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtojtagll.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtojtagll.Tpo $(DEPDIR)/usbtojtagll.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtojtagll.c' object='usbtojtagll.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtojtagll.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtojtagll.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtojtagll.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtojtagll.c'; fi`
+
+usbtoswd.o: interfaces/versaloon/usbtoxxx/usbtoswd.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoswd.o -MD -MP -MF $(DEPDIR)/usbtoswd.Tpo -c -o usbtoswd.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoswd.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoswd.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoswd.Tpo $(DEPDIR)/usbtoswd.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoswd.c' object='usbtoswd.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoswd.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoswd.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoswd.c
+
+usbtoswd.obj: interfaces/versaloon/usbtoxxx/usbtoswd.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoswd.obj -MD -MP -MF $(DEPDIR)/usbtoswd.Tpo -c -o usbtoswd.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoswd.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoswd.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoswd.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoswd.Tpo $(DEPDIR)/usbtoswd.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoswd.c' object='usbtoswd.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoswd.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoswd.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoswd.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoswd.c'; fi`
+
+usbtoswim.o: interfaces/versaloon/usbtoxxx/usbtoswim.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoswim.o -MD -MP -MF $(DEPDIR)/usbtoswim.Tpo -c -o usbtoswim.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoswim.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoswim.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoswim.Tpo $(DEPDIR)/usbtoswim.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoswim.c' object='usbtoswim.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoswim.o `test -f 'interfaces/versaloon/usbtoxxx/usbtoswim.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtoswim.c
+
+usbtoswim.obj: interfaces/versaloon/usbtoxxx/usbtoswim.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtoswim.obj -MD -MP -MF $(DEPDIR)/usbtoswim.Tpo -c -o usbtoswim.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoswim.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoswim.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoswim.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtoswim.Tpo $(DEPDIR)/usbtoswim.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtoswim.c' object='usbtoswim.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtoswim.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtoswim.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtoswim.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtoswim.c'; fi`
+
+usbtojtagraw.o: interfaces/versaloon/usbtoxxx/usbtojtagraw.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtojtagraw.o -MD -MP -MF $(DEPDIR)/usbtojtagraw.Tpo -c -o usbtojtagraw.o `test -f 'interfaces/versaloon/usbtoxxx/usbtojtagraw.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtojtagraw.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtojtagraw.Tpo $(DEPDIR)/usbtojtagraw.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtojtagraw.c' object='usbtojtagraw.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtojtagraw.o `test -f 'interfaces/versaloon/usbtoxxx/usbtojtagraw.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtojtagraw.c
+
+usbtojtagraw.obj: interfaces/versaloon/usbtoxxx/usbtojtagraw.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtojtagraw.obj -MD -MP -MF $(DEPDIR)/usbtojtagraw.Tpo -c -o usbtojtagraw.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtojtagraw.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtojtagraw.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtojtagraw.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtojtagraw.Tpo $(DEPDIR)/usbtojtagraw.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtojtagraw.c' object='usbtojtagraw.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtojtagraw.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtojtagraw.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtojtagraw.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtojtagraw.c'; fi`
+
+usbtobdm.o: interfaces/versaloon/usbtoxxx/usbtobdm.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtobdm.o -MD -MP -MF $(DEPDIR)/usbtobdm.Tpo -c -o usbtobdm.o `test -f 'interfaces/versaloon/usbtoxxx/usbtobdm.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtobdm.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtobdm.Tpo $(DEPDIR)/usbtobdm.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtobdm.c' object='usbtobdm.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtobdm.o `test -f 'interfaces/versaloon/usbtoxxx/usbtobdm.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtobdm.c
+
+usbtobdm.obj: interfaces/versaloon/usbtoxxx/usbtobdm.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtobdm.obj -MD -MP -MF $(DEPDIR)/usbtobdm.Tpo -c -o usbtobdm.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtobdm.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtobdm.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtobdm.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtobdm.Tpo $(DEPDIR)/usbtobdm.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtobdm.c' object='usbtobdm.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtobdm.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtobdm.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtobdm.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtobdm.c'; fi`
+
+usbtodusi.o: interfaces/versaloon/usbtoxxx/usbtodusi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtodusi.o -MD -MP -MF $(DEPDIR)/usbtodusi.Tpo -c -o usbtodusi.o `test -f 'interfaces/versaloon/usbtoxxx/usbtodusi.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtodusi.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtodusi.Tpo $(DEPDIR)/usbtodusi.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtodusi.c' object='usbtodusi.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtodusi.o `test -f 'interfaces/versaloon/usbtoxxx/usbtodusi.c' || echo '$(srcdir)/'`interfaces/versaloon/usbtoxxx/usbtodusi.c
+
+usbtodusi.obj: interfaces/versaloon/usbtoxxx/usbtodusi.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT usbtodusi.obj -MD -MP -MF $(DEPDIR)/usbtodusi.Tpo -c -o usbtodusi.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtodusi.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtodusi.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtodusi.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/usbtodusi.Tpo $(DEPDIR)/usbtodusi.Po
+#	$(AM_V_CC)source='interfaces/versaloon/usbtoxxx/usbtodusi.c' object='usbtodusi.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o usbtodusi.obj `if test -f 'interfaces/versaloon/usbtoxxx/usbtodusi.c'; then $(CYGPATH_W) 'interfaces/versaloon/usbtoxxx/usbtodusi.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/versaloon/usbtoxxx/usbtodusi.c'; fi`
+
+vi_stm32.o: interfaces/virtualinterface/vi_stm32/vi_stm32.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT vi_stm32.o -MD -MP -MF $(DEPDIR)/vi_stm32.Tpo -c -o vi_stm32.o `test -f 'interfaces/virtualinterface/vi_stm32/vi_stm32.c' || echo '$(srcdir)/'`interfaces/virtualinterface/vi_stm32/vi_stm32.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/vi_stm32.Tpo $(DEPDIR)/vi_stm32.Po
+#	$(AM_V_CC)source='interfaces/virtualinterface/vi_stm32/vi_stm32.c' object='vi_stm32.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o vi_stm32.o `test -f 'interfaces/virtualinterface/vi_stm32/vi_stm32.c' || echo '$(srcdir)/'`interfaces/virtualinterface/vi_stm32/vi_stm32.c
+
+vi_stm32.obj: interfaces/virtualinterface/vi_stm32/vi_stm32.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT vi_stm32.obj -MD -MP -MF $(DEPDIR)/vi_stm32.Tpo -c -o vi_stm32.obj `if test -f 'interfaces/virtualinterface/vi_stm32/vi_stm32.c'; then $(CYGPATH_W) 'interfaces/virtualinterface/vi_stm32/vi_stm32.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/virtualinterface/vi_stm32/vi_stm32.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/vi_stm32.Tpo $(DEPDIR)/vi_stm32.Po
+#	$(AM_V_CC)source='interfaces/virtualinterface/vi_stm32/vi_stm32.c' object='vi_stm32.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o vi_stm32.obj `if test -f 'interfaces/virtualinterface/vi_stm32/vi_stm32.c'; then $(CYGPATH_W) 'interfaces/virtualinterface/vi_stm32/vi_stm32.c'; else $(CYGPATH_W) '$(srcdir)/interfaces/virtualinterface/vi_stm32/vi_stm32.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -761,16 +958,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f interfaces/$(DEPDIR)/$(am__dirstamp)
-	-rm -f interfaces/$(am__dirstamp)
-	-rm -f interfaces/versaloon/$(DEPDIR)/$(am__dirstamp)
-	-rm -f interfaces/versaloon/$(am__dirstamp)
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/$(am__dirstamp)
-	-rm -f interfaces/versaloon/usbtoxxx/$(am__dirstamp)
-	-rm -f interfaces/virtualinterface/vi_stm32/$(DEPDIR)/$(am__dirstamp)
-	-rm -f interfaces/virtualinterface/vi_stm32/$(am__dirstamp)
-	-test -z "$(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)" || rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/$(am__dirstamp)
-	-test -z "$(vsf_usbtoxxx_srcdir)/$(am__dirstamp)" || rm -f $(vsf_usbtoxxx_srcdir)/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -778,39 +965,38 @@ maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-noinstLIBRARIES \
-	mostlyclean-am
+clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-		-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoadc.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoclko.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoebi.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtogpio.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoi2c.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtomicrowire.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtonand.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtopwm.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtospi.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoxxx.Po
+		-rm -f ./$(DEPDIR)/interfaces.Po
 	-rm -f ./$(DEPDIR)/programmer.Po
-	-rm -f interfaces/$(DEPDIR)/interfaces.Po
-	-rm -f interfaces/versaloon/$(DEPDIR)/versaloon.Po
-	-rm -f interfaces/versaloon/$(DEPDIR)/versaloon_libusb.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtobdm.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoc2.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtodusi.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoissp.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtaghl.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagll.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagraw.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtolpcicp.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430jtag.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430sbw.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtopwr.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswd.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswim.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtousart.Po
-	-rm -f interfaces/virtualinterface/vi_stm32/$(DEPDIR)/vi_stm32.Po
+	-rm -f ./$(DEPDIR)/usbtoadc.Po
+	-rm -f ./$(DEPDIR)/usbtobdm.Po
+	-rm -f ./$(DEPDIR)/usbtoc2.Po
+	-rm -f ./$(DEPDIR)/usbtoclko.Po
+	-rm -f ./$(DEPDIR)/usbtodusi.Po
+	-rm -f ./$(DEPDIR)/usbtoebi.Po
+	-rm -f ./$(DEPDIR)/usbtogpio.Po
+	-rm -f ./$(DEPDIR)/usbtoi2c.Po
+	-rm -f ./$(DEPDIR)/usbtoissp.Po
+	-rm -f ./$(DEPDIR)/usbtojtaghl.Po
+	-rm -f ./$(DEPDIR)/usbtojtagll.Po
+	-rm -f ./$(DEPDIR)/usbtojtagraw.Po
+	-rm -f ./$(DEPDIR)/usbtolpcicp.Po
+	-rm -f ./$(DEPDIR)/usbtomicrowire.Po
+	-rm -f ./$(DEPDIR)/usbtomsp430jtag.Po
+	-rm -f ./$(DEPDIR)/usbtomsp430sbw.Po
+	-rm -f ./$(DEPDIR)/usbtonand.Po
+	-rm -f ./$(DEPDIR)/usbtopwm.Po
+	-rm -f ./$(DEPDIR)/usbtopwr.Po
+	-rm -f ./$(DEPDIR)/usbtospi.Po
+	-rm -f ./$(DEPDIR)/usbtoswd.Po
+	-rm -f ./$(DEPDIR)/usbtoswim.Po
+	-rm -f ./$(DEPDIR)/usbtousart.Po
+	-rm -f ./$(DEPDIR)/usbtoxxx.Po
+	-rm -f ./$(DEPDIR)/versaloon.Po
+	-rm -f ./$(DEPDIR)/versaloon_libusb.Po
+	-rm -f ./$(DEPDIR)/vi_stm32.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -856,42 +1042,41 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoadc.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoclko.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoebi.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtogpio.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoi2c.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtomicrowire.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtonand.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtopwm.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtospi.Po
-	-rm -f $(vsf_usbtoxxx_srcdir)/$(DEPDIR)/usbtoxxx.Po
+		-rm -f ./$(DEPDIR)/interfaces.Po
 	-rm -f ./$(DEPDIR)/programmer.Po
-	-rm -f interfaces/$(DEPDIR)/interfaces.Po
-	-rm -f interfaces/versaloon/$(DEPDIR)/versaloon.Po
-	-rm -f interfaces/versaloon/$(DEPDIR)/versaloon_libusb.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtobdm.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoc2.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtodusi.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoissp.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtaghl.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagll.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtojtagraw.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtolpcicp.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430jtag.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtomsp430sbw.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtopwr.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswd.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtoswim.Po
-	-rm -f interfaces/versaloon/usbtoxxx/$(DEPDIR)/usbtousart.Po
-	-rm -f interfaces/virtualinterface/vi_stm32/$(DEPDIR)/vi_stm32.Po
+	-rm -f ./$(DEPDIR)/usbtoadc.Po
+	-rm -f ./$(DEPDIR)/usbtobdm.Po
+	-rm -f ./$(DEPDIR)/usbtoc2.Po
+	-rm -f ./$(DEPDIR)/usbtoclko.Po
+	-rm -f ./$(DEPDIR)/usbtodusi.Po
+	-rm -f ./$(DEPDIR)/usbtoebi.Po
+	-rm -f ./$(DEPDIR)/usbtogpio.Po
+	-rm -f ./$(DEPDIR)/usbtoi2c.Po
+	-rm -f ./$(DEPDIR)/usbtoissp.Po
+	-rm -f ./$(DEPDIR)/usbtojtaghl.Po
+	-rm -f ./$(DEPDIR)/usbtojtagll.Po
+	-rm -f ./$(DEPDIR)/usbtojtagraw.Po
+	-rm -f ./$(DEPDIR)/usbtolpcicp.Po
+	-rm -f ./$(DEPDIR)/usbtomicrowire.Po
+	-rm -f ./$(DEPDIR)/usbtomsp430jtag.Po
+	-rm -f ./$(DEPDIR)/usbtomsp430sbw.Po
+	-rm -f ./$(DEPDIR)/usbtonand.Po
+	-rm -f ./$(DEPDIR)/usbtopwm.Po
+	-rm -f ./$(DEPDIR)/usbtopwr.Po
+	-rm -f ./$(DEPDIR)/usbtospi.Po
+	-rm -f ./$(DEPDIR)/usbtoswd.Po
+	-rm -f ./$(DEPDIR)/usbtoswim.Po
+	-rm -f ./$(DEPDIR)/usbtousart.Po
+	-rm -f ./$(DEPDIR)/usbtoxxx.Po
+	-rm -f ./$(DEPDIR)/versaloon.Po
+	-rm -f ./$(DEPDIR)/versaloon_libusb.Po
+	-rm -f ./$(DEPDIR)/vi_stm32.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic
 
 pdf: pdf-am
 
@@ -906,17 +1091,16 @@ uninstall-am:
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am am--depfiles check check-am clean \
-	clean-generic clean-libtool clean-noinstLIBRARIES \
-	cscopelist-am ctags ctags-am distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	clean-generic clean-noinstLIBRARIES cscopelist-am ctags \
+	ctags-am distclean distclean-compile distclean-generic \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am
 
 .PRECIOUS: Makefile
