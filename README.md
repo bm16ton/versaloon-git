@@ -1,16 +1,27 @@
 # Versaloon GIT
 
-## Origin
+I cloned this from https://github.com/lamfe/versaloon-git who left all the source code intact and added all the documentation they could find. But
+the code is aging now and even tho the firmware and command line userland app compile the gui vsgui needed some work. I had made sum fixes and addons
+for all 3 of those parts but lost the changes a while back. I will hopefuly remember what they where and get this awesome code back up to par and maybe better.
+
+current pinout;
+
+		TDI = GPIO B15
+SWO		TDO = GPIO B14
+SWCLK	TCK = GPIO B13
+SDIO	TMS = GPIO B4
+
+## Origin from original host
 _This repository is unofficial!_ But it is documented better. The official one on github is [here](https://github.com/versaloon/versaloon) (uses SVN).
 
-This repository was copied from 
+This repository was copied from
 [Google code archive](https://code.google.com/archive/p/vsprog/source/default/source) and converted from SVN to GIT. All line endings were converted to Unix type (LF).
 
 ## About
 The Versaloon project is a universal interface/programmer based on STM32F microcontrollers.
 It supports several programming protocols, such as *JTAG*, *STM8 SWIM*, *AVR ISP*, *STM32 SWD* and *Silabs C2*.
 
-From official site (now dead, accessible using 
+From official site (now dead, accessible using
 [internet archive](https://web.archive.org/web/20151025183950/http://www.versaloon.com:80/doc/versaloon/doc_versaloon_programmer_platform.html)):
 
 >  Versaloon Programmer Platform is a generic framework for MCU programming, which can support now more than 10 kinds of target MCUs.
@@ -88,7 +99,7 @@ You will need a gcc-arm commpiler toolchain to build the firmware.
 
 ##### Installing the compiler
 Download the official
-[GNU Embedded Toolchain for ARM](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)  
+[GNU Embedded Toolchain for ARM](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
 Unpack the archive to your desired location, and add it to your `PATH`.
 
 On Ubuntu based linux distributions you can install it this way:
@@ -107,11 +118,11 @@ make
 
 The built binary .hex file will be `/dongle/firmware/Projects/Versaloon/GCC/Versaloon_GCC-BluePill-0x0.hex`
 
-To clean the directory after build (deletes the hex file):  
+To clean the directory after build (deletes the hex file):
 `make clean`
 
 #### Uploading the firmware
-Upload the firmware to your board using STlink (both 
+Upload the firmware to your board using STlink (both
 [software](https://github.com/stlink-org/stlink) and hardware) or Versaloon itself.
 
 For more information about uploading, see [doc/Uploading-fw.md](doc/Uploading-fw.md)

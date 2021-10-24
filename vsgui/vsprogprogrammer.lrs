@@ -1,0 +1,13 @@
+LazarusResources.Add('TVSProg_Programmer','FORMDATA',[
+  'TPF0'#18'TVSProg_Programmer'#17'VSProg_Programmer'#4'Left'#3#142#1#6'Height'
+  +#3#182#0#3'Top'#3'l'#1#5'Width'#3#144#1#11'BorderIcons'#11#12'biSystemMenu'
+  +#10'biMinimize'#0#11'BorderStyle'#7#8'bsSingle'#7'Caption'#6#17'VSProg_Progr'
+  +'ammer'#12'ClientHeight'#3#182#0#11'ClientWidth'#3#144#1#10'LCLVersion'#6#8
+  +'0.9.28.2'#0#8'TListBox'#12'lbProgrammer'#4'Left'#2#0#6'Height'#3#128#0#3'To'
+  +'p'#2#0#5'Width'#3#144#1#5'Align'#7#8'alClient'#10'ItemHeight'#2#0#10'OnDblC'
+  +'lick'#7#20'lbProgrammerDblClick'#8'TabOrder'#2#0#0#0#6'TPanel'#9'pnlButton'
+  +#4'Left'#2#0#6'Height'#2'6'#3'Top'#3#128#0#5'Width'#3#144#1#5'Align'#7#8'alB'
+  +'ottom'#12'ClientHeight'#2'6'#11'ClientWidth'#3#144#1#8'TabOrder'#2#1#0#7'TB'
+  +'utton'#5'btnOK'#4'Left'#3#160#0#6'Height'#2#25#3'Top'#2#16#5'Width'#2'K'#7
+  +'Caption'#6#3'&OK'#7'OnClick'#7#10'btnOKClick'#8'TabOrder'#2#0#0#0#0#0
+]);

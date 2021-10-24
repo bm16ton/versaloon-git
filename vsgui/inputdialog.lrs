@@ -1,0 +1,17 @@
+LazarusResources.Add('TFormInputDialog','FORMDATA',[
+  'TPF0'#16'TFormInputDialog'#15'FormInputDialog'#4'Left'#3#170#1#6'Height'#2'j'
+  +#3'Top'#3#234#0#5'Width'#3#144#1#11'BorderIcons'#11#12'biSystemMenu'#10'biMi'
+  +'nimize'#0#11'BorderStyle'#7#8'bsSingle'#7'Caption'#6#15'FormInputDialog'#12
+  +'ClientHeight'#2'j'#11'ClientWidth'#3#144#1#10'KeyPreview'#9#10'OnKeyPress'#7
+  +#12'FormKeyPress'#6'OnShow'#7#8'FormShow'#8'Position'#7#16'poMainFormCenter'
+  +#10'LCLVersion'#6#8'0.9.28.2'#0#6'TLabel'#9'lblPrefix'#4'Left'#2#16#6'Height'
+  +#2#13#3'Top'#2#30#5'Width'#2'%'#7'Caption'#6#6'Input:'#11'ParentColor'#8#0#0
+  +#5'TEdit'#8'edtInput'#4'Left'#2'P'#6'Height'#2#20#3'Top'#2#24#5'Width'#3'('#1
+  +#10'OnKeyPress'#7#16'edtInputKeyPress'#8'TabOrder'#2#0#0#0#7'TButton'#5'btnO'
+  +'K'#4'Left'#2'X'#6'Height'#2#25#3'Top'#2'@'#5'Width'#2'K'#7'Caption'#6#3'&OK'
+  +#7'Default'#9#11'ModalResult'#2#1#8'TabOrder'#2#1#0#0#7'TButton'#9'btnCancel'
+  +#4'Left'#3#224#0#6'Height'#2#25#3'Top'#2'@'#5'Width'#2'K'#7'Caption'#6#7'&Ca'
+  +'ncel'#11'ModalResult'#2#2#8'TabOrder'#2#2#0#0#6'TTimer'#5'tInit'#7'Enabled'
+  +#8#8'Interval'#2#10#7'OnTimer'#7#10'tInitTimer'#4'left'#2#27#3'top'#2':'#0#0
+  +#0
+]);

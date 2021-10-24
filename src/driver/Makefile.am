@@ -1,3 +1,5 @@
+AUTOMAKE_OPTIONS = subdir-objects
+
 INCLUDES = \
     $(all_includes) \
     -I$(top_srcdir)/src/vsf_cfg \

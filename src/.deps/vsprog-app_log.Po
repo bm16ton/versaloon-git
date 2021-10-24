@@ -1,0 +1,8 @@
+vsprog-app_log.o: app_log.c /usr/include/stdc-predef.h ../config.h \
+ ../vsf/interfaces/cpu/pc/app_log.h
+
+/usr/include/stdc-predef.h:
+
+../config.h:
+
+../vsf/interfaces/cpu/pc/app_log.h:

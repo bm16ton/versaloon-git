@@ -1,0 +1,31 @@
+LazarusResources.Add('TFormFindReplace','FORMDATA',[
+  'TPF0'#16'TFormFindReplace'#15'FormFindReplace'#4'Left'#3'3'#2#6'Height'#3#156
+  +#0#3'Top'#3'w'#1#5'Width'#3'6'#1#11'BorderIcons'#11#12'biSystemMenu'#10'biMi'
+  +'nimize'#0#11'BorderStyle'#7#8'bsSingle'#7'Caption'#6#15'FormFindReplace'#12
+  +'ClientHeight'#3#156#0#11'ClientWidth'#3'6'#1#10'KeyPreview'#9#10'OnKeyPress'
+  +#7#12'FormKeyPress'#6'OnShow'#7#8'FormShow'#8'Position'#7#16'poMainFormCente'
+  +'r'#10'LCLVersion'#6#8'0.9.28.2'#0#6'TLabel'#9'lblSearch'#4'Left'#2#16#6'Hei'
+  +'ght'#2#13#3'Top'#2#15#5'Width'#2'C'#7'Caption'#6#11'Search For:'#11'ParentC'
+  +'olor'#8#0#0#6'TLabel'#10'lblReplace'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'/'
+  +#5'Width'#2'O'#7'Caption'#6#13'Replace With:'#11'ParentColor'#8#0#0#6'TLabel'
+  +#11'lblDataType'#4'Left'#2#16#6'Height'#2#13#3'Top'#2'L'#5'Width'#2'7'#7'Cap'
+  +'tion'#6#9'DataType:'#11'ParentColor'#8#0#0#9'TComboBox'#13'cbboxDataType'#4
+  +'Left'#2'g'#6'Height'#2#20#3'Top'#2'E'#5'Width'#3#196#0#10'ItemHeight'#2#12#9
+  +'ItemIndex'#2#0#13'Items.Strings'#1#6#11'Text-string'#6#10'Hex-values'#0#8'O'
+  +'nChange'#7#19'cbboxDataTypeChange'#5'Style'#7#14'csDropDownList'#8'TabOrder'
+  +#2#2#4'Text'#6#11'Text-string'#0#0#9'TComboBox'#11'cbboxSearch'#4'Left'#2'g'
+  +#6'Height'#2#20#3'Top'#2#8#5'Width'#3#196#0#10'ItemHeight'#2#12#8'TabOrder'#2
+  +#0#0#0#9'TComboBox'#12'cbboxReplace'#4'Left'#2'g'#6'Height'#2#20#3'Top'#2'('
+  +#5'Width'#3#196#0#10'ItemHeight'#2#12#8'TabOrder'#2#1#0#0#9'TCheckBox'#16'ch'
+  +'kboxReplaceAll'#4'Left'#2#16#6'Height'#2#17#3'Top'#2'`'#5'Width'#2'T'#7'Cap'
+  +'tion'#6#12'&Replace All'#8'TabOrder'#2#3#0#0#9'TCheckBox'#8'chkboxUp'#4'Lef'
+  +'t'#3#216#0#6'Height'#2#17#3'Top'#2'`'#5'Width'#2'H'#7'Caption'#6#10'Search '
+  +'&Up'#8'TabOrder'#2#5#0#0#7'TButton'#5'btnOK'#4'Left'#3#128#0#6'Height'#2#25
+  +#3'Top'#2'x'#5'Width'#2'K'#7'Caption'#6#3'&OK'#7'Default'#9#7'OnClick'#7#10
+  +'btnOKClick'#8'TabOrder'#2#6#0#0#7'TButton'#9'btnCancel'#4'Left'#3#224#0#6'H'
+  +'eight'#2#25#3'Top'#2'x'#5'Width'#2'K'#7'Caption'#6#7'&Cancel'#11'ModalResul'
+  +'t'#2#2#8'TabOrder'#2#7#0#0#9'TCheckBox'#13'chkboxUnicode'#4'Left'#2'x'#6'He'
+  +'ight'#2#17#3'Top'#2'`'#5'Width'#2'<'#7'Caption'#6#7'UniCode'#8'TabOrder'#2#4
+  +#0#0#6'TTimer'#5'tInit'#7'Enabled'#8#8'Interval'#2#10#7'OnTimer'#7#10'tInitT'
+  +'imer'#4'left'#2#24#3'top'#2'x'#0#0#0
+]);

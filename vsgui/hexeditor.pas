@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs,
   StdCtrls, ExtCtrls, Grids, ActnList, parameditor, inputdialog,
-  Contnrs, Math, findreplace, FileUtil;
+  Contnrs, Math, findreplace, LazUtils, LazFileUtils;
 
 type
 

@@ -1,0 +1,105 @@
+dal/sd/sd_spi_drv.o: dal/sd/sd_spi_drv.c /usr/include/stdc-predef.h \
+ ../src/app_cfg.h ../vsf/compiler/GCC/compiler.h /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/bits/long-double.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/strings.h app_type.h \
+ /usr/lib/gcc/x86_64-linux-gnu/8/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/lib/gcc/x86_64-linux-gnu/8/include/stdbool.h vsf_err.h \
+ ../vsf/interfaces/cpu/pc/vsf_basetype.h \
+ ../src/programmer/interfaces/interfaces.h ../config.h vsf_err.h \
+ ../src/programmer/interfaces/interfaces_const.h \
+ ../src/programmer/interfaces/versaloon/versaloon.h \
+ ../src/programmer/interfaces/virtualinterface/vi_stm32/vi_stm32.h \
+ dal/sd/../mal/mal.h dal/sd/../mal/../dal.h ../src/vsf_cfg/dal_cfg.h \
+ dal/sd/../mal/mal_driver.h dal/sd/sd_common.h dal/sd/sd_spi_drv_cfg.h \
+ dal/sd/sd_spi_drv.h
+
+/usr/include/stdc-predef.h:
+
+../src/app_cfg.h:
+
+../vsf/compiler/GCC/compiler.h:
+
+/usr/include/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/strings.h:
+
+app_type.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/8/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/8/include/stdbool.h:
+
+vsf_err.h:
+
+../vsf/interfaces/cpu/pc/vsf_basetype.h:
+
+../src/programmer/interfaces/interfaces.h:
+
+../config.h:
+
+vsf_err.h:
+
+../src/programmer/interfaces/interfaces_const.h:
+
+../src/programmer/interfaces/versaloon/versaloon.h:
+
+../src/programmer/interfaces/virtualinterface/vi_stm32/vi_stm32.h:
+
+dal/sd/../mal/mal.h:
+
+dal/sd/../mal/../dal.h:
+
+../src/vsf_cfg/dal_cfg.h:
+
+dal/sd/../mal/mal_driver.h:
+
+dal/sd/sd_common.h:
+
+dal/sd/sd_spi_drv_cfg.h:
+
+dal/sd/sd_spi_drv.h:

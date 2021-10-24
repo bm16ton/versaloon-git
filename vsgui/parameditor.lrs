@@ -1,0 +1,20 @@
+LazarusResources.Add('TFormParaEditor','FORMDATA',[
+  'TPF0'#15'TFormParaEditor'#14'FormParaEditor'#4'Left'#3'-'#2#6'Height'#3#193#0
+  +#3'Top'#3#139#0#5'Width'#3'C'#1#11'BorderIcons'#11#12'biSystemMenu'#10'biMin'
+  +'imize'#0#11'BorderStyle'#7#8'bsSingle'#7'Caption'#6#14'FormParaEditor'#12'C'
+  +'lientHeight'#3#193#0#11'ClientWidth'#3'C'#1#10'KeyPreview'#9#7'OnClose'#7#9
+  +'FormClose'#12'OnCloseQuery'#7#14'FormCloseQuery'#10'OnKeyPress'#7#12'FormKe'
+  +'yPress'#6'OnShow'#7#8'FormShow'#8'Position'#7#16'poMainFormCenter'#10'LCLVe'
+  +'rsion'#6#8'0.9.28.2'#0#6'TPanel'#11'pnlSettings'#4'Left'#2#0#6'Height'#2#127
+  +#3'Top'#2#0#5'Width'#3'C'#1#5'Align'#7#8'alClient'#8'TabOrder'#2#0#7'OnClick'
+  +#7#16'pnlSettingsClick'#0#0#6'TPanel'#9'pnlButton'#4'Left'#2#0#6'Height'#2'B'
+  +#3'Top'#2#127#5'Width'#3'C'#1#5'Align'#7#8'alBottom'#12'ClientHeight'#2'B'#11
+  +'ClientWidth'#3'C'#1#8'TabOrder'#2#1#7'OnClick'#7#14'pnlButtonClick'#0#7'TBu'
+  +'tton'#5'btnOK'#4'Left'#2'8'#6'Height'#2#25#3'Top'#2#22#5'Width'#2'K'#7'Capt'
+  +'ion'#6#3'&OK'#7'Default'#9#11'ModalResult'#2#1#7'OnClick'#7#10'btnOKClick'#8
+  +'TabOrder'#2#0#0#0#7'TButton'#9'btnCancel'#4'Left'#3#192#0#6'Height'#2#25#3
+  +'Top'#2#22#5'Width'#2'K'#7'Caption'#6#7'&Cancel'#11'ModalResult'#2#2#7'OnCli'
+  +'ck'#7#14'btnCancelClick'#8'TabOrder'#2#1#0#0#0#6'TTimer'#5'tInit'#7'Enabled'
+  +#8#8'Interval'#2#10#7'OnTimer'#7#10'tInitTimer'#4'left'#3#144#0#3'top'#3#144
+  +#0#0#0#0
+]);

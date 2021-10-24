@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="/usr/bin/fpc" Date="1548372422"/>
+  <Params Value=" -MObjFPC -CX -Cg -Os3 -Xs -XX -l -vewnhibq -Fu/home/maddocks/versaloon-git/vsgui/E:/hexedit/vcl/Delphi-6 -Fu/usr/lib/lazarus/2.0.0/components/synedit/units/x86_64-linux/gtk2 -Fu/usr/lib/lazarus/2.0.0/lcl/units/x86_64-linux/gtk2 -Fu/usr/lib/lazarus/2.0.0/lcl/units/x86_64-linux -Fu/usr/lib/lazarus/2.0.0/components/lazutils/lib/x86_64-linux -Fu/usr/lib/lazarus/2.0.0/packager/units/x86_64-linux -Fu/home/maddocks/versaloon-git/vsgui/ -o/home/maddocks/versaloon-git/vsgui/vsgui -dLCL -dLCLgtk2 vsgui.lpr"/>
+</CONFIG>

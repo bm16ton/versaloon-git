@@ -5,7 +5,7 @@ unit texteditor;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, LazUtils, LazFileUtils, LResources, Forms, Controls, Graphics, Dialogs,
   StdCtrls;
 
 type

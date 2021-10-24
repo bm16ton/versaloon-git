@@ -1,0 +1,16 @@
+LazarusResources.Add('TFormTextEditor','FORMDATA',[
+  'TPF0'#15'TFormTextEditor'#14'FormTextEditor'#4'Left'#3#255#0#6'Height'#3'B'#2
+  +#3'Top'#3''''#1#5'Width'#3#250#1#11'BorderIcons'#11#12'biSystemMenu'#10'biMi'
+  +'nimize'#0#11'BorderStyle'#7#8'bsSingle'#7'Caption'#6#10'TextEditor'#12'Clie'
+  +'ntHeight'#3'B'#2#11'ClientWidth'#3#250#1#10'KeyPreview'#9#10'OnKeyPress'#7
+  +#12'FormKeyPress'#6'OnShow'#7#8'FormShow'#8'Position'#7#16'poMainFormCenter'
+  +#10'LCLVersion'#6#8'0.9.28.2'#0#5'TMemo'#8'memoText'#4'Left'#2#0#6'Height'#3
+  +#24#2#3'Top'#2#0#5'Width'#3#250#1#5'Align'#7#5'alTop'#5'Color'#4#255#255#234
+  +#0#10'Font.Color'#4'1j'#197#0#10'OnKeyPress'#7#16'memoTextKeyPress'#10'Paren'
+  +'tFont'#8#14'ParentShowHint'#8#10'ScrollBars'#7#10'ssAutoBoth'#8'ShowHint'#9
+  +#8'TabOrder'#2#0#8'WordWrap'#8#0#0#7'TButton'#7'btnSave'#4'Left'#2'p'#6'Heig'
+  +'ht'#2#25#3'Top'#3' '#2#5'Width'#2'K'#7'Caption'#6#5'&Save'#7'OnClick'#7#12
+  +'btnSaveClick'#8'TabOrder'#2#1#0#0#7'TButton'#8'btnClose'#4'Left'#3'('#1#6'H'
+  +'eight'#2#25#3'Top'#3' '#2#5'Width'#2'K'#7'Caption'#6#6'&Close'#11'ModalResu'
+  +'lt'#2#1#8'TabOrder'#2#2#0#0#0
+]);

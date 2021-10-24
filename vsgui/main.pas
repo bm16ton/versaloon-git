@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ComCtrls,
   StdCtrls, EditBtn, ExtCtrls, cli_caller, parameditor, Menus, Buttons, Spin,
   Synaser, com_setup, fileselector, hexeditor, XMLCfg, vsprogparser, vsprogtarget,
-  vsprogprogrammer, inputdialog, FileUtil, texteditor, strparser;
+  vsprogprogrammer, inputdialog, lazutils, LazFileUtils, texteditor, strparser;
 
 type
 
