@@ -16,6 +16,7 @@
 *.o.*
 *.Po
 *.ppu
+*.in
 
 !.clang-format
 !.cocciconfig
@@ -28,4 +29,34 @@
 *~
 \#*#
 
+Makefile
+aclocal.m4
+autom4te.cache/
+compile
+config.guess
+config.h
+config.log
+config.status
+config.sub
+configure
+depcomp
+doc/Makefile
+doc/mdate-sh
+doc/stamp-vti
+doc/texinfo.tex
+doc/usbtoxxx.info
+doc/version.texi
+doc/vsprog.info
+install-sh
+missing
+src/Makefile
+src/driver/Makefile
+src/programmer/Makefile
+src/scripts/Makefile
+src/target/Makefile
+src/tools/Makefile
+src/vsprog
+stamp-h1
+vsf/Makefile
+vsgui/vsgui
 
