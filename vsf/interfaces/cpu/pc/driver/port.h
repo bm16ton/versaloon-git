@@ -25,15 +25,6 @@
 
 #include <time.h>
 
-#if IS_WIN32
-
-#include <windows.h>
-
-#define FILE_SEPARATOR			'\\'
-#define sleep_ms(ms)			Sleep(ms)
-
-#else /* !IS_WIN32 */
-
 #include <unistd.h>
 #include <fcntl.h>
 #include <termios.h>
@@ -41,7 +32,6 @@
 #define FILE_SEPARATOR			'/'
 #define sleep_ms(ms)			usleep((ms) * 1000)
 
-#endif /* IS_WIN32 */
 
 
 

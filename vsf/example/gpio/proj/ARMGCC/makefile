@@ -13,7 +13,8 @@ INCLUDE_USB_LIB = yes
 FLASH_LOAD_OFFSET = 0x0000
 HSE_VALUE = 8000000
 LD_FILE = VSFCore_stm32.ld
-TARGET_STM32 = HighDensity
+TARGET_STM32 = XLDensity
+
 
 # directory define
 PRJDIR	    = ..
@@ -40,6 +41,7 @@ USR_DEFS+= -D__TARGET_CHIP__=$(TARGET_CHIP) -DFLASH_LOAD_OFFSET=$(FLASH_LOAD_OFF
 # compiler.h
 USR_SRCS+= $(COMPILER_DIR)/compiler_string.c $(COMPILER_DIR)/syscall.c
 USR_INCS+= -I $(COMPILER_DIR)
+USR_INCS+= -I ./
 
 #APP interfaces
 USR_SRCS+= $(BSPDIR)/app_interfaces.c
@@ -194,7 +196,7 @@ ASM_OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(LIBSTM32_ASM_SRCS:.s=.o)))
 TCHAIN = arm-none-eabi
 
 INCLUDE_DIRS = -I $(PRJDIR) -I $(SRCDIR) $(LIBSTM32_INCS) $(USR_INCS)
-COMPILE_OPTS = -mcpu=cortex-m3 -mthumb -mfpu=vfp 
+COMPILE_OPTS = -mcpu=cortex-m3 -mthumb -mfpu=vfp
 COMPILE_OPTS+= -nostartfiles -fno-common -fomit-frame-pointer -Wall -g -O$(OPT)
 LIBRARY_DIRS = $(USR_LIBS)
 PREDEFINES   = $(LIBSTM32_DEFS) $(USR_DEFS)

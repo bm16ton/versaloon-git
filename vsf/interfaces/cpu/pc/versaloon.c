@@ -23,6 +23,8 @@
 #include <time.h>
 #include "compiler.h"
 
+#include <stdlib.h>
+
 #include "versaloon_include.h"
 #include "versaloon.h"
 #include "versaloon_internal.h"
@@ -48,7 +50,7 @@ static struct usbtoxxx_info_t versaloon_usbtoxxx_info =
 static vsf_err_t versaloon_fini(void *p)
 {
 	struct interfaces_info_t *t = interfaces;
-	
+
 	usbtoxxx_fini();
 	usbtoxxx_info = NULL;
 	return t->comm->fini();
@@ -61,12 +63,12 @@ static vsf_err_t versaloon_init(void *p)
 	uint16_t ret = 0;
 	uint8_t retry;
 	vsf_err_t err = VSFERR_NONE;
-	
+
 	if (t->comm->init())
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	// malloc temporary buffer
 	if (!versaloon_usbtoxxx_info.buff_len)
 	{
@@ -79,9 +81,9 @@ static vsf_err_t versaloon_init(void *p)
 		LOG_ERROR(ERRMSG_NOT_ENOUGH_MEMORY);
 		return VSFERR_NOT_ENOUGH_RESOURCES;
 	}
-	
+
 	sleep_ms(100);
-	
+
 	// connect to versaloon
 	LOG_PUSH();
 	LOG_MUTE();
@@ -107,16 +109,16 @@ static vsf_err_t versaloon_init(void *p)
 		err = ERRCODE_FAILURE_OPERATION;
 		goto versaloon_init_fail;
 	}
-	
+
 	versaloon_usbtoxxx_info.buff[ret] = 0;
 	versaloon_usbtoxxx_info.buff_len =
 								GET_LE_U16(&versaloon_usbtoxxx_info.buff[0]);
 	LOG_INFO("%s", &versaloon_usbtoxxx_info.buff[2]);
-	
+
 	// free temporary buffer
 	free(versaloon_usbtoxxx_info.buff);
 	versaloon_usbtoxxx_info.buff = NULL;
-	
+
 	usbtoxxx_info = &versaloon_usbtoxxx_info;
 	usbtoxxx_info->comm = t->comm;
 	if (usbtoxxx_init())
@@ -124,7 +126,7 @@ static vsf_err_t versaloon_init(void *p)
 		err = VSFERR_FAIL;
 		goto versaloon_init_fail;
 	}
-	
+
 	return VSFERR_NONE;
 versaloon_init_fail:
 	versaloon_fini(t);
@@ -173,7 +175,7 @@ uint32_t versaloon_tickclk_get_count(void)
 struct interfaces_info_t versaloon_interfaces =
 {
 	&versaloon_libusb_comm,
-	
+
 	{	// core
 		versaloon_init,
 		versaloon_fini,

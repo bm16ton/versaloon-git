@@ -8,7 +8,7 @@
 
 #define GPIO_PORT				0
 #define GPIO_PIN				1
-
+//pin A11
 int main(void)
 {
 	interfaces->core.init(NULL);

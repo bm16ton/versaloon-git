@@ -1,0 +1,51 @@
+vsprog --programmer Versaloon0 -V shell
+
+p versaloon
+init gpio
+
+	VSS_CMD(	"init",
+				"initialize gpio, format: gpio.init [MASK IO PULL_EN PULL]",
+				interface_gpio_init,
+				NULL),
+	VSS_CMD(	"fini",
+				"finalize gpio, format: gpio.fini",
+				interface_gpio_fini,
+				NULL),
+	VSS_CMD(	"config",
+				"config gpio, format: gpio.config MASK IO PULL_EN PULL",
+				interface_gpio_config,
+				NULL),
+	VSS_CMD(	"out",
+				"gpio output, format: gpio.out MASK VALUE",
+				interface_gpio_out,
+				NULL),
+	VSS_CMD(	"in",
+				"gpio input, format: gpio.in MASK",
+				interface_gpio_in,
+				NULL),
+
+#define GPIO_SetPins(port, pin)		(port)->BSRR = GPIO_PIN_GetMask(pin)
+#define GPIO_ClrPins(port, pin)		(port)->BRR = GPIO_PIN_GetMask(pin)
+#define GPIO_GetOutPins(port, pin)	((port)->ODR & GPIO_PIN_GetMask(pin))
+#define GPIO_GetInPins(port, pin)	((port)->IDR & GPIO_PIN_GetMask(pin))
+
+
+
+
+versaloon>>>param exit_on_fail 0
+
+versaloon>>> param no_commit 1
+
+log_info "pooop"
+
+getchar
+
+tvcc.get
+
+adc.config 1 0x00 0xff
+adc.sample 1
+
+GPIO_PORTC_MASK = 0x000000FF
+
+#define GPIO_PORTC_MASK				0x000000FF
+

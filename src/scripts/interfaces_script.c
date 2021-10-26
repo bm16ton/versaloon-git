@@ -198,6 +198,8 @@ VSS_HANDLER(interface_gpio_init);
 VSS_HANDLER(interface_gpio_fini);
 VSS_HANDLER(interface_gpio_config);
 VSS_HANDLER(interface_gpio_out);
+VSS_HANDLER(interface_gpio_set);
+VSS_HANDLER(interface_gpio_clear);
 VSS_HANDLER(interface_gpio_in);
 
 static const struct vss_cmd_t gpio_cmd[] =
@@ -215,8 +217,16 @@ static const struct vss_cmd_t gpio_cmd[] =
 				interface_gpio_config,
 				NULL),
 	VSS_CMD(	"out",
-				"gpio output, format: gpio.out MASK VALUE",
+				"gpio output, format: gpio.out MASK",
 				interface_gpio_out,
+				NULL),
+	VSS_CMD(	"clear",
+				"gpio clear, format: gpio.clear MASK",
+				interface_gpio_clear,
+				NULL),
+	VSS_CMD(	"set",
+				"gpio set, format: gpio.set MASK",
+				interface_gpio_set,
 				NULL),
 	VSS_CMD(	"in",
 				"gpio input, format: gpio.in MASK",
@@ -456,10 +466,10 @@ VSS_HANDLER(interface_get_target_voltage)
 {
 	uint16_t voltage = 0;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_POWER, "power");
-	
+
 	if (ifs->target_voltage.get(0, &voltage))
 	{
 		return VSFERR_FAIL;
@@ -475,10 +485,10 @@ VSS_HANDLER(interface_set_target_voltage)
 {
 	uint16_t voltage = 0;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	INTERFACE_ASSERT(IFS_POWER, "power");
-	
+
 	voltage = (uint16_t)strtoul(argv[1], NULL, 0);
 	if (ifs->target_voltage.set(0, voltage) || ifs->peripheral_commit())
 	{
@@ -494,30 +504,30 @@ VSS_HANDLER(interface_set_target_voltage)
 VSS_HANDLER(interface_clko_init)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_2(1, 2);
 	INTERFACE_ASSERT(IFS_CLOCK, "clko");
-	
+
 	if (ifs->clko.init(0))
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (2 == argc)
 	{
 		return interface_clko_config(argc, argv);
 	}
-	
+
 	return VSFERR_NONE;
 }
 
 VSS_HANDLER(interface_clko_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_CLOCK, "clko");
-	
+
 	if (ifs->clko.fini(0) || ifs->peripheral_commit())
 	{
 		return VSFERR_FAIL;
@@ -529,19 +539,19 @@ VSS_HANDLER(interface_clko_config)
 {
 	uint32_t kHz;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	INTERFACE_ASSERT(IFS_CLOCK, "clko");
-	
+
 	kHz = (uint32_t)strtoul(argv[1], NULL, 0);
-	
+
 	if (ifs->clko.config(0, kHz) ||
 		ifs->clko.enable(0) ||
 		ifs->peripheral_commit())
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	return VSFERR_NONE;
 }
 #endif
@@ -551,13 +561,13 @@ VSS_HANDLER(interface_adc_init)
 {
 	uint32_t clock_hz;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	INTERFACE_ASSERT(IFS_ADC, "adc");
-	
+
 	clock_hz = (uint32_t)strtoul(argv[1], NULL, 0);
-	if (ifs->adc.init(0) || 
-		ifs->adc.config(0, clock_hz, ADC_ALIGNRIGHT) || 
+	if (ifs->adc.init(0) ||
+		ifs->adc.config(0, clock_hz, ADC_ALIGNRIGHT) ||
 		ifs->peripheral_commit())
 	{
 		return VSFERR_FAIL;
@@ -568,10 +578,10 @@ VSS_HANDLER(interface_adc_init)
 VSS_HANDLER(interface_adc_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_ADC, "adc");
-	
+
 	if (ifs->adc.fini(0) || ifs->peripheral_commit())
 	{
 		return VSFERR_FAIL;
@@ -584,14 +594,14 @@ VSS_HANDLER(interface_adc_config)
 	uint8_t channel;
 	uint8_t rate;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(3);
 	INTERFACE_ASSERT(IFS_ADC, "adc");
-	
+
 	channel = (uint8_t)strtoul(argv[1], NULL, 0);
 	rate = (uint8_t)strtoul(argv[2], NULL, 0);
-	if (ifs->adc.config_channel(0, channel, rate) || 
-		ifs->adc.calibrate(0, channel) || 
+	if (ifs->adc.config_channel(0, channel, rate) ||
+		ifs->adc.calibrate(0, channel) ||
 		ifs->peripheral_commit())
 	{
 		return VSFERR_FAIL;
@@ -604,10 +614,10 @@ VSS_HANDLER(interface_adc_get)
 	uint8_t channel;
 	uint32_t voltage;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	INTERFACE_ASSERT(IFS_ADC, "adc");
-	
+
 	channel = (uint8_t)strtoul(argv[1], NULL, 0);
 	if (ifs->adc.sample(0, channel, &voltage) || ifs->peripheral_commit())
 	{
@@ -622,15 +632,15 @@ VSS_HANDLER(interface_adc_get)
 VSS_HANDLER(interface_gpio_init)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_2(1, 5);
 	INTERFACE_ASSERT(IFS_GPIO, "gpio");
-	
+
 	if (ifs->gpio.init(0))
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (5 == argc)
 	{
 		return interface_gpio_config(argc, argv);
@@ -641,10 +651,10 @@ VSS_HANDLER(interface_gpio_init)
 VSS_HANDLER(interface_gpio_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_GPIO, "gpio");
-	
+
 	return ifs->gpio.fini(0);
 }
 
@@ -652,15 +662,15 @@ VSS_HANDLER(interface_gpio_config)
 {
 	uint32_t mask, io, pull, pull_en;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(5);
 	INTERFACE_ASSERT(IFS_GPIO, "gpio");
-	
+
 	mask = (uint32_t)strtoul(argv[1], NULL, 0);
 	io = (uint32_t)strtoul(argv[2], NULL, 0);
 	pull_en = (uint32_t)strtoul(argv[3], NULL, 0);
 	pull = (uint32_t)strtoul(argv[4], NULL, 0);
-	
+
 	return ifs->gpio.config(0, mask, io, pull_en, pull);
 }
 
@@ -668,14 +678,40 @@ VSS_HANDLER(interface_gpio_out)
 {
 	uint32_t mask, value;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(3);
 	INTERFACE_ASSERT(IFS_GPIO, "gpio");
-	
+
 	mask = (uint32_t)strtoul(argv[1], NULL, 0);
 	value = (uint32_t)strtoul(argv[2], NULL, 0);
-	
+
 	return ifs->gpio.out(0, mask, value);
+}
+
+VSS_HANDLER(interface_gpio_set)
+{
+	uint32_t mask, value;
+	struct INTERFACES_INFO_T *ifs = NULL;
+
+	VSS_CHECK_ARGC(2);
+	INTERFACE_ASSERT(IFS_GPIO, "gpio");
+
+	mask = (uint32_t)strtoul(argv[1], NULL, 0);
+
+	return ifs->gpio.set(0, mask);
+}
+
+VSS_HANDLER(interface_gpio_clear)
+{
+	uint32_t mask, value;
+	struct INTERFACES_INFO_T *ifs = NULL;
+
+	VSS_CHECK_ARGC(2);
+	INTERFACE_ASSERT(IFS_GPIO, "gpio");
+
+	mask = (uint32_t)strtoul(argv[1], NULL, 0);
+
+	return ifs->gpio.clear(0, mask);
 }
 
 VSS_HANDLER(interface_gpio_in)
@@ -683,12 +719,12 @@ VSS_HANDLER(interface_gpio_in)
 	uint32_t mask, value;
 	vsf_err_t err = VSFERR_NONE;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	INTERFACE_ASSERT(IFS_GPIO, "gpio");
-	
+
 	mask = (uint32_t)strtoul(argv[1], NULL, 0);
-	
+
 	err = ifs->gpio.in(0, mask, &value);
 	if (!err)
 	{
@@ -706,15 +742,15 @@ VSS_HANDLER(interface_gpio_in)
 VSS_HANDLER(interface_jtag_init)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_3(1, 2, 6);
 	INTERFACE_ASSERT(IFS_JTAG_HL, "jtag");
-	
+
 	if (ifs->jtag_hl.init(0))
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (argc > 1)
 	{
 		return interface_jtag_config(argc, argv);
@@ -725,10 +761,10 @@ VSS_HANDLER(interface_jtag_init)
 VSS_HANDLER(interface_jtag_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_JTAG_HL, "jtag");
-	
+
 	return ifs->jtag_hl.fini(0);
 }
 
@@ -737,10 +773,10 @@ VSS_HANDLER(interface_jtag_config)
 	uint32_t khz = 0;
 	struct jtag_pos_t pos;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_2(2, 6);
 	INTERFACE_ASSERT(IFS_JTAG_HL, "jtag");
-	
+
 	khz = (uint32_t)strtoul(argv[1], NULL, 0);
 	pos.ub = pos.ua = 0;
 	pos.bb = pos.ba = 0;
@@ -751,7 +787,7 @@ VSS_HANDLER(interface_jtag_config)
 		pos.bb = (uint16_t)strtoul(argv[4], NULL, 0);
 		pos.ba = (uint16_t)strtoul(argv[5], NULL, 0);
 	}
-	
+
 	return ifs->jtag_hl.config(0, khz, &pos);
 }
 
@@ -759,10 +795,10 @@ VSS_HANDLER(interface_jtag_reset)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
 	uint8_t tms = 0x7F;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_JTAG_HL, "jtag");
-	
+
 	return ifs->jtag_hl.tms(0, &tms, 8);
 }
 
@@ -770,12 +806,12 @@ VSS_HANDLER(interface_jtag_runtest)
 {
 	uint32_t cycles = 0;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	INTERFACE_ASSERT(IFS_JTAG_HL, "jtag");
-	
+
 	cycles = (uint32_t)strtoul(argv[1], NULL, 0);
-	
+
 	return ifs->jtag_hl.runtest(0, cycles);
 }
 
@@ -784,14 +820,14 @@ VSS_HANDLER(interface_jtag_ir)
 	uint32_t ir;
 	uint16_t bitlen;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(3);
 	INTERFACE_ASSERT(IFS_JTAG_HL, "jtag");
-	
+
 	bitlen = (uint16_t)strtoul(argv[1], NULL, 0);
 	ir = (uint32_t)strtoul(argv[2], NULL, 0);
 	ir = SYS_TO_LE_U32(ir);
-	
+
 	LOG_INFO(INFOMSG_REG_08X, "IR_out", ir);
 	if (ifs->jtag_hl.ir(0, (uint8_t *)&ir, bitlen, 1, 1) ||
 		ifs->peripheral_commit())
@@ -800,7 +836,7 @@ VSS_HANDLER(interface_jtag_ir)
 		return VSFERR_FAIL;
 	}
 	LOG_INFO(INFOMSG_REG_08X, "IR_in", ir);
-	
+
 	return VSFERR_NONE;
 }
 
@@ -811,15 +847,15 @@ VSS_HANDLER(interface_jtag_dr)
 	uint16_t data_num;
 	struct INTERFACES_INFO_T *ifs = NULL;
 	vsf_err_t err;
-	
+
 	VSS_CHECK_ARGC_MIN(4);
 	INTERFACE_ASSERT(IFS_JTAG_HL, "jtag");
-	
+
 	bitlen = (uint16_t)strtoul(argv[1], NULL, 0);
 	bytelen = (bitlen + 7) >> 3;
 	data_size = (uint8_t)strtoul(argv[2], NULL, 0);
 	data_num = (bytelen + data_size - 1) / data_size;
-	
+
 	VSS_CHECK_ARGC(3 + data_num);
 	if ((data_size != 1) && (data_size != 2) && (data_size != 4))
 	{
@@ -827,7 +863,7 @@ VSS_HANDLER(interface_jtag_dr)
 		vss_print_help(argv[0]);
 		return VSFERR_FAIL;
 	}
-	
+
 	err = vss_get_binary_buffer(argc - 3, &argv[3], data_size, data_num,
 								(void**)&dr, NULL);
 	if (err)
@@ -847,7 +883,7 @@ VSS_HANDLER(interface_jtag_dr)
 			}
 		}
 	}
-	
+
 	if (dr != NULL)
 	{
 		free(dr);
@@ -861,15 +897,15 @@ VSS_HANDLER(interface_jtag_dr)
 VSS_HANDLER(interface_spi_init)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_2(1, 4);
 	INTERFACE_ASSERT(IFS_SPI, "spi");
-	
+
 	if (ifs->spi.init(0))
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (4 == argc)
 	{
 		return interface_spi_config(argc, argv);
@@ -880,10 +916,10 @@ VSS_HANDLER(interface_spi_init)
 VSS_HANDLER(interface_spi_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_SPI, "spi");
-	
+
 	return ifs->spi.fini(0);
 }
 
@@ -892,10 +928,10 @@ VSS_HANDLER(interface_spi_config)
 	uint32_t khz = 0;
 	uint8_t mode, firstbit;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(4);
 	INTERFACE_ASSERT(IFS_SPI, "spi");
-	
+
 	khz = (uint32_t)strtoul(argv[1], NULL, 0);
 	mode = (uint8_t)strtoul(argv[2], NULL, 0);
 	if (mode > SPI_MODE3)
@@ -905,7 +941,7 @@ VSS_HANDLER(interface_spi_config)
 	}
 	firstbit = (uint8_t)strtoul(argv[3], NULL, 0);
 	firstbit = firstbit ? SPI_MSB_FIRST : SPI_LSB_FIRST;
-	
+
 	return ifs->spi.config(0, khz, mode | firstbit);
 }
 
@@ -916,10 +952,10 @@ VSS_HANDLER(interface_spi_io)
 	uint8_t *buff = NULL;
 	vsf_err_t err = VSFERR_NONE;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_MIN(2);
 	INTERFACE_ASSERT(IFS_SPI, "spi");
-	
+
 	data_num = (uint16_t)strtoul(argv[1], NULL, 0);
 	if (0 == data_num)
 	{
@@ -952,7 +988,7 @@ VSS_HANDLER(interface_spi_io)
 			}
 		}
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -966,15 +1002,15 @@ VSS_HANDLER(interface_spi_io)
 VSS_HANDLER(interface_iic_init)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_2(1, 3);
 	INTERFACE_ASSERT(IFS_I2C, "iic");
-	
+
 	if (ifs->i2c.init(0))
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (3 == argc)
 	{
 		return interface_iic_config(argc, argv);
@@ -985,10 +1021,10 @@ VSS_HANDLER(interface_iic_init)
 VSS_HANDLER(interface_iic_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_I2C, "iic");
-	
+
 	return ifs->i2c.fini(0);
 }
 
@@ -997,13 +1033,13 @@ VSS_HANDLER(interface_iic_config)
 	uint16_t khz = 0;
 	uint16_t max_dly = 0;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(3);
 	INTERFACE_ASSERT(IFS_I2C, "iic");
-	
+
 	khz = (uint16_t)strtoul(argv[1], NULL, 0);
 	max_dly = (uint16_t)strtoul(argv[2], NULL, 0);
-	
+
 	return ifs->i2c.config(0, khz, 0, max_dly);
 }
 
@@ -1016,10 +1052,10 @@ VSS_HANDLER(interface_iic_read)
 	uint8_t *buff = NULL;
 	vsf_err_t err = VSFERR_NONE;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(5);
 	INTERFACE_ASSERT(IFS_I2C, "iic");
-	
+
 	addr = (uint8_t)strtoul(argv[1], NULL, 0);
 	stop = (uint8_t)strtoul(argv[2], NULL, 0);
 	nacklast = strtoul(argv[3], NULL, 0) > 0;
@@ -1029,7 +1065,7 @@ VSS_HANDLER(interface_iic_read)
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	err = ifs->i2c.read(0, addr, buff, data_size, stop, nacklast);
 	if (!err)
 	{
@@ -1039,7 +1075,7 @@ VSS_HANDLER(interface_iic_read)
 			LOG_BUF_STD(1, buff, data_size, LOG_INFO);
 		}
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1056,14 +1092,14 @@ VSS_HANDLER(interface_iic_write)
 	uint8_t *buff = NULL;
 	vsf_err_t err = VSFERR_NONE;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_MIN(4);
 	INTERFACE_ASSERT(IFS_I2C, "iic");
-	
+
 	addr = (uint8_t)strtoul(argv[1], NULL, 0);
 	stop = (uint8_t)strtoul(argv[2], NULL, 0);
 	data_size = (uint8_t)strtoul(argv[3], NULL, 0);
-	
+
 	VSS_CHECK_ARGC(4 + data_size);
 	if (0 == data_size)
 	{
@@ -1071,7 +1107,7 @@ VSS_HANDLER(interface_iic_write)
 		vss_print_help(argv[0]);
 		return VSFERR_FAIL;
 	}
-	
+
 	err = vss_get_binary_buffer(argc - 4, &argv[4], 1, data_size, (void**)&buff,
 								NULL);
 	if (err)
@@ -1083,7 +1119,7 @@ VSS_HANDLER(interface_iic_write)
 	{
 		err = ifs->i2c.write(0, addr, buff, data_size, stop);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1100,10 +1136,10 @@ VSS_HANDLER(interface_iic_read_buff8)
 	uint8_t *buff = NULL;
 	vsf_err_t err = VSFERR_NONE;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(5);
 	INTERFACE_ASSERT(IFS_I2C, "iic");
-	
+
 	slave_addr = (uint8_t)strtoul(argv[1], NULL, 0);
 	nacklast = strtoul(argv[2], NULL, 0) > 0;
 	data_size = (uint8_t)strtoul(argv[3], NULL, 0);
@@ -1113,7 +1149,7 @@ VSS_HANDLER(interface_iic_read_buff8)
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	err = ifs->i2c.write(0, slave_addr, &addr, 1, 0);
 	if (!err)
 	{
@@ -1128,7 +1164,7 @@ VSS_HANDLER(interface_iic_read_buff8)
 			}
 		}
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1144,13 +1180,13 @@ VSS_HANDLER(interface_iic_write_buff8)
 	uint8_t *buff = NULL;
 	vsf_err_t err = VSFERR_NONE;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_MIN(4);
 	INTERFACE_ASSERT(IFS_I2C, "iic");
-	
+
 	slave_addr = (uint8_t)strtoul(argv[1], NULL, 0);
 	data_size = (uint8_t)strtoul(argv[2], NULL, 0);
-	
+
 	VSS_CHECK_ARGC(4 + data_size);
 	if (0 == data_size)
 	{
@@ -1158,7 +1194,7 @@ VSS_HANDLER(interface_iic_write_buff8)
 		vss_print_help(argv[0]);
 		return VSFERR_FAIL;
 	}
-	
+
 	err = vss_get_binary_buffer(argc - 3, &argv[3], 1, data_size + 1,
 								(void**)&buff, NULL);
 	if (err)
@@ -1170,7 +1206,7 @@ VSS_HANDLER(interface_iic_write_buff8)
 	{
 		err = ifs->i2c.write(0, slave_addr, buff, data_size + 1, 1);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1184,15 +1220,15 @@ VSS_HANDLER(interface_iic_write_buff8)
 VSS_HANDLER(interface_pwm_init)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_2(1, 3);
 	INTERFACE_ASSERT(IFS_PWM, "pwm");
-	
+
 	if (ifs->pwm.init(0))
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (3 == argc)
 	{
 		return interface_pwm_config_mode(argc, argv);
@@ -1203,10 +1239,10 @@ VSS_HANDLER(interface_pwm_init)
 VSS_HANDLER(interface_pwm_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_PWM, "pwm");
-	
+
 	return ifs->pwm.fini(0);
 }
 
@@ -1214,13 +1250,13 @@ VSS_HANDLER(interface_pwm_config_mode)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
 	uint8_t pushpull, polarity, mode;
-	
+
 	VSS_CHECK_ARGC(3);
 	INTERFACE_ASSERT(IFS_PWM, "pwm");
-	
+
 	pushpull = (uint8_t)strtoul(argv[1], NULL, 0);
 	polarity = (uint8_t)strtoul(argv[2], NULL, 0);
-	
+
 	mode = 0;
 	if (pushpull)
 	{
@@ -1237,12 +1273,12 @@ VSS_HANDLER(interface_pwm_config_freq)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
 	uint16_t kHz;
-	
+
 	VSS_CHECK_ARGC(2);
 	INTERFACE_ASSERT(IFS_PWM, "pwm");
-	
+
 	kHz = (uint16_t)strtoul(argv[1], NULL, 0);
-	
+
 	return ifs->pwm.config_freq(0, kHz);
 }
 
@@ -1252,12 +1288,12 @@ VSS_HANDLER(interface_pwm_out)
 	uint16_t *buff = NULL;
 	vsf_err_t err = VSFERR_NONE;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC_MIN(3);
 	INTERFACE_ASSERT(IFS_PWM, "pwm");
-	
+
 	count = (uint16_t)strtoul(argv[1], NULL, 0);
-	
+
 	VSS_CHECK_ARGC(2 + count);
 	if (0 == count)
 	{
@@ -1265,7 +1301,7 @@ VSS_HANDLER(interface_pwm_out)
 		vss_print_help(argv[0]);
 		return VSFERR_FAIL;
 	}
-	
+
 	err = vss_get_binary_buffer(argc - 2, &argv[2], 2, count, (void**)&buff,
 								NULL);
 	if (err)
@@ -1277,7 +1313,7 @@ VSS_HANDLER(interface_pwm_out)
 	{
 		err = ifs->pwm.out(0, count, buff);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1291,20 +1327,20 @@ VSS_HANDLER(interface_pwm_out)
 VSS_HANDLER(interface_ebi_init)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	return  ifs->ebi.init(0);
 }
 
 VSS_HANDLER(interface_ebi_fini)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	return ifs->ebi.fini(0);
 }
 
@@ -1315,10 +1351,10 @@ VSS_HANDLER(interface_ebi_config)
 	uint8_t index;
 	uint8_t width;
 	uint8_t add_set = 15, data_set  = 255;
-	
+
 	VSS_CHECK_ARGC_2(3, 5);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	width = (uint8_t)strtoul(argv[2], NULL, 0);
 	if ((width != 8) && (width != 16) && (width != 32))
@@ -1331,17 +1367,17 @@ VSS_HANDLER(interface_ebi_config)
 		add_set = (uint8_t)strtoul(argv[3], NULL, 0);
 		data_set = (uint8_t)strtoul(argv[4], NULL, 0);
 	}
-	
+
 	nor_info.common_info.data_width = width;
 	nor_info.common_info.wait_signal = EBI_WAIT_NONE;
 	nor_info.param.addr_multiplex = false;
-	nor_info.param.timing.clock_hz_r = 
+	nor_info.param.timing.clock_hz_r =
 		nor_info.param.timing.clock_hz_w = 0;
-	nor_info.param.timing.address_setup_cycle_r = 
+	nor_info.param.timing.address_setup_cycle_r =
 		nor_info.param.timing.address_setup_cycle_w = add_set;
-	nor_info.param.timing.address_hold_cycle_r = 
+	nor_info.param.timing.address_hold_cycle_r =
 		nor_info.param.timing.address_hold_cycle_w = 0;
-	nor_info.param.timing.data_setup_cycle_r = 
+	nor_info.param.timing.data_setup_cycle_r =
 		nor_info.param.timing.data_setup_cycle_w = data_set;
 	return ifs->ebi.config(0, index | EBI_TGTTYP_NOR, &nor_info);
 }
@@ -1355,15 +1391,15 @@ VSS_HANDLER(interface_ebi_read)
 	uint8_t size;
 	uint8_t *buff = NULL;
 	uint32_t count;
-	
+
 	VSS_CHECK_ARGC(5);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = (uint32_t)strtoul(argv[2], NULL, 0);
 	size = (uint8_t)strtoul(argv[3], NULL, 0);
 	count = (uint32_t)strtoul(argv[4], NULL, 0);
-	
+
 	switch (size)
 	{
 	case 1:
@@ -1381,13 +1417,13 @@ VSS_HANDLER(interface_ebi_read)
 		LOG_ERROR(ERRMSG_INVALID_PARAMETER, "size");
 		return VSFERR_INVALID_PARAMETER;
 	}
-	
+
 	buff = (uint8_t *)malloc(size * count);
 	if (NULL == buff)
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (!err)
 	{
 		err = ifs->ebi.read(0, index | EBI_TGTTYP_NOR, address, size, buff, count);
@@ -1400,7 +1436,7 @@ VSS_HANDLER(interface_ebi_read)
 	{
 		LOG_BUF_STD(size, buff, count, LOG_INFO);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1418,15 +1454,15 @@ VSS_HANDLER(interface_ebi_write)
 	uint8_t size;
 	uint8_t *buff = NULL;
 	uint16_t count, parsed_num;;
-	
+
 	VSS_CHECK_ARGC_MIN(5);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = (uint32_t)strtoul(argv[2], NULL, 0);
 	size = (uint8_t)strtoul(argv[3], NULL, 0);
 	count = (uint16_t)strtoul(argv[4], NULL, 0);
-	
+
 	switch (size)
 	{
 	case 1:
@@ -1445,7 +1481,7 @@ VSS_HANDLER(interface_ebi_write)
 		return VSFERR_INVALID_PARAMETER;
 	}
 	VSS_CHECK_ARGC_MAX(count + 5);
-	
+
 	err = vss_get_binary_buffer(argc - 5, &argv[5], size, count, (void**)&buff,
 								&parsed_num);
 	if (err)
@@ -1456,7 +1492,7 @@ VSS_HANDLER(interface_ebi_write)
 	else
 	{
 		uint16_t i;
-		
+
 		for (i = parsed_num; i < count; i++)
 		{
 			switch (size)
@@ -1475,7 +1511,7 @@ VSS_HANDLER(interface_ebi_write)
 		err = ifs->ebi.write(0, index | EBI_TGTTYP_NOR, address, size,
 								(uint8_t *)buff, count);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1493,20 +1529,20 @@ VSS_HANDLER(interface_ebi_read8)
 	uint8_t size = 1;
 	uint8_t *buff = NULL;
 	uint32_t count;
-	
+
 	VSS_CHECK_ARGC(4);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = ((uint32_t)strtoul(argv[2], NULL, 0)) << 0;
 	count = (uint32_t)strtoul(argv[3], NULL, 0);
-	
+
 	buff = (uint8_t *)malloc(count * size);
 	if (NULL == buff)
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (!err)
 	{
 		err = ifs->ebi.read(0, index | EBI_TGTTYP_NOR, address, size,
@@ -1520,7 +1556,7 @@ VSS_HANDLER(interface_ebi_read8)
 	{
 		LOG_BUF_STD(size, buff, count, LOG_INFO);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1538,16 +1574,16 @@ VSS_HANDLER(interface_ebi_write8)
 	uint8_t size = 1;
 	uint8_t *buff = NULL;
 	uint16_t count, parsed_num;
-	
+
 	VSS_CHECK_ARGC_MIN(4);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = ((uint32_t)strtoul(argv[2], NULL, 0)) << 0;
 	count = (uint16_t)strtoul(argv[3], NULL, 0);
-	
+
 	VSS_CHECK_ARGC_MAX(count + 4);
-	
+
 	err = vss_get_binary_buffer(argc - 4, &argv[4], size, count, (void**)&buff,
 								&parsed_num);
 	if (err)
@@ -1558,7 +1594,7 @@ VSS_HANDLER(interface_ebi_write8)
 	else
 	{
 		uint16_t i;
-		
+
 		for (i = parsed_num; i < count; i++)
 		{
 			switch (size)
@@ -1577,7 +1613,7 @@ VSS_HANDLER(interface_ebi_write8)
 		err = ifs->ebi.write(0, index | EBI_TGTTYP_NOR, address, size,
 								(uint8_t *)buff, count);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1595,20 +1631,20 @@ VSS_HANDLER(interface_ebi_read16)
 	uint8_t size = 2;
 	uint16_t *buff = NULL;
 	uint32_t count;
-	
+
 	VSS_CHECK_ARGC(4);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = ((uint32_t)strtoul(argv[2], NULL, 0)) << 1;
 	count = (uint32_t)strtoul(argv[3], NULL, 0);
-	
+
 	buff = (uint16_t *)malloc(count * size);
 	if (NULL == buff)
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (!err)
 	{
 		err = ifs->ebi.read(0, index | EBI_TGTTYP_NOR, address, size,
@@ -1622,7 +1658,7 @@ VSS_HANDLER(interface_ebi_read16)
 	{
 		LOG_BUF_STD(size, buff, count, LOG_INFO);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1640,16 +1676,16 @@ VSS_HANDLER(interface_ebi_write16)
 	uint8_t size = 2;
 	uint16_t *buff = NULL;
 	uint16_t count, parsed_num;
-	
+
 	VSS_CHECK_ARGC_MIN(4);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = ((uint32_t)strtoul(argv[2], NULL, 0)) << 1;
 	count = (uint16_t)strtoul(argv[3], NULL, 0);
-	
+
 	VSS_CHECK_ARGC(count + 4);
-	
+
 	err = vss_get_binary_buffer(argc - 4, &argv[4], size, count, (void**)&buff,
 								&parsed_num);
 	if (err)
@@ -1660,7 +1696,7 @@ VSS_HANDLER(interface_ebi_write16)
 	else
 	{
 		uint16_t i;
-		
+
 		for (i = parsed_num; i < count; i++)
 		{
 			switch (size)
@@ -1679,7 +1715,7 @@ VSS_HANDLER(interface_ebi_write16)
 		err = ifs->ebi.write(0, index | EBI_TGTTYP_NOR, address, size,
 								(uint8_t *)buff, count);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1697,20 +1733,20 @@ VSS_HANDLER(interface_ebi_read32)
 	uint8_t size = 4;
 	uint32_t *buff = NULL;
 	uint32_t count;
-	
+
 	VSS_CHECK_ARGC(4);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = ((uint32_t)strtoul(argv[2], NULL, 0)) << 2;
 	count = (uint32_t)strtoul(argv[3], NULL, 0);
-	
+
 	buff = (uint32_t *)malloc(count * size);
 	if (NULL == buff)
 	{
 		return VSFERR_FAIL;
 	}
-	
+
 	if (!err)
 	{
 		err = ifs->ebi.read(0, index | EBI_TGTTYP_NOR, address, size,
@@ -1724,7 +1760,7 @@ VSS_HANDLER(interface_ebi_read32)
 	{
 		LOG_BUF_STD(size, buff, count, LOG_INFO);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1742,16 +1778,16 @@ VSS_HANDLER(interface_ebi_write32)
 	uint8_t size = 4;
 	uint32_t *buff = NULL;
 	uint16_t count, parsed_num;
-	
+
 	VSS_CHECK_ARGC_MIN(4);
 	INTERFACE_ASSERT(IFS_EBI, "ebi");
-	
+
 	index = (uint8_t)strtoul(argv[1], NULL, 0);
 	address = ((uint32_t)strtoul(argv[2], NULL, 0)) << 2;
 	count = (uint16_t)strtoul(argv[3], NULL, 0);
-	
+
 	VSS_CHECK_ARGC(count + 4);
-	
+
 	err = vss_get_binary_buffer(argc - 4, &argv[4], size, count, (void**)&buff,
 								&parsed_num);
 	if (err)
@@ -1762,7 +1798,7 @@ VSS_HANDLER(interface_ebi_write32)
 	else
 	{
 		uint16_t i;
-		
+
 		for (i = parsed_num; i < count; i++)
 		{
 			switch (size)
@@ -1781,7 +1817,7 @@ VSS_HANDLER(interface_ebi_write32)
 		err = ifs->ebi.write(0, index | EBI_TGTTYP_NOR, address, size,
 							(uint8_t *)buff, count);
 	}
-	
+
 	if (buff != NULL)
 	{
 		free(buff);
@@ -1796,14 +1832,14 @@ VSS_HANDLER(interface_delay_us)
 {
 	uint16_t delay;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	if (interface_assert(&ifs) || (NULL == ifs))
 	{
 		LOG_ERROR(ERRMSG_FAILURE_HANDLE_DEVICE, "assert", "interface module");
 		return VSFERR_FAIL;
 	}
-	
+
 	delay = (uint16_t)strtoul(argv[1], NULL, 0);
 	return ifs->delay.delayus(delay);
 }
@@ -1812,14 +1848,14 @@ VSS_HANDLER(interface_delay_ms)
 {
 	uint16_t delay;
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(2);
 	if (interface_assert(&ifs) || (NULL == ifs))
 	{
 		LOG_ERROR(ERRMSG_FAILURE_HANDLE_DEVICE, "assert", "interface module");
 		return VSFERR_FAIL;
 	}
-	
+
 	delay = (uint16_t)strtoul(argv[1], NULL, 0);
 	return ifs->delay.delayms(delay);
 }
@@ -1828,14 +1864,14 @@ VSS_HANDLER(interface_delay_ms)
 VSS_HANDLER(interface_commit)
 {
 	struct INTERFACES_INFO_T *ifs = NULL;
-	
+
 	VSS_CHECK_ARGC(1);
 	if (interface_assert(&ifs) || (NULL == ifs))
 	{
 		LOG_ERROR(ERRMSG_FAILURE_HANDLE_DEVICE, "assert", "interface module");
 		return VSFERR_FAIL;
 	}
-	
+
 	return ifs->peripheral_commit();
 }
 

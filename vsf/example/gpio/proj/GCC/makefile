@@ -25,7 +25,7 @@ COMPILER_DIR = .
 USR_SRCS+= $(SRCDIR)/main.c
 USR_INCS+= -I $(SRCDIR)
 # compiler.h
-USR_INCS+= -I $(VSFDIR)\compiler\GCC
+USR_INCS+= -I $(VSFDIR)\compiler\GCC -I ../../../../../vsf/compiler/GCC/
 #USR_DEFS+= -DADD_USER_DEFINES_HERE
 #USR_LIBS+= -L./
 
@@ -72,7 +72,7 @@ USR_INCS+= -I $(VSFDIR)/tool/list
 
 USR_OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(USR_SRCS:.c=.o)))
 
-TCHAIN = 
+TCHAIN =
 
 INCLUDE_DIRS = -I $(PRJDIR) -I $(SRCDIR) $(USR_INCS)
 COMPILE_OPTS = -Wall -g -O$(OPT)
